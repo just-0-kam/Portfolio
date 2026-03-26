@@ -1,0 +1,1596 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio — UI/UX Designer</title>
+
+    <!-- ============================================================
+       FONTS
+       We import 'Manrope' from Google Fonts in multiple weights
+       so we can use thin, regular, medium, semibold, and bold text.
+  ============================================================ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* ============================================================
+       CSS CUSTOM PROPERTIES (VARIABLES)
+       These act like "design tokens." Change a value here and it
+       updates everywhere the variable is used.
+
+       PALETTE from colorhunt.co:
+       #F8F4EC — warm cream   (text / highlights)
+       #FF9BD2 — soft pink    (accent secondary)
+       #D63484 — deep magenta (accent primary)
+       #402B3A — dark plum    (background)
+    ============================================================ */
+      :root {
+        /* ---- Colour Palette ---- */
+        --bg-primary: #402b3a; /* dark plum — main background     */
+        --bg-secondary: #4a3348; /* slightly lighter plum           */
+        --bg-card: #503a4e; /* card / elevated surfaces        */
+        --bg-card-hover: #5c4459; /* card on hover                   */
+        --border: rgba(248, 244, 236, 0.08); /* subtle cream dividers      */
+        --border-hover: rgba(248, 244, 236, 0.16);
+
+        --text-primary: #f8f4ec; /* warm cream — main text          */
+        --text-secondary: #c4b8b0; /* muted cream                     */
+        --text-tertiary: #8a7a7f; /* subtle plum-grey                */
+
+        /* Accent colours (pink → magenta) */
+        --accent-pink: #ff9bd2; /* soft pink                       */
+        --accent-magenta: #d63484; /* deep magenta                    */
+        --accent-gradient: linear-gradient(
+          135deg,
+          var(--accent-magenta),
+          var(--accent-pink)
+        );
+
+        /* ---- Typography ---- */
+        --font-family: "Manrope", sans-serif;
+
+        /* ---- Spacing scale ---- */
+        --space-xs: 0.25rem; /*  4px */
+        --space-sm: 0.5rem; /*  8px */
+        --space-md: 1rem; /* 16px */
+        --space-lg: 1.5rem; /* 24px */
+        --space-xl: 2.5rem; /* 40px */
+        --space-2xl: 4rem; /* 64px */
+        --space-3xl: 6rem; /* 96px */
+
+        /* ---- Layout ---- */
+        --content-max: 1100px;
+        --radius-sm: 8px;
+        --radius-md: 12px;
+        --radius-lg: 16px;
+        --radius-xl: 24px;
+
+        /* ---- Transitions ---- */
+        --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      /* ============================================================
+       RESET & BASE
+       Removes browser default spacing and sets global box-sizing
+       so padding doesn't break widths.
+    ============================================================ */
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scrollbar-width: thin;
+        scrollbar-color: var(--text-tertiary) transparent;
+      }
+
+      body {
+        font-family: var(--font-family);
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+
+      /* Custom scrollbar for Webkit browsers */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--text-tertiary);
+        border-radius: 3px;
+      }
+
+      /* ============================================================
+       AMBIENT BACKGROUND GLOW
+       Soft gradient blobs that float behind content to create
+       depth. Uses the pink and magenta accent colours.
+    ============================================================ */
+      .ambient-glow {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+      }
+
+      .ambient-glow .orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(140px);
+        opacity: 0.07;
+      }
+
+      .ambient-glow .orb-1 {
+        width: 600px;
+        height: 600px;
+        background: var(--accent-magenta);
+        top: -200px;
+        right: -100px;
+      }
+
+      .ambient-glow .orb-2 {
+        width: 500px;
+        height: 500px;
+        background: var(--accent-pink);
+        bottom: 20%;
+        left: -150px;
+      }
+
+      .ambient-glow .orb-3 {
+        width: 400px;
+        height: 400px;
+        background: var(--accent-magenta);
+        bottom: -100px;
+        right: 30%;
+      }
+
+      /* ============================================================
+       TOP NAVIGATION BAR
+       Fixed at the top of the viewport. Logo on the left,
+       horizontal text links on the right.
+    ============================================================ */
+      .topnav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--space-md) var(--space-2xl);
+        background: rgba(64, 43, 58, 0.7);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+        transition: background 0.3s;
+      }
+
+      /* Slightly darker background when the user scrolls */
+      .topnav.scrolled {
+        background: rgba(64, 43, 58, 0.92);
+      }
+
+      /* Logo / Name on the left */
+      .topnav-logo {
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: var(--text-primary);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-sm);
+      }
+
+      /* Small accent dot beside the name */
+      .topnav-logo .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--accent-gradient);
+        display: inline-block;
+      }
+
+      /* Navigation links on the right */
+      .topnav-links {
+        display: flex;
+        align-items: center;
+        gap: var(--space-xs);
+      }
+
+      .topnav-links a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 0.82rem;
+        font-weight: 500;
+        padding: 8px 16px;
+        border-radius: var(--radius-sm);
+        transition: all 0.3s var(--ease-out);
+        position: relative;
+      }
+
+      .topnav-links a:hover,
+      .topnav-links a.active {
+        color: var(--text-primary);
+        background: rgba(248, 244, 236, 0.06);
+      }
+
+      /* Underline indicator on active nav link */
+      .topnav-links a.active::after {
+        content: "";
+        position: absolute;
+        bottom: 2px;
+        left: 50%;
+        right: 50%;
+        transform: translateX(-50%);
+        width: 16px;
+        height: 2px;
+        border-radius: 1px;
+        background: var(--accent-gradient);
+      }
+
+      /* Availability status badge */
+      .topnav-status {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.7rem;
+        color: var(--text-tertiary);
+        margin-left: var(--space-md);
+        padding-left: var(--space-md);
+        border-left: 1px solid var(--border);
+      }
+
+      .status-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #34d399;
+        animation: pulse 2s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.4;
+        }
+      }
+
+      /* ---- MOBILE HAMBURGER BUTTON ---- */
+      .menu-toggle {
+        display: none;
+        width: 40px;
+        height: 40px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        background: transparent;
+        cursor: pointer;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+      }
+
+      .menu-toggle span {
+        display: block;
+        width: 18px;
+        height: 1.5px;
+        background: var(--text-primary);
+        border-radius: 1px;
+        transition: all 0.3s var(--ease-out);
+      }
+
+      .menu-toggle.open span:nth-child(1) {
+        transform: translateY(6.5px) rotate(45deg);
+      }
+      .menu-toggle.open span:nth-child(2) {
+        opacity: 0;
+      }
+      .menu-toggle.open span:nth-child(3) {
+        transform: translateY(-6.5px) rotate(-45deg);
+      }
+
+      /* Mobile dropdown panel */
+      .mobile-nav-panel {
+        display: none;
+        position: fixed;
+        top: 60px;
+        right: var(--space-md);
+        background: rgba(64, 43, 58, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        padding: var(--space-sm);
+        z-index: 99;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .mobile-nav-panel.open {
+        display: flex;
+      }
+
+      .mobile-nav-panel a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 500;
+        padding: 10px 20px;
+        border-radius: var(--radius-sm);
+        transition: all 0.2s;
+      }
+
+      .mobile-nav-panel a:hover,
+      .mobile-nav-panel a.active {
+        color: var(--text-primary);
+        background: rgba(248, 244, 236, 0.06);
+      }
+
+      /* ============================================================
+       MAIN CONTENT AREA
+       Centred with max-width, offset for the fixed navbar.
+    ============================================================ */
+      .main-content {
+        max-width: var(--content-max);
+        margin: 0 auto;
+        padding-top: 80px;
+      }
+
+      .section {
+        padding: var(--space-3xl) var(--space-2xl);
+      }
+
+      /* ============================================================
+       SECTION LABELS
+    ============================================================ */
+      .section-label {
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--text-tertiary);
+        margin-bottom: var(--space-xl);
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+      }
+
+      .section-label::before {
+        content: "";
+        width: 20px;
+        height: 1px;
+        background: var(--accent-gradient);
+      }
+
+      /* ============================================================
+       HERO / ABOUT SECTION
+    ============================================================ */
+      .hero {
+        padding-top: var(--space-3xl);
+        padding-bottom: var(--space-2xl);
+      }
+
+      .hero-greeting {
+        font-size: 0.875rem;
+        color: var(--text-tertiary);
+        font-weight: 500;
+        margin-bottom: var(--space-md);
+        opacity: 0;
+        animation: fadeUp 0.8s var(--ease-out) 0.1s forwards;
+      }
+
+      .hero-title {
+        font-size: clamp(2rem, 4vw, 3.2rem);
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: -0.03em;
+        color: var(--text-primary);
+        max-width: 700px;
+        opacity: 0;
+        animation: fadeUp 0.8s var(--ease-out) 0.25s forwards;
+      }
+
+      .hero-title .highlight {
+        background: var(--accent-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .hero-subtitle {
+        font-size: 1.05rem;
+        color: var(--text-secondary);
+        max-width: 520px;
+        margin-top: var(--space-lg);
+        font-weight: 400;
+        line-height: 1.7;
+        opacity: 0;
+        animation: fadeUp 0.8s var(--ease-out) 0.4s forwards;
+      }
+
+      .hero-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-lg);
+        margin-top: var(--space-xl);
+        opacity: 0;
+        animation: fadeUp 0.8s var(--ease-out) 0.55s forwards;
+      }
+
+      .hero-meta-item {
+        font-size: 0.8rem;
+        color: var(--text-tertiary);
+      }
+
+      .hero-meta-item span {
+        display: block;
+        color: var(--text-secondary);
+        font-weight: 500;
+        margin-top: 2px;
+      }
+
+      /* ============================================================
+       WORK / PROJECTS SECTION
+    ============================================================ */
+      .projects-featured {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-lg);
+        margin-bottom: var(--space-2xl);
+      }
+
+      .projects-other {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-lg);
+      }
+
+      .other-label {
+        grid-column: 1 / -1;
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--text-tertiary);
+        padding-bottom: var(--space-sm);
+        border-bottom: 1px solid var(--border);
+        margin-bottom: var(--space-sm);
+      }
+
+      /* ---- Project Card ---- */
+      .project-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        cursor: pointer;
+        transition: all 0.45s var(--ease-out);
+        position: relative;
+      }
+
+      .project-card:hover {
+        background: var(--bg-card-hover);
+        border-color: var(--border-hover);
+        transform: translateY(-4px);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+      }
+
+      .project-thumb {
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .project-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s var(--ease-out);
+      }
+
+      .project-card:hover .project-thumb img {
+        transform: scale(1.05);
+      }
+
+      .project-thumb::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          transparent 40%,
+          rgba(64, 43, 58, 0.5)
+        );
+      }
+
+      .project-info {
+        padding: var(--space-lg);
+      }
+
+      .project-tag {
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--accent-pink);
+        margin-bottom: var(--space-xs);
+      }
+
+      .project-card.featured .project-tag {
+        background: var(--accent-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .project-name {
+        font-size: 1.05rem;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        margin-bottom: var(--space-xs);
+      }
+
+      .project-desc {
+        font-size: 0.82rem;
+        color: var(--text-secondary);
+        line-height: 1.5;
+      }
+
+      .project-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--text-tertiary);
+        margin-top: var(--space-md);
+        transition: color 0.3s;
+      }
+
+      .project-card:hover .project-link {
+        color: var(--accent-pink);
+      }
+
+      .project-link .arrow {
+        transition: transform 0.3s var(--ease-out);
+      }
+      .project-card:hover .project-link .arrow {
+        transform: translateX(4px);
+      }
+
+      /* ============================================================
+       RESUME SECTION
+    ============================================================ */
+      .resume-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-2xl);
+      }
+
+      .resume-column h3 {
+        font-size: 0.95rem;
+        font-weight: 700;
+        margin-bottom: var(--space-lg);
+      }
+
+      .resume-item {
+        padding: var(--space-lg) 0;
+        border-top: 1px solid var(--border);
+        transition: border-color 0.3s;
+      }
+
+      .resume-item:hover {
+        border-color: var(--border-hover);
+      }
+
+      .resume-item .role {
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+      .resume-item .company {
+        font-size: 0.82rem;
+        color: var(--text-secondary);
+        margin-top: 2px;
+      }
+      .resume-item .period {
+        font-size: 0.72rem;
+        color: var(--text-tertiary);
+        margin-top: var(--space-xs);
+      }
+      .resume-item .description {
+        font-size: 0.82rem;
+        color: var(--text-secondary);
+        margin-top: var(--space-sm);
+        line-height: 1.6;
+      }
+
+      .skills-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-sm);
+        margin-top: var(--space-lg);
+      }
+
+      .skill-tag {
+        font-size: 0.72rem;
+        font-weight: 500;
+        padding: 6px 14px;
+        border: 1px solid var(--border);
+        border-radius: 100px;
+        color: var(--text-secondary);
+        transition: all 0.3s;
+      }
+
+      .skill-tag:hover {
+        border-color: var(--accent-pink);
+        color: var(--text-primary);
+        background: rgba(255, 155, 210, 0.08);
+      }
+
+      /* ============================================================
+       CONTACT SECTION
+    ============================================================ */
+      .contact-content {
+        max-width: 520px;
+      }
+
+      .contact-title {
+        font-size: clamp(1.6rem, 3vw, 2.4rem);
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        line-height: 1.2;
+        margin-bottom: var(--space-md);
+      }
+
+      .contact-text {
+        font-size: 0.95rem;
+        color: var(--text-secondary);
+        line-height: 1.7;
+        margin-bottom: var(--space-xl);
+      }
+
+      .contact-email-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-sm);
+        padding: 14px 28px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        background: var(--bg-card);
+        color: var(--text-primary);
+        font-family: var(--font-family);
+        font-size: 0.9rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s var(--ease-out);
+      }
+
+      .contact-email-btn:hover {
+        border-color: var(--accent-pink);
+        background: rgba(255, 155, 210, 0.06);
+        transform: translateY(-2px);
+      }
+
+      .contact-email-btn.copied {
+        border-color: #34d399;
+        color: #34d399;
+      }
+
+      .social-links {
+        display: flex;
+        gap: var(--space-md);
+        margin-top: var(--space-xl);
+      }
+
+      .social-link {
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: var(--text-tertiary);
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .social-link:hover {
+        color: var(--accent-pink);
+      }
+
+      /* ---- FOOTER ---- */
+      .footer {
+        padding: var(--space-xl) var(--space-2xl);
+        border-top: 1px solid var(--border);
+        font-size: 0.72rem;
+        color: var(--text-tertiary);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      /* ============================================================
+       PROJECT MODAL (Notion-style pop-up)
+    ============================================================ */
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(40, 20, 32, 0.8);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        z-index: 500;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.35s var(--ease-out);
+      }
+
+      .modal-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .modal {
+        background: var(--bg-secondary);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-xl);
+        width: 90%;
+        max-width: 900px;
+        max-height: 85vh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transform: translateY(30px) scale(0.97);
+        transition: transform 0.4s var(--ease-out);
+      }
+
+      .modal-overlay.active .modal {
+        transform: translateY(0) scale(1);
+      }
+
+      .modal.fullscreen {
+        width: 100%;
+        max-width: 100%;
+        max-height: 100vh;
+        border-radius: 0;
+        border: none;
+      }
+
+      .modal-toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--space-md) var(--space-lg);
+        border-bottom: 1px solid var(--border);
+        flex-shrink: 0;
+      }
+
+      .modal-toolbar-left {
+        display: flex;
+        align-items: center;
+        gap: var(--space-sm);
+      }
+
+      .modal-btn {
+        width: 32px;
+        height: 32px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        background: transparent;
+        color: var(--text-secondary);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+      }
+
+      .modal-btn:hover {
+        background: rgba(248, 244, 236, 0.06);
+        color: var(--text-primary);
+        border-color: var(--border-hover);
+      }
+
+      .modal-project-title {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+      }
+
+      .modal-body {
+        overflow-y: auto;
+        flex: 1;
+        padding: var(--space-2xl);
+      }
+
+      .modal-body h2 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        margin-bottom: var(--space-md);
+      }
+
+      .modal-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-lg);
+        margin-bottom: var(--space-xl);
+        padding-bottom: var(--space-xl);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .modal-meta-item {
+        font-size: 0.75rem;
+      }
+
+      .modal-meta-item .label {
+        color: var(--text-tertiary);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+
+      .modal-meta-item .value {
+        color: var(--text-secondary);
+        font-weight: 500;
+      }
+
+      .modal-body h3 {
+        font-size: 1.15rem;
+        font-weight: 700;
+        margin-top: var(--space-xl);
+        margin-bottom: var(--space-md);
+      }
+
+      .modal-body p {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        line-height: 1.8;
+        margin-bottom: var(--space-md);
+      }
+
+      .modal-image-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-md);
+        margin: var(--space-xl) 0;
+      }
+
+      /* ============================================================
+       SCROLL-TRIGGERED FADE-IN ANIMATION
+    ============================================================ */
+      [data-animate] {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.7s var(--ease-out),
+          transform 0.7s var(--ease-out);
+      }
+
+      [data-animate].visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      [data-animate-delay="1"] {
+        transition-delay: 0.1s;
+      }
+      [data-animate-delay="2"] {
+        transition-delay: 0.2s;
+      }
+      [data-animate-delay="3"] {
+        transition-delay: 0.3s;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ============================================================
+       RESPONSIVE DESIGN
+    ============================================================ */
+      @media (max-width: 1024px) {
+        .projects-featured {
+          grid-template-columns: 1fr 1fr;
+        }
+        .projects-featured .project-card:nth-child(3) {
+          grid-column: 1 / -1;
+        }
+        .resume-grid {
+          grid-template-columns: 1fr;
+          gap: var(--space-xl);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .menu-toggle {
+          display: flex;
+        }
+        .topnav-links {
+          display: none;
+        }
+        .topnav-status {
+          display: none;
+        }
+        .topnav {
+          padding: var(--space-md) var(--space-lg);
+        }
+
+        .section {
+          padding: var(--space-xl) var(--space-lg);
+        }
+
+        .projects-featured {
+          grid-template-columns: 1fr;
+        }
+        .projects-other {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-title {
+          font-size: 1.8rem;
+        }
+
+        .modal {
+          width: 96%;
+          max-height: 90vh;
+          border-radius: var(--radius-lg);
+        }
+
+        .modal-body {
+          padding: var(--space-lg);
+        }
+        .modal-image-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .footer {
+          flex-direction: column;
+          gap: var(--space-sm);
+          text-align: center;
+          padding: var(--space-lg);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ============================================================
+       AMBIENT BACKGROUND
+  ============================================================ -->
+    <div class="ambient-glow" aria-hidden="true">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+
+    <!-- ============================================================
+       TOP NAVIGATION BAR
+       Logo on the left, horizontal links on the right.
+  ============================================================ -->
+    <header class="topnav" id="topnav">
+      <a href="#about" class="topnav-logo">
+        <span class="dot"></span> Your Name
+      </a>
+
+      <!-- Desktop navigation links -->
+      <div class="topnav-links" id="navLinks">
+        <a href="#about" class="active">About</a>
+        <a href="#work">Work</a>
+        <a href="#resume">Resume</a>
+        <a href="#contact">Contact</a>
+        <div class="topnav-status">
+          <span class="status-dot"></span>
+          Available for work
+        </div>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Toggle navigation"
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </header>
+
+    <!-- Mobile dropdown -->
+    <nav class="mobile-nav-panel" id="mobileNavPanel">
+      <a href="#about" class="active">About</a>
+      <a href="#work">Work</a>
+      <a href="#resume">Resume</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- ============================================================
+       MAIN CONTENT
+  ============================================================ -->
+    <main class="main-content">
+      <!-- ====== ABOUT / HERO ====== -->
+      <section class="section hero" id="about">
+        <div class="section-label">About</div>
+        <p class="hero-greeting">Hi, I'm Kamesh Raj Shanmugam</p>
+        <h1 class="hero-title">
+          A <span class="highlight">UI/UX designer</span> crafting thoughtful
+          digital experiences that feel intuitive and look unforgettable.
+        </h1>
+        <p class="hero-subtitle">
+          I blend user-centric thinking with creative strategy to design
+          products, brands, and interfaces that connect meaningfully with
+          people. Currently open to new opportunities.
+        </p>
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            Based in<span>Your City, Country</span>
+          </div>
+          <div class="hero-meta-item">Experience<span>2+ Years</span></div>
+          <div class="hero-meta-item">
+            Focus<span>Product & Brand Design</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== WORK / PROJECTS ====== -->
+      <section class="section" id="work">
+        <div class="section-label" data-animate>Selected Work</div>
+
+        <!-- 3 FEATURED projects -->
+        <div class="projects-featured">
+          <div
+            class="project-card featured"
+            data-animate
+            data-animate-delay="1"
+            onclick="openProject(0)"
+          >
+            <div class="project-thumb">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23D63484'/%3E%3Cstop offset='100%25' stop-color='%23FF9BD2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23g1)' width='800' height='500'/%3E%3Ctext x='400' y='260' text-anchor='middle' fill='rgba(255,255,255,0.2)' font-family='sans-serif' font-size='32' font-weight='bold'%3EProject 01%3C/text%3E%3C/svg%3E"
+                alt="FinFlow Banking App"
+              />
+            </div>
+            <div class="project-info">
+              <div class="project-tag">Featured · Mobile App</div>
+              <div class="project-name">FinFlow Banking App</div>
+              <div class="project-desc">
+                A modern mobile banking experience redesigned for Gen-Z users.
+              </div>
+              <div class="project-link">
+                View project <span class="arrow">→</span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="project-card featured"
+            data-animate
+            data-animate-delay="2"
+            onclick="openProject(1)"
+          >
+            <div class="project-thumb">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500'%3E%3Cdefs%3E%3ClinearGradient id='g2' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23402B3A'/%3E%3Cstop offset='100%25' stop-color='%23D63484'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23g2)' width='800' height='500'/%3E%3Ctext x='400' y='260' text-anchor='middle' fill='rgba(255,255,255,0.2)' font-family='sans-serif' font-size='32' font-weight='bold'%3EProject 02%3C/text%3E%3C/svg%3E"
+                alt="Evora Brand Identity"
+              />
+            </div>
+            <div class="project-info">
+              <div class="project-tag">Featured · Branding</div>
+              <div class="project-name">Evora Brand Identity</div>
+              <div class="project-desc">
+                End-to-end brand identity for a sustainable fashion start-up.
+              </div>
+              <div class="project-link">
+                View project <span class="arrow">→</span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="project-card featured"
+            data-animate
+            data-animate-delay="3"
+            onclick="openProject(2)"
+          >
+            <div class="project-thumb">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500'%3E%3Cdefs%3E%3ClinearGradient id='g3' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23FF9BD2'/%3E%3Cstop offset='100%25' stop-color='%23402B3A'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23g3)' width='800' height='500'/%3E%3Ctext x='400' y='260' text-anchor='middle' fill='rgba(255,255,255,0.2)' font-family='sans-serif' font-size='32' font-weight='bold'%3EProject 03%3C/text%3E%3C/svg%3E"
+                alt="NomadStay Web Platform"
+              />
+            </div>
+            <div class="project-info">
+              <div class="project-tag">Featured · Web Design</div>
+              <div class="project-name">NomadStay Web Platform</div>
+              <div class="project-desc">
+                A responsive booking platform connecting travellers with unique
+                stays.
+              </div>
+              <div class="project-link">
+                View project <span class="arrow">→</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2 OTHER projects -->
+        <div class="projects-other">
+          <div class="other-label" data-animate>Other Projects</div>
+
+          <div
+            class="project-card"
+            data-animate
+            data-animate-delay="1"
+            onclick="openProject(3)"
+          >
+            <div class="project-thumb">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500'%3E%3Cdefs%3E%3ClinearGradient id='g4' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23D63484'/%3E%3Cstop offset='100%25' stop-color='%23402B3A'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23g4)' width='800' height='500'/%3E%3Ctext x='400' y='260' text-anchor='middle' fill='rgba(255,255,255,0.2)' font-family='sans-serif' font-size='32' font-weight='bold'%3EProject 04%3C/text%3E%3C/svg%3E"
+                alt="TaskPulse Dashboard"
+              />
+            </div>
+            <div class="project-info">
+              <div class="project-tag">Dashboard · SaaS</div>
+              <div class="project-name">TaskPulse Dashboard</div>
+              <div class="project-desc">
+                Analytics dashboard for a project-management SaaS product.
+              </div>
+              <div class="project-link">
+                View project <span class="arrow">→</span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="project-card"
+            data-animate
+            data-animate-delay="2"
+            onclick="openProject(4)"
+          >
+            <div class="project-thumb">
+              <img
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500'%3E%3Cdefs%3E%3ClinearGradient id='g5' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23FF9BD2'/%3E%3Cstop offset='100%25' stop-color='%23D63484'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23g5)' width='800' height='500'/%3E%3Ctext x='400' y='260' text-anchor='middle' fill='rgba(255,255,255,0.2)' font-family='sans-serif' font-size='32' font-weight='bold'%3EProject 05%3C/text%3E%3C/svg%3E"
+                alt="MindfulMe App"
+              />
+            </div>
+            <div class="project-info">
+              <div class="project-tag">Mobile App · Health</div>
+              <div class="project-name">MindfulMe App</div>
+              <div class="project-desc">
+                A meditation and mindfulness app with calming
+                micro-interactions.
+              </div>
+              <div class="project-link">
+                View project <span class="arrow">→</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== RESUME ====== -->
+      <section class="section" id="resume">
+        <div class="section-label" data-animate>Resume</div>
+        <div class="resume-grid">
+          <div class="resume-column" data-animate>
+            <h3>Experience</h3>
+            <div class="resume-item">
+              <div class="role">UI/UX Designer</div>
+              <div class="company">Creative Studio Co.</div>
+              <div class="period">2024 — Present</div>
+              <div class="description">
+                Designed end-to-end mobile and web experiences for fintech and
+                e-commerce clients, collaborating closely with developers and
+                stakeholders.
+              </div>
+            </div>
+            <div class="resume-item">
+              <div class="role">Junior Designer</div>
+              <div class="company">PixelWave Agency</div>
+              <div class="period">2023 — 2024</div>
+              <div class="description">
+                Created wireframes, prototypes, and high-fidelity mockups for
+                client websites and branding projects.
+              </div>
+            </div>
+            <div class="resume-item">
+              <div class="role">Design Intern</div>
+              <div class="company">BrightPath Digital</div>
+              <div class="period">2022 — 2023</div>
+              <div class="description">
+                Assisted senior designers with user research, competitive
+                analysis, and visual design tasks.
+              </div>
+            </div>
+          </div>
+
+          <div class="resume-column" data-animate data-animate-delay="1">
+            <h3>Education</h3>
+            <div class="resume-item">
+              <div class="role">B.Des in Visual Communication</div>
+              <div class="company">School of Design & Arts</div>
+              <div class="period">2019 — 2023</div>
+            </div>
+            <div class="resume-item">
+              <div class="role">Google UX Design Certificate</div>
+              <div class="company">Coursera</div>
+              <div class="period">2023</div>
+            </div>
+
+            <h3 style="margin-top: var(--space-xl)">Skills</h3>
+            <div class="skills-wrap">
+              <span class="skill-tag">Figma</span>
+              <span class="skill-tag">Adobe XD</span>
+              <span class="skill-tag">Photoshop</span>
+              <span class="skill-tag">Illustrator</span>
+              <span class="skill-tag">Prototyping</span>
+              <span class="skill-tag">Wireframing</span>
+              <span class="skill-tag">User Research</span>
+              <span class="skill-tag">Design Systems</span>
+              <span class="skill-tag">HTML / CSS</span>
+              <span class="skill-tag">Responsive Design</span>
+              <span class="skill-tag">Motion Design</span>
+              <span class="skill-tag">Accessibility</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== CONTACT ====== -->
+      <section class="section" id="contact">
+        <div class="section-label" data-animate>Say Hello</div>
+        <div class="contact-content" data-animate>
+          <h2 class="contact-title">Let's work together.</h2>
+          <p class="contact-text">
+            I'm always open to new projects, creative ideas, or opportunities to
+            be part of something great. Drop me a message and let's chat!
+          </p>
+          <button
+            class="contact-email-btn"
+            id="copyEmailBtn"
+            data-email="hello@yourname.com"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+              <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+            </svg>
+            hello@yourname.com
+          </button>
+          <div class="social-links">
+            <a href="#" class="social-link">LinkedIn ↗</a>
+            <a href="#" class="social-link">Dribbble ↗</a>
+            <a href="#" class="social-link">Behance ↗</a>
+            <a href="#" class="social-link">Twitter ↗</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== FOOTER ====== -->
+      <footer class="footer">
+        <span>© 2026 · Designed & built by You</span>
+        <span id="localTime"></span>
+      </footer>
+    </main>
+
+    <!-- ============================================================
+       PROJECT MODAL OVERLAY
+  ============================================================ -->
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="modal" id="modal">
+        <div class="modal-toolbar">
+          <div class="modal-toolbar-left">
+            <button class="modal-btn" onclick="closeModal()" title="Close">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+            <button
+              class="modal-btn"
+              onclick="toggleFullscreen()"
+              title="Toggle full screen"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <polyline points="15 3 21 3 21 9" />
+                <polyline points="9 21 3 21 3 15" />
+                <line x1="21" y1="3" x2="14" y2="10" />
+                <line x1="3" y1="21" x2="10" y2="14" />
+              </svg>
+            </button>
+          </div>
+          <span class="modal-project-title" id="modalProjectTitle"></span>
+        </div>
+        <div class="modal-body" id="modalBody"></div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+    <script>
+      /* ==========================================================
+       1. PROJECT DATA
+    ========================================================== */
+      const projects = [
+        {
+          title: "FinFlow Banking App",
+          tag: "Mobile App · UI/UX",
+          role: "Lead Designer",
+          year: "2025",
+          tools: "Figma, Protopie, After Effects",
+          heroColor: "linear-gradient(135deg, #D63484, #FF9BD2)",
+          overview:
+            "FinFlow is a mobile banking app redesigned from the ground up for Gen-Z users who demand speed, clarity, and visual appeal from their financial tools. The goal was to strip away the intimidation of traditional banking and replace it with an experience that feels as smooth as their favourite social apps.",
+          process:
+            "The project kicked off with competitive benchmarking across 8 banking apps and 12 user interviews. Affinity mapping revealed three core pain points: confusing navigation, lack of spending insights, and poor onboarding. I ran two rounds of usability testing on mid-fi wireframes before moving into high-fidelity UI.",
+          outcome:
+            "The redesigned app saw a 40% increase in task-completion rate during testing and received positive feedback from all 6 stakeholder reviews. The design system was handed off with a 120-component Figma library.",
+        },
+        {
+          title: "Evora Brand Identity",
+          tag: "Branding · Visual Identity",
+          role: "Brand Designer",
+          year: "2024",
+          tools: "Illustrator, Photoshop, Figma",
+          heroColor: "linear-gradient(135deg, #402B3A, #D63484)",
+          overview:
+            "Evora is a sustainable fashion start-up that needed a complete brand identity — from logo to packaging to a digital styleguide. The brief called for something modern, eco-conscious, and unmistakably premium.",
+          process:
+            "I started with a brand strategy workshop to define personality, audience, and tone of voice. After 40+ logo sketches and 3 concept directions, we landed on a logotype that combines geometric precision with organic curves. I then built out a full visual system including colour palette, typography, iconography, and packaging mockups.",
+          outcome:
+            "The brand launch generated 2,000+ social impressions in the first week. The packaging received a local design award nomination and the client reported a 25% increase in perceived brand value among focus groups.",
+        },
+        {
+          title: "NomadStay Web Platform",
+          tag: "Web Design · Responsive",
+          role: "UI/UX Designer",
+          year: "2024",
+          tools: "Figma, Webflow, Lottie",
+          heroColor: "linear-gradient(135deg, #FF9BD2, #402B3A)",
+          overview:
+            "NomadStay is a responsive booking platform that connects digital nomads with unique work-friendly stays around the world. The design had to feel adventurous yet trustworthy, and support complex filtering and booking flows on every screen size.",
+          process:
+            "Research began with a survey of 50 remote workers and heuristic evaluations of Airbnb, Booking.com, and Selina. I mapped out user flows for search, filtering, and checkout, then designed a modular component system in Figma for responsive scaling. Micro-interactions were prototyped with Lottie animations.",
+          outcome:
+            "The final prototype scored 92/100 on usability testing benchmarks. Development hand-off included a detailed Webflow style-guide and the client launched the MVP within 6 weeks of design completion.",
+        },
+        {
+          title: "TaskPulse Dashboard",
+          tag: "Dashboard · SaaS",
+          role: "Product Designer",
+          year: "2025",
+          tools: "Figma, D3.js concepts, FigJam",
+          heroColor: "linear-gradient(135deg, #D63484, #402B3A)",
+          overview:
+            "TaskPulse is an analytics dashboard for a project-management SaaS tool used by mid-size teams. The challenge was to surface dense data in a way that's glanceable for managers and drill-downable for analysts.",
+          process:
+            "I audited the existing dashboard and catalogued 14 usability issues via cognitive walk-throughs. Card-sorting sessions with 8 users helped restructure the information architecture. I designed three dashboard layouts (compact, standard, expanded) and validated with A/B preference testing.",
+          outcome:
+            "Compact layout won with 73% preference. The redesign reduced average time-to-insight by 35% based on task-timing tests. Shipped to 4,000+ users in the first release cycle.",
+        },
+        {
+          title: "MindfulMe App",
+          tag: "Mobile App · Health & Wellness",
+          role: "UI Designer",
+          year: "2024",
+          tools: "Figma, Principle, Procreate",
+          heroColor: "linear-gradient(135deg, #FF9BD2, #D63484)",
+          overview:
+            "MindfulMe is a meditation and mindfulness app focused on calming micro-interactions and gentle onboarding. The target audience is beginners who find existing meditation apps overwhelming.",
+          process:
+            'I conducted diary studies with 6 participants over two weeks to understand daily stress triggers. The design philosophy was "less is more" — each screen shows only one action. Custom illustrations and fluid animations were created in Procreate and Principle to reinforce a sense of calm.',
+          outcome:
+            "Prototype testing showed 90% of first-time users completed a guided session without help. The calming animation set was later adopted by the client's marketing team for social-media content.",
+        },
+      ];
+
+      /* ==========================================================
+       2. MODAL — OPEN, CLOSE, FULLSCREEN
+    ========================================================== */
+      const modalOverlay = document.getElementById("modalOverlay");
+      const modal = document.getElementById("modal");
+      const modalBody = document.getElementById("modalBody");
+      const modalTitle = document.getElementById("modalProjectTitle");
+
+      function openProject(i) {
+        const p = projects[i];
+        modalTitle.textContent = p.title;
+
+        modalBody.innerHTML = `
+        <div style="width:100%;aspect-ratio:16/8;border-radius:var(--radius-md);background:${p.heroColor};margin-bottom:var(--space-xl);display:flex;align-items:center;justify-content:center;font-size:1.8rem;font-weight:700;color:rgba(255,255,255,0.15);">${p.title}</div>
+        <h2>${p.title}</h2>
+        <div class="modal-meta">
+          <div class="modal-meta-item"><div class="label">Role</div><div class="value">${p.role}</div></div>
+          <div class="modal-meta-item"><div class="label">Year</div><div class="value">${p.year}</div></div>
+          <div class="modal-meta-item"><div class="label">Tools</div><div class="value">${p.tools}</div></div>
+          <div class="modal-meta-item"><div class="label">Type</div><div class="value">${p.tag}</div></div>
+        </div>
+        <h3>Overview</h3>
+        <p>${p.overview}</p>
+        <div class="modal-image-grid">
+          <div style="aspect-ratio:4/3;border-radius:var(--radius-sm);background:${p.heroColor};opacity:0.6;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.2);font-weight:600;">Screen 1</div>
+          <div style="aspect-ratio:4/3;border-radius:var(--radius-sm);background:${p.heroColor};opacity:0.45;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.2);font-weight:600;">Screen 2</div>
+        </div>
+        <h3>Design Process</h3>
+        <p>${p.process}</p>
+        <div style="width:100%;aspect-ratio:16/7;border-radius:var(--radius-sm);background:${p.heroColor};opacity:0.35;margin:var(--space-xl) 0;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.2);font-weight:600;font-size:1rem;">Process / Wireframes</div>
+        <h3>Outcome</h3>
+        <p>${p.outcome}</p>
+      `;
+
+        modalBody.scrollTop = 0;
+        modal.classList.remove("fullscreen");
+        modalOverlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal() {
+        modalOverlay.classList.remove("active");
+        modal.classList.remove("fullscreen");
+        document.body.style.overflow = "";
+      }
+
+      function toggleFullscreen() {
+        modal.classList.toggle("fullscreen");
+      }
+
+      modalOverlay.addEventListener("click", (e) => {
+        if (e.target === modalOverlay) closeModal();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeModal();
+      });
+
+      /* ==========================================================
+       3. TOPNAV — ACTIVE LINK HIGHLIGHT ON SCROLL
+    ========================================================== */
+      const sections = document.querySelectorAll(".section");
+      const navLinks = document.querySelectorAll(".topnav-links a");
+      const mobileLinks = document.querySelectorAll(".mobile-nav-panel a");
+
+      const sectionObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const id = entry.target.id;
+              navLinks.forEach((link) => link.classList.remove("active"));
+              const ad = document.querySelector(
+                `.topnav-links a[href="#${id}"]`,
+              );
+              if (ad) ad.classList.add("active");
+              mobileLinks.forEach((link) => link.classList.remove("active"));
+              const am = document.querySelector(
+                `.mobile-nav-panel a[href="#${id}"]`,
+              );
+              if (am) am.classList.add("active");
+            }
+          });
+        },
+        { threshold: 0.3 },
+      );
+
+      sections.forEach((sec) => sectionObserver.observe(sec));
+
+      /* ==========================================================
+       4. TOPNAV — DARKEN ON SCROLL
+    ========================================================== */
+      const topnav = document.getElementById("topnav");
+      window.addEventListener("scroll", () => {
+        topnav.classList.toggle("scrolled", window.scrollY > 40);
+      });
+
+      /* ==========================================================
+       5. MOBILE MENU TOGGLE
+    ========================================================== */
+      const menuToggle = document.getElementById("menuToggle");
+      const mobilePanel = document.getElementById("mobileNavPanel");
+
+      menuToggle.addEventListener("click", () => {
+        menuToggle.classList.toggle("open");
+        mobilePanel.classList.toggle("open");
+      });
+
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          menuToggle.classList.remove("open");
+          mobilePanel.classList.remove("open");
+        });
+      });
+
+      /* ==========================================================
+       6. SCROLL-TRIGGERED ANIMATIONS
+    ========================================================== */
+      const animatedEls = document.querySelectorAll("[data-animate]");
+      const animObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              animObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15 },
+      );
+      animatedEls.forEach((el) => animObserver.observe(el));
+
+      /* ==========================================================
+       7. COPY EMAIL TO CLIPBOARD
+    ========================================================== */
+      const copyBtn = document.getElementById("copyEmailBtn");
+      copyBtn.addEventListener("click", () => {
+        const email = copyBtn.getAttribute("data-email");
+        navigator.clipboard.writeText(email).then(() => {
+          copyBtn.classList.add("copied");
+          copyBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Copied!`;
+          setTimeout(() => {
+            copyBtn.classList.remove("copied");
+            copyBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> ${email}`;
+          }, 2000);
+        });
+      });
+
+      /* ==========================================================
+       8. LIVE LOCAL CLOCK
+    ========================================================== */
+      function updateClock() {
+        document.getElementById("localTime").textContent =
+          new Date().toLocaleTimeString("en-US", {
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: true,
+          });
+      }
+      updateClock();
+      setInterval(updateClock, 1000);
+    </script>
+  </body>
+</html>
