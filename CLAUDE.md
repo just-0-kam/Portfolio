@@ -36,7 +36,7 @@ All visual properties use CSS custom properties. Key groups:
 - **Glass levels**: `--glass-subtle` → `--glass-heavy` (increasing opacity for elevation)
 - **Text hierarchy**: `--text-primary` / `--text-secondary` / `--text-tertiary`
 - **Spacing scale**: `--space-xs` through `--space-3xl`
-- **Typography**: Instrument Sans (body), Instrument Serif (editorial accents)
+- **Typography**: Inter (all text, including italic variants)
 - **Easing**: `--ease-out: cubic-bezier(0.16, 1, 0.3, 1)`
 
 Always use these tokens rather than hardcoded values.

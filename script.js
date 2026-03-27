@@ -104,43 +104,7 @@ const projects = [
 })();
 
 /* ==========================================================
-   3. BORDER GLOW  —  cursor-tracked directional border glow
-========================================================== */
-(function initBorderGlow() {
-  document.querySelectorAll(".border-glow").forEach((card) => {
-    // Inject edge-light span only for elements that allow overflow
-    if (card.classList.contains("border-glow-outer")) {
-      const light = document.createElement("span");
-      light.className = "edge-light";
-      card.appendChild(light);
-    }
-
-    card.addEventListener("pointermove", (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const cx = rect.width / 2;
-      const cy = rect.height / 2;
-      const dx = x - cx;
-      const dy = y - cy;
-
-      // Proximity: 0 at center, 100 at edge
-      const kx = Math.abs(dx) > 0 ? cx / Math.abs(dx) : Infinity;
-      const ky = Math.abs(dy) > 0 ? cy / Math.abs(dy) : Infinity;
-      const proximity = Math.min(1 / Math.min(kx, ky), 1) * 100;
-
-      // Angle clockwise from top
-      let angle = Math.atan2(dy, dx) * (180 / Math.PI) + 90;
-      if (angle < 0) angle += 360;
-
-      card.style.setProperty("--edge-proximity", proximity.toFixed(2));
-      card.style.setProperty("--cursor-angle", `${angle.toFixed(2)}deg`);
-    });
-  });
-})();
-
-/* ==========================================================
-   4. MODAL — OPEN, CLOSE, FULLSCREEN
+   3. MODAL — OPEN, CLOSE, FULLSCREEN
 ========================================================== */
 const modalOverlay = document.getElementById("modalOverlay");
 const modal = document.getElementById("modal");
@@ -152,7 +116,7 @@ function openProject(i) {
   modalTitle.textContent = p.title;
 
   modalBody.innerHTML = `
-    <div style="width:100%;aspect-ratio:16/8;border-radius:var(--radius-md);background:${p.heroColor};backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.12);margin-bottom:var(--space-xl);display:flex;align-items:center;justify-content:center;font-size:1.8rem;font-weight:700;color:rgba(255,255,255,0.18);font-family:'Instrument Serif',serif;font-style:italic;">${p.title}</div>
+    <div style="width:100%;aspect-ratio:16/8;border-radius:var(--radius-md);background:${p.heroColor};backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.12);margin-bottom:var(--space-xl);display:flex;align-items:center;justify-content:center;font-size:1.8rem;font-weight:700;color:rgba(255,255,255,0.18);font-family:'Inter',sans-serif;font-style:italic;">${p.title}</div>
     <h2>${p.title}</h2>
     <div class="modal-meta">
       <div class="modal-meta-item"><div class="label">Role</div><div class="value">${p.role}</div></div>
@@ -177,47 +141,6 @@ function openProject(i) {
   modal.classList.remove("fullscreen");
   modalOverlay.classList.add("active");
   document.body.style.overflow = "hidden";
-
-  // Init scroll reveal after DOM is painted
-  requestAnimationFrame(() => initModalScrollReveal());
-}
-
-/* Scroll-reveal for modal content (text + images) */
-function initModalScrollReveal() {
-  // Split headings and paragraphs into individual word spans
-  modalBody.querySelectorAll("h2, h3, p").forEach((el) => {
-    const words = el.textContent.split(/(\s+)/);
-    el.innerHTML = words
-      .map((w) => (w.match(/^\s+$/) ? w : `<span class="sr-word">${w}</span>`))
-      .join("");
-    // Stagger each word's transition
-    el.querySelectorAll(".sr-word").forEach((span, i) => {
-      span.style.transitionDelay = `${i * 0.045}s`;
-    });
-  });
-
-  // Mark image / placeholder blocks
-  modalBody.querySelectorAll("div[style*='aspect-ratio']").forEach((el) => {
-    el.classList.add("sr-block");
-    el.style.transitionDelay = "0.1s";
-  });
-
-  // Observe within the modal's own scroll container
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("sr-revealed");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { root: modalBody, threshold: 0.08, rootMargin: "0px 0px -5% 0px" },
-  );
-
-  modalBody.querySelectorAll("h2, h3, p, .sr-block").forEach((el) => {
-    observer.observe(el);
-  });
 }
 
 function closeModal() {
