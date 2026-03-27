@@ -561,7 +561,7 @@ body {
   grid-template-columns: 2.5rem 1fr 0.85fr;
   gap: var(--space-xl);
   align-items: center;
-  padding: var(--space-xl) var(--space-md);
+  padding: 3rem var(--space-md);
   border-bottom: 1px solid var(--border);
   border-radius: var(--radius-md);
   cursor: pointer;
@@ -1229,7 +1229,140 @@ body {
 }
 
 /* ════════════════════════════════════════════════════════════════
-   14. RESPONSIVE DESIGN
+   14. BORDER GLOW  —  cursor-tracked directional border highlight
+   Ported from ReactBits BorderGlow, adapted for vanilla glass UI.
+   Mouse angle + edge proximity are set as CSS vars by script.js.
+════════════════════════════════════════════════════════════════ */
+.border-glow {
+  --edge-proximity: 0;
+  --cursor-angle: 45deg;
+  --edge-sensitivity: 25;
+  --cone-spread: 22;
+  position: relative;
+}
+
+/* Directional gradient border — stays inside bounds, no clip issues */
+.border-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 11;
+
+  border: 1px solid transparent;
+  background:
+    linear-gradient(transparent 0 100%) padding-box,
+    conic-gradient(
+        from var(--cursor-angle) at 50% 50%,
+        transparent 0%,
+        hsl(210deg 55% 92% / 88%) 10%,
+        transparent 22%,
+        transparent 78%,
+        hsl(210deg 55% 92% / 88%) 90%,
+        transparent 100%
+      )
+      border-box;
+
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+
+.border-glow:hover::before {
+  /* Fade in as cursor approaches edge. Negative values clamp to 0 */
+  opacity: calc(
+    (var(--edge-proximity) - var(--edge-sensitivity)) /
+      (100 - var(--edge-sensitivity))
+  );
+}
+
+.border-glow:not(:hover)::before {
+  opacity: 0;
+  transition: opacity 0.75s ease-in-out;
+}
+
+/* Outer glow ring — only added by JS to elements without overflow:hidden */
+.border-glow > .edge-light {
+  position: absolute;
+  inset: -28px;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+
+  mask-image: conic-gradient(
+    from var(--cursor-angle) at center,
+    black 2.5%,
+    transparent 10%,
+    transparent 90%,
+    black 97.5%
+  );
+
+  opacity: 0;
+  mix-blend-mode: plus-lighter;
+  transition: opacity 0.25s ease-out;
+}
+
+.border-glow:not(:hover) > .edge-light {
+  opacity: 0;
+  transition: opacity 0.75s ease-in-out;
+}
+
+.border-glow:hover > .edge-light {
+  opacity: calc(
+    (var(--edge-proximity) - var(--edge-sensitivity)) /
+      (100 - var(--edge-sensitivity))
+  );
+}
+
+.border-glow > .edge-light::before {
+  content: "";
+  position: absolute;
+  inset: 28px;
+  border-radius: inherit;
+  box-shadow:
+    inset 0 0 0 1px hsl(210deg 40% 88% / 90%),
+    inset 0 0 3px 0 hsl(210deg 40% 88% / 45%),
+    inset 0 0 10px 0 hsl(210deg 40% 88% / 28%),
+    inset 0 0 24px 0 hsl(210deg 40% 88% / 14%),
+    0 0 3px 0 hsl(210deg 40% 88% / 35%),
+    0 0 10px 0 hsl(210deg 40% 88% / 20%),
+    0 0 24px 2px hsl(210deg 40% 88% / 10%),
+    0 0 48px 2px hsl(210deg 40% 88% / 6%);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   15. MODAL SCROLL REVEAL  —  word-by-word reveal as you scroll
+════════════════════════════════════════════════════════════════ */
+.sr-word {
+  display: inline-block;
+  opacity: 0.07;
+  filter: blur(3px);
+  transition:
+    opacity 0.6s var(--ease-out),
+    filter 0.6s var(--ease-out);
+}
+
+.sr-revealed .sr-word {
+  opacity: 1;
+  filter: blur(0px);
+}
+
+/* Image / block elements that slide up */
+.sr-block {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.75s var(--ease-out),
+    transform 0.75s var(--ease-out);
+}
+
+.sr-block.sr-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ════════════════════════════════════════════════════════════════
+   16. RESPONSIVE DESIGN
    Adjusts layout for tablets and phones.
 ════════════════════════════════════════════════════════════════ */
 
