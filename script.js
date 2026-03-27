@@ -75,7 +75,30 @@ const projects = [
 ];
 
 /* ==========================================================
-   2. MODAL — OPEN, CLOSE, FULLSCREEN
+   2. HERO NAME — SPLIT-TEXT ANIMATION
+========================================================== */
+(function initSplitText() {
+  const lines = [
+    { el: document.querySelector(".hero-display .serif-italic"), baseDelay: 0.35 },
+    { el: document.querySelector(".hero-display .hero-display-line2"), baseDelay: 0.78 },
+  ];
+
+  lines.forEach(({ el, baseDelay }) => {
+    if (!el) return;
+    const text = el.textContent;
+    el.textContent = "";
+    text.split("").forEach((char, i) => {
+      const span = document.createElement("span");
+      span.className = "split-char";
+      span.textContent = char === " " ? "\u00A0" : char;
+      span.style.animationDelay = `${baseDelay + i * 0.038}s`;
+      el.appendChild(span);
+    });
+  });
+})();
+
+/* ==========================================================
+   3. MODAL — OPEN, CLOSE, FULLSCREEN
 ========================================================== */
 const modalOverlay = document.getElementById("modalOverlay");
 const modal = document.getElementById("modal");
@@ -133,7 +156,7 @@ document.addEventListener("keydown", (e) => {
 });
 
 /* ==========================================================
-   3. TOPNAV — ACTIVE LINK HIGHLIGHT ON SCROLL
+   4. TOPNAV — ACTIVE LINK HIGHLIGHT ON SCROLL
 ========================================================== */
 const sections = document.querySelectorAll(".section");
 const navLinks = document.querySelectorAll(".topnav-links a");
