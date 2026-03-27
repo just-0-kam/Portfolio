@@ -8,7 +8,7 @@ const projects = [
     role: "Lead Designer",
     year: "2023",
     tools: "Figma & Protopie",
-    heroColor: "linear-gradient(135deg, #D63484, #FF9BD2)",
+    heroColor: "#daddd8",
     overview:
       "FinFlow is a mobile banking app redesigned from the ground up for Gen-Z users who demand speed, clarity, and visual appeal from their financial tools. The goal was to strip away the intimidation of traditional banking and replace it with an experience that feels as smooth as their favourite social apps.",
     process:
@@ -22,7 +22,7 @@ const projects = [
     role: "Brand Designer",
     year: "2024",
     tools: "Illustrator, Photoshop, Figma",
-    heroColor: "linear-gradient(135deg, #402B3A, #D63484)",
+    heroColor: "#ecebe4",
     overview:
       "Evora is a sustainable fashion start-up that needed a complete brand identity — from logo to packaging to a digital styleguide. The brief called for something modern, eco-conscious, and unmistakably premium.",
     process:
@@ -36,7 +36,7 @@ const projects = [
     role: "UI/UX Designer",
     year: "2024",
     tools: "Figma, Webflow, Lottie",
-    heroColor: "linear-gradient(135deg, #FF9BD2, #402B3A)",
+    heroColor: "#eef0f2",
     overview:
       "NomadStay is a responsive booking platform that connects digital nomads with unique work-friendly stays around the world. The design had to feel adventurous yet trustworthy, and support complex filtering and booking flows on every screen size.",
     process:
@@ -50,7 +50,7 @@ const projects = [
     role: "Product Designer",
     year: "2025",
     tools: "Figma, D3.js concepts, FigJam",
-    heroColor: "linear-gradient(135deg, #D63484, #402B3A)",
+    heroColor: "#daddd8",
     overview:
       "TaskPulse is an analytics dashboard for a project-management SaaS tool used by mid-size teams. The challenge was to surface dense data in a way that's glanceable for managers and drill-downable for analysts.",
     process:
@@ -64,7 +64,7 @@ const projects = [
     role: "UI Designer",
     year: "2024",
     tools: "Figma, Principle, Procreate",
-    heroColor: "linear-gradient(135deg, #FF9BD2, #D63484)",
+    heroColor: "#ecebe4",
     overview:
       "MindfulMe is a meditation and mindfulness app focused on calming micro-interactions and gentle onboarding. The target audience is beginners who find existing meditation apps overwhelming.",
     process:
@@ -209,7 +209,7 @@ copyBtn.addEventListener("click", () => {
   const email = copyBtn.getAttribute("data-email");
   navigator.clipboard.writeText(email).then(() => {
     copyBtn.classList.add("copied");
-    copyBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Copied!`;
+    copyBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Copied to clipboard`;
     setTimeout(() => {
       copyBtn.classList.remove("copied");
       copyBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> ${email}`;
