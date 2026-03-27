@@ -116,7 +116,7 @@ function openProject(i) {
   modalTitle.textContent = p.title;
 
   modalBody.innerHTML = `
-    <div style="width:100%;aspect-ratio:16/8;border-radius:var(--radius-md);background:${p.heroColor};backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.12);margin-bottom:var(--space-xl);display:flex;align-items:center;justify-content:center;font-size:1.8rem;font-weight:700;color:rgba(255,255,255,0.18);font-family:'Inter',sans-serif;font-style:italic;">${p.title}</div>
+    <div style="width:100%;aspect-ratio:16/8;border-radius:var(--radius-md);background:${p.heroColor};backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.12);margin-bottom:var(--space-xl);display:flex;align-items:center;justify-content:center;font-size:1.8rem;font-weight:700;color:rgba(255,255,255,0.18);font-family:'Instrument Serif',serif;font-style:italic;">${p.title}</div>
     <h2>${p.title}</h2>
     <div class="modal-meta">
       <div class="modal-meta-item"><div class="label">Role</div><div class="value">${p.role}</div></div>

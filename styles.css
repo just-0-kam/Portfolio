@@ -66,7 +66,7 @@
 
   /* ── Typography ─────────────────────────────────────────────*/
   --font-family: "Inter", sans-serif;
-  --font-serif: "Inter", sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
 
   /* ── Spacing scale ──────────────────────────────────────────*/
   --space-xs: 0.25rem; /*  4px */
