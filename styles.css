@@ -65,7 +65,7 @@
   --shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.45);
 
   /* ── Typography ─────────────────────────────────────────────*/
-  --font-family: "Inter", sans-serif;
+  --font-family: "Plus Jakarta Sans", sans-serif;
   --font-serif: "Instrument Serif", Georgia, serif;
 
   /* ── Spacing scale ──────────────────────────────────────────*/
@@ -394,8 +394,6 @@ body {
 
 /* ════════════════════════════════════════════════════════════════
    6. HERO / ABOUT SECTION
-   No glass panel here — the text floats directly over the aurora
-   for maximum visual impact.
 ════════════════════════════════════════════════════════════════ */
 .hero {
   padding-top: var(--space-3xl);
@@ -406,351 +404,196 @@ body {
   justify-content: center;
 }
 
-/* Top row: "About" label on left, "Available" status on right */
-.hero-top-row {
-  display: flex;
+/* "Available" eyebrow badge */
+.hero-eyebrow {
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: var(--space-xl);
-}
-
-.hero-top-row .section-label {
-  margin-bottom: 0;
-}
-
-.hero-avail {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 0.68rem;
-  color: var(--text-tertiary);
-  letter-spacing: 0.06em;
-  /* Fade in on load */
-  opacity: 0;
-  animation: fadeUp 0.8s var(--ease-out) 0.1s forwards;
-}
-
-/* ── Display name ──────────────────────────────────────────── */
-.hero-display-wrap {
-  opacity: 1;
-}
-
-.hero-greeting {
-  font-size: 1rem;
+  gap: 8px;
+  font-size: 0.78rem;
+  font-weight: 500;
   color: var(--text-secondary);
-  font-weight: 400;
-  margin-bottom: 0.25rem;
   letter-spacing: 0.02em;
+  margin-bottom: var(--space-lg);
   opacity: 0;
-  animation: fadeUp 0.7s var(--ease-out) 0.15s forwards;
+  animation: fadeUp 0.6s var(--ease-out) 0.1s forwards;
 }
 
-/* Split-text character animation for hero name */
-.split-char {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(0.6em);
-  animation: splitCharIn 0.65s var(--ease-out) forwards;
-}
-
-@keyframes splitCharIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/*
- * hero-display: the large name at the top.
- * clamp(min, preferred, max) makes it scale with the viewport
- * while staying within limits — so it never gets too small or too huge.
- */
+/* Large name headline */
 .hero-display {
-  font-size: clamp(3.8rem, 9vw, 7.5rem);
-  font-weight: 400;
-  line-height: 0.95;
-  letter-spacing: -0.03em;
+  font-size: clamp(3.5rem, 8.5vw, 7.5rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
   color: var(--text-primary);
-  margin-bottom: var(--space-2xl);
-}
-
-/* "Kamesh Raj" — italic serif for editorial contrast */
-.hero-display .serif-italic {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 400;
-  display: block;
-}
-
-/* "Shanmugam ✦" — bold sans */
-.hero-display .hero-display-line2 {
-  display: block;
-  font-family: var(--font-family);
-  font-weight: 600;
-}
-
-/* The decorative ✦ character */
-.hero-display .deco {
-  color: var(--text-tertiary);
-  font-style: normal;
-}
-
-/* ── Hero lower row: subtitle + meta ──────────────────────── */
-/* Subtle glass panel for the info row at the bottom of the hero */
-.hero-lower {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-2xl);
-  align-items: start;
-  padding: var(--space-xl);
-
-  /* Light glass panel */
-  background: var(--glass-subtle);
-  backdrop-filter: blur(16px) saturate(140%);
-  -webkit-backdrop-filter: blur(16px) saturate(140%);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--specular), var(--shadow-sm);
-
+  margin-bottom: var(--space-md);
   opacity: 0;
-  animation: fadeUp 0.9s var(--ease-out) 0.4s forwards;
+  animation: fadeUp 0.7s var(--ease-out) 0.2s forwards;
 }
 
-.hero-subtitle {
-  font-size: 0.98rem;
-  color: var(--text-secondary);
+/* Last name — slightly lighter weight for rhythm */
+.hero-display-sub {
+  display: block;
+  color: rgba(255, 255, 255, 0.55);
+  font-weight: 300;
+}
+
+/* Role line below name */
+.hero-role {
+  font-size: clamp(1rem, 2.2vw, 1.45rem);
   font-weight: 400;
-  line-height: 1.75;
-  max-width: 440px;
+  color: var(--text-secondary);
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-xl);
+  opacity: 0;
+  animation: fadeUp 0.7s var(--ease-out) 0.3s forwards;
 }
 
-.hero-meta {
+/* Bio paragraph */
+.hero-bio {
+  font-size: 1rem;
+  color: var(--text-tertiary);
+  line-height: 1.75;
+  max-width: 500px;
+  margin-bottom: var(--space-xl);
+  font-weight: 400;
+  opacity: 0;
+  animation: fadeUp 0.7s var(--ease-out) 0.4s forwards;
+}
+
+/* CTA button row */
+.hero-actions {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   gap: var(--space-md);
+  margin-bottom: var(--space-2xl);
+  opacity: 0;
+  animation: fadeUp 0.7s var(--ease-out) 0.5s forwards;
+}
+
+/* Solid white primary button */
+.btn-primary {
+  padding: 13px 28px;
+  background: var(--text-primary);
+  color: #080c14;
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font-family);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-out);
+}
+
+.btn-primary:hover {
+  background: rgba(255, 255, 255, 0.82);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Ghost glass secondary button */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  padding: 13px 24px;
+  background: var(--glass-light);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 500;
+  transition: all 0.3s var(--ease-out);
+  box-shadow: var(--specular);
+}
+
+.btn-ghost:hover {
+  color: var(--text-primary);
+  border-color: var(--border-hover);
+  background: var(--glass-medium);
+  transform: translateY(-2px);
+}
+
+/* Meta strip: Location | Experience | Focus */
+.hero-meta-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+  opacity: 0;
+  animation: fadeUp 0.7s var(--ease-out) 0.6s forwards;
 }
 
 .hero-meta-item {
-  font-size: 0.72rem;
-  color: var(--text-tertiary);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.hero-meta-item span {
-  display: block;
-  color: var(--text-secondary);
-  font-size: 0.88rem;
-  font-weight: 500;
-  text-transform: none;
-  letter-spacing: 0;
-  margin-top: 3px;
-}
-
-/* ════════════════════════════════════════════════════════════════
-   7. WORK / PROJECTS — EDITORIAL HORIZONTAL ROWS (featured)
-════════════════════════════════════════════════════════════════ */
-.projects-list {
-  margin-bottom: var(--space-3xl);
-  border-top: 1px solid var(--border);
-}
-
-/* Each project row */
-.project-row {
-  display: grid;
-  grid-template-columns: 2.5rem 1fr 0.85fr;
-  gap: var(--space-xl);
-  align-items: center;
-  padding: 3rem var(--space-md);
-  border-bottom: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  cursor: pointer;
-  transition:
-    background 0.35s var(--ease-out),
-    border-color 0.35s var(--ease-out),
-    backdrop-filter 0.35s var(--ease-out);
-}
-
-/* Subtle glass wash appears on hover */
-.project-row:hover {
-  background: var(--glass-light);
-  backdrop-filter: blur(16px) saturate(150%);
-  -webkit-backdrop-filter: blur(16px) saturate(150%);
-  border-color: var(--border-hover);
-}
-
-/* Project number  "01", "02", "03" */
-.project-row-num {
-  font-size: 0.68rem;
-  font-weight: 600;
-  color: var(--text-tertiary);
-  letter-spacing: 0.12em;
-  align-self: flex-start;
-  padding-top: 4px;
-  transition: color 0.3s;
-}
-
-.project-row:hover .project-row-num {
-  color: var(--text-primary);
-}
-
-/* Thumbnail image container */
-.project-row-thumb {
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  aspect-ratio: 16 / 10;
-  background: var(--glass-light);
-  border: 1px solid var(--border);
-}
-
-.project-row-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.65s var(--ease-out);
-}
-
-.project-row:hover .project-row-thumb img {
-  transform: scale(1.04);
-}
-
-/* Text info column */
-.project-row-info {
-  padding: var(--space-sm) 0;
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: 4px;
 }
 
-/* ── Shared project label styles ──────────────────────────── */
-/* Small category tag above the project name */
-.project-tag {
+.meta-label {
   font-size: 0.62rem;
   font-weight: 600;
+  text-transform: uppercase;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
   color: var(--text-tertiary);
 }
 
-/* Project name in italic serif */
-.project-name {
-  font-size: clamp(1.3rem, 2.5vw, 1.9rem);
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
-  color: var(--text-primary);
-  font-family: var(--font-serif);
-  font-style: italic;
-}
-
-.project-desc {
-  font-size: 0.82rem;
+.meta-value {
+  font-size: 0.88rem;
+  font-weight: 500;
   color: var(--text-secondary);
-  line-height: 1.6;
-  max-width: 360px;
 }
 
-/* "View project →" link */
-.project-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.68rem;
-  font-weight: 600;
-  color: var(--text-tertiary);
-  margin-top: var(--space-sm);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  transition: color 0.3s;
-}
-
-.project-row:hover .project-link,
-.project-card:hover .project-link {
-  color: var(--text-primary);
-}
-
-/* Animate the arrow on hover */
-.project-link .arrow {
-  transition: transform 0.3s var(--ease-out);
-}
-.project-row:hover .project-link .arrow,
-.project-card:hover .project-link .arrow {
-  transform: translateX(5px);
+.hero-meta-divider {
+  width: 1px;
+  height: 34px;
+  background: var(--border);
+  flex-shrink: 0;
 }
 
 /* ════════════════════════════════════════════════════════════════
-   8. OTHER PROJECTS — COMPACT GLASS CARDS
-   These use a more pronounced glass treatment since they are
-   clearly "elevated" surfaces above the aurora background.
+   7. WORK / PROJECTS — UNIFIED CARD GRID
 ════════════════════════════════════════════════════════════════ */
-.other-label {
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--text-tertiary);
-  margin-bottom: var(--space-lg);
-  padding-bottom: var(--space-sm);
-  border-bottom: 1px solid var(--border);
-}
-
-.projects-grid {
+.projects-unified {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-lg);
 }
 
-/* ── Glass Card ────────────────────────────────────────────── */
-.project-card {
-  position: relative; /* needed so ::after positions inside it */
-  overflow: hidden; /* clips the gloss highlight to the card shape */
-
-  /* Glass base */
+/* Card */
+.project-card-new {
+  position: relative;
+  overflow: hidden;
   background: var(--glass-light);
   backdrop-filter: blur(24px) saturate(160%);
   -webkit-backdrop-filter: blur(24px) saturate(160%);
-
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-
-  /* Outer shadow + top-edge specular highlight */
   box-shadow: var(--shadow-md), var(--specular);
-
   cursor: pointer;
-  transition: all 0.45s var(--ease-out);
+  transition: all 0.4s var(--ease-out);
 }
 
-/*
- * Glossy specular highlight  (Apple Liquid Glass signature)
- * ──────────────────────────────────────────────────────────
- * An ::after pseudo-element is layered ON TOP of the card.
- * It has a gradient that goes from semi-transparent white at
- * the top to fully transparent lower down — like light
- * catching the top edge of a curved glass surface.
- *
- * We use ::after so ::before is still free for other uses.
- */
-.project-card::after {
+/* Specular gloss strip */
+.project-card-new::after {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  /* Only covers the upper ~45% of the card */
-  height: 45%;
+  height: 40%;
   background: linear-gradient(
     to bottom,
-    rgba(255, 255, 255, 0.13) 0%,
-    rgba(255, 255, 255, 0.03) 55%,
+    rgba(255, 255, 255, 0.11) 0%,
     transparent 100%
   );
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  pointer-events: none; /* clicks pass through to card */
+  pointer-events: none;
   z-index: 2;
 }
 
-.project-card:hover {
+.project-card-new:hover {
   background: var(--glass-heavy);
   border-color: var(--border-hover);
   transform: translateY(-6px);
@@ -758,13 +601,13 @@ body {
 }
 
 /* Thumbnail */
-.project-card .project-thumb {
+.pcn-thumb {
   width: 100%;
   aspect-ratio: 16 / 10;
   overflow: hidden;
 }
 
-.project-card .project-thumb img {
+.pcn-thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -772,24 +615,82 @@ body {
   transition: transform 0.6s var(--ease-out);
 }
 
-.project-card:hover .project-thumb img {
+.project-card-new:hover .pcn-thumb img {
   transform: scale(1.05);
 }
 
-/* Info area at bottom of card — also gets a mild glass wash */
-.project-card .project-info {
+/* Card body */
+.pcn-body {
   position: relative;
   z-index: 1;
   padding: var(--space-lg);
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
-  /* Slight dark tint so the text is more legible */
-  background: rgba(8, 12, 20, 0.15);
+  background: rgba(8, 12, 20, 0.12);
 }
 
-.project-card .project-name {
+/* Pill tags row */
+.pcn-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.pcn-pill {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  background: var(--glass-subtle);
+}
+
+/* Project name */
+.pcn-name {
   font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+/* Description */
+.pcn-desc {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-top: 2px;
+}
+
+/* "View case study →" */
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  margin-top: var(--space-sm);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+.project-card-new:hover .project-link {
+  color: var(--text-primary);
+}
+
+.project-link .arrow {
+  transition: transform 0.3s var(--ease-out);
+}
+
+.project-card-new:hover .project-link .arrow {
+  transform: translateX(5px);
 }
 
 /* ════════════════════════════════════════════════════════════════
@@ -1235,24 +1136,9 @@ body {
 
 /* ── Tablet (max 1024px) ──────────────────────────────────── */
 @media (max-width: 1024px) {
-  /* Stack project row: number+thumb on first row, info below */
-  .project-row {
-    grid-template-columns: 2rem 1fr;
-    grid-template-rows: auto auto;
-  }
-
-  .project-row-num {
-    grid-row: 1;
-    grid-column: 1;
-  }
-  .project-row-thumb {
-    grid-row: 1;
-    grid-column: 2;
-  }
-  .project-row-info {
-    grid-row: 2;
-    grid-column: 1 / -1;
-    padding-left: 3rem;
+  /* Two-column project grid on tablet */
+  .projects-unified {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   /* Stack resume columns */
@@ -1283,57 +1169,21 @@ body {
     padding-top: var(--space-2xl);
   }
 
-  .hero-top-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--space-sm);
-  }
-  .hero-avail {
-    display: none;
-  } /* hidden on mobile — shown in nav status instead */
-
   .hero-display {
     font-size: clamp(2.8rem, 12vw, 4.5rem);
   }
 
-  /* Stack hero lower row on mobile */
-  .hero-lower {
-    grid-template-columns: 1fr;
-    gap: var(--space-lg);
-  }
-
-  .hero-meta {
-    flex-direction: row;
+  .hero-meta-row {
     flex-wrap: wrap;
     gap: var(--space-lg);
   }
-  .hero-meta-item {
-    flex: 1;
-    min-width: 100px;
+
+  .hero-actions {
+    flex-wrap: wrap;
   }
 
-  /* Full-width project rows on mobile */
-  .project-row {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
-    padding: var(--space-lg) 0;
-  }
-
-  .project-row-num {
-    display: none;
-  }
-  .project-row-thumb {
-    grid-row: 1;
-    grid-column: 1;
-  }
-  .project-row-info {
-    grid-row: 2;
-    grid-column: 1;
-    padding-left: 0;
-  }
-
-  /* Single-column grid */
-  .projects-grid {
+  /* Single-column project grid on mobile */
+  .projects-unified {
     grid-template-columns: 1fr;
   }
 

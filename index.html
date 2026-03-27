@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Instrument+Serif:ital@0;1&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Instrument+Serif:ital@0;1&display=swap"
       rel="stylesheet"
     />
 
@@ -69,30 +69,52 @@
     <main class="main-content">
       <!-- ====== ABOUT / HERO ====== -->
       <section class="section hero" id="about">
-        <div class="hero-top-row">
-          <div class="section-label">About</div>
+        <div class="hero-eyebrow">
+          <span class="status-dot"></span>
+          Available for new opportunities
         </div>
 
-        <div class="hero-display-wrap">
-          <p class="hero-greeting">Hi, I'm</p>
-          <h1 class="hero-display">
-            <em class="serif-italic">Kamesh Raj</em>
-            <span class="hero-display-line2">Shanmugam</span>
-          </h1>
+        <h1 class="hero-display">
+          Kamesh Raj
+          <span class="hero-display-sub">Shanmugam</span>
+        </h1>
+
+        <p class="hero-role">Product &amp; Brand Designer</p>
+
+        <p class="hero-bio">
+          I blend user-centric thinking with creative strategy to design
+          products, brands, and interfaces that connect meaningfully with
+          people. Currently open to new opportunities.
+        </p>
+
+        <div class="hero-actions">
+          <button
+            class="btn-primary"
+            onclick="
+              document
+                .getElementById('contact')
+                .scrollIntoView({ behavior: 'smooth' })
+            "
+          >
+            Get in touch
+          </button>
+          <a href="#work" class="btn-ghost">View my work →</a>
         </div>
 
-        <div class="hero-lower">
-          <p class="hero-subtitle">
-            I blend user-centric thinking with creative strategy to design
-            products, brands, and interfaces that connect meaningfully with
-            people. Currently open to new opportunities.
-          </p>
-          <div class="hero-meta">
-            <div class="hero-meta-item">Based in<span>Vancouver, BC</span></div>
-            <div class="hero-meta-item">Experience<span>1+ Years</span></div>
-            <div class="hero-meta-item">
-              Focus<span>Product & Brand Design</span>
-            </div>
+        <div class="hero-meta-row">
+          <div class="hero-meta-item">
+            <span class="meta-label">Based in</span>
+            <span class="meta-value">Vancouver, BC</span>
+          </div>
+          <div class="hero-meta-divider"></div>
+          <div class="hero-meta-item">
+            <span class="meta-label">Experience</span>
+            <span class="meta-value">1+ Years</span>
+          </div>
+          <div class="hero-meta-divider"></div>
+          <div class="hero-meta-item">
+            <span class="meta-label">Focus</span>
+            <span class="meta-value">Product &amp; Brand Design</span>
           </div>
         </div>
       </section>
@@ -101,135 +123,140 @@
       <section class="section" id="work">
         <div class="section-label" data-animate>Selected Work</div>
 
-        <!-- Featured projects — editorial horizontal rows -->
-        <div class="projects-list">
+        <div class="projects-unified">
           <div
-            class="project-row"
+            class="project-card-new"
             data-animate
             data-animate-delay="1"
             onclick="openProject(0)"
           >
-            <div class="project-row-num">01</div>
-            <div class="project-row-thumb">
+            <div class="pcn-thumb">
               <img
                 src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500'%3E%3Crect fill='%23daddd8' width='800' height='500'/%3E%3Ctext x='400' y='260' text-anchor='middle' fill='rgba(28,28,28,0.18)' font-family='sans-serif' font-size='28' font-weight='600'%3EProject 01%3C/text%3E%3C/svg%3E"
                 alt="AllTrails"
               />
             </div>
-            <div class="project-row-info">
-              <div class="project-tag">Featured · Mobile App</div>
-              <div class="project-name">AllTrails</div>
-              <div class="project-desc">
+            <div class="pcn-body">
+              <div class="pcn-tags">
+                <span class="pcn-pill">Mobile App</span>
+                <span class="pcn-pill">Featured</span>
+              </div>
+              <div class="pcn-name">AllTrails</div>
+              <div class="pcn-desc">
                 A modern mobile banking experience redesigned for Gen-Z users.
               </div>
               <div class="project-link">
-                View project <span class="arrow">→</span>
+                View case study <span class="arrow">→</span>
               </div>
             </div>
           </div>
 
           <div
-            class="project-row"
+            class="project-card-new"
             data-animate
             data-animate-delay="2"
             onclick="openProject(1)"
           >
-            <div class="project-row-num">02</div>
-            <div class="project-row-thumb">
+            <div class="pcn-thumb">
               <img
                 src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500'%3E%3Crect fill='%23ecebe4' width='800' height='500'/%3E%3Ctext x='400' y='260' text-anchor='middle' fill='rgba(28,28,28,0.18)' font-family='sans-serif' font-size='28' font-weight='600'%3EProject 02%3C/text%3E%3C/svg%3E"
                 alt="Service Hub"
               />
             </div>
-            <div class="project-row-info">
-              <div class="project-tag">Featured · Mobile App</div>
-              <div class="project-name">Service Hub</div>
-              <div class="project-desc">
+            <div class="pcn-body">
+              <div class="pcn-tags">
+                <span class="pcn-pill">Mobile App</span>
+                <span class="pcn-pill">Featured</span>
+              </div>
+              <div class="pcn-name">Service Hub</div>
+              <div class="pcn-desc">
                 End-to-end brand identity for a sustainable fashion start-up.
               </div>
               <div class="project-link">
-                View project <span class="arrow">→</span>
+                View case study <span class="arrow">→</span>
               </div>
             </div>
           </div>
 
           <div
-            class="project-row"
+            class="project-card-new"
             data-animate
             data-animate-delay="3"
             onclick="openProject(2)"
           >
-            <div class="project-row-num">03</div>
-            <div class="project-row-thumb">
+            <div class="pcn-thumb">
               <img
                 src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500'%3E%3Crect fill='%23eef0f2' width='800' height='500'/%3E%3Ctext x='400' y='260' text-anchor='middle' fill='rgba(28,28,28,0.18)' font-family='sans-serif' font-size='28' font-weight='600'%3EProject 03%3C/text%3E%3C/svg%3E"
                 alt="Lights and Camera Magazine"
               />
             </div>
-            <div class="project-row-info">
-              <div class="project-tag">Featured · Branding</div>
-              <div class="project-name">Lights &amp; Camera Magazine</div>
-              <div class="project-desc">
+            <div class="pcn-body">
+              <div class="pcn-tags">
+                <span class="pcn-pill">Branding</span>
+                <span class="pcn-pill">Featured</span>
+              </div>
+              <div class="pcn-name">Lights &amp; Camera Magazine</div>
+              <div class="pcn-desc">
                 A responsive booking platform connecting travellers with unique
                 stays.
               </div>
               <div class="project-link">
-                View project <span class="arrow">→</span>
+                View case study <span class="arrow">→</span>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- Other projects — compact grid -->
-        <div class="other-label" data-animate>Other Projects</div>
-        <div class="projects-grid">
           <div
-            class="project-card"
+            class="project-card-new"
             data-animate
             data-animate-delay="1"
             onclick="openProject(3)"
           >
-            <div class="project-thumb">
+            <div class="pcn-thumb">
               <img
                 src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500'%3E%3Crect fill='%23daddd8' width='800' height='500'/%3E%3Ctext x='400' y='260' text-anchor='middle' fill='rgba(28,28,28,0.18)' font-family='sans-serif' font-size='28' font-weight='600'%3EProject 04%3C/text%3E%3C/svg%3E"
                 alt="Monocoque Magazine"
               />
             </div>
-            <div class="project-info">
-              <div class="project-tag">Magazine · Branding</div>
-              <div class="project-name">Monocoque Magazine</div>
-              <div class="project-desc">
+            <div class="pcn-body">
+              <div class="pcn-tags">
+                <span class="pcn-pill">Magazine</span>
+                <span class="pcn-pill">Branding</span>
+              </div>
+              <div class="pcn-name">Monocoque Magazine</div>
+              <div class="pcn-desc">
                 Analytics dashboard for a project-management SaaS product.
               </div>
               <div class="project-link">
-                View project <span class="arrow">→</span>
+                View case study <span class="arrow">→</span>
               </div>
             </div>
           </div>
 
           <div
-            class="project-card"
+            class="project-card-new"
             data-animate
             data-animate-delay="2"
             onclick="openProject(4)"
           >
-            <div class="project-thumb">
+            <div class="pcn-thumb">
               <img
                 src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500'%3E%3Crect fill='%23ecebe4' width='800' height='500'/%3E%3Ctext x='400' y='260' text-anchor='middle' fill='rgba(28,28,28,0.18)' font-family='sans-serif' font-size='28' font-weight='600'%3EProject 05%3C/text%3E%3C/svg%3E"
                 alt="Eco Challenges"
               />
             </div>
-            <div class="project-info">
-              <div class="project-tag">Book Design · Illustrated Book</div>
-              <div class="project-name">
-                Eco Challenges and Indigenous People
+            <div class="pcn-body">
+              <div class="pcn-tags">
+                <span class="pcn-pill">Book Design</span>
+                <span class="pcn-pill">Illustrated</span>
               </div>
-              <div class="project-desc">
+              <div class="pcn-name">Eco Challenges &amp; Indigenous People</div>
+              <div class="pcn-desc">
                 A meditation and mindfulness app with calming
                 micro-interactions.
               </div>
               <div class="project-link">
-                View project <span class="arrow">→</span>
+                View case study <span class="arrow">→</span>
               </div>
             </div>
           </div>
