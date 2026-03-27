@@ -1,155 +1,204 @@
-/* ============================================================
-   CSS CUSTOM PROPERTIES (VARIABLES)
+/* ════════════════════════════════════════════════════════════════
+   styles.css  —  Portfolio with Aurora + Liquid Glass design
+   ────────────────────────────────────────────────────────────────
+   DESIGN SYSTEM OVERVIEW:
 
-   PALETTE:
-   #1C1C1C — near black    (text / accent)
-   #DADDD8 — warm gray     (borders / card hover)
-   #ECEBE4 — warm off-white (card surfaces)
-   #EEF0F2 — cool off-white (secondary background)
-   #FAFAFF — near white    (primary background)
-============================================================ */
+   Background Layer  →  aurora.js draws a canvas behind everything.
+                        The body background is just a dark fallback
+                        in case the canvas hasn't loaded yet.
+
+   Glass Surfaces    →  UI elements (nav, cards, modal) use
+                        backdrop-filter: blur() to "frost" the aurora
+                        behind them — like real frosted glass.
+                        Semi-transparent white backgrounds let the
+                        aurora colours bleed through subtly.
+
+   Specular Highlight → An ::after pseudo-element on glass panels
+                        adds a top-edge gloss — the signature of
+                        Apple's "Liquid Glass" look. It simulates
+                        light reflecting off the curved glass surface.
+
+   Palette:
+     Base dark   #080c14      (very dark navy — body/canvas bg)
+     Glass       rgba(255,255,255, 0.07–0.14)  (frosted surface)
+     Text        rgba(255,255,255, 0.92 / 0.58 / 0.32)
+     Border      rgba(255,255,255, 0.12 / 0.30)
+════════════════════════════════════════════════════════════════ */
+
+/* ════════════════════════════════════════════════════════════════
+   1. CSS CUSTOM PROPERTIES  (design tokens / variables)
+   Change a value here and it updates everywhere it is used.
+════════════════════════════════════════════════════════════════ */
 :root {
-  /* ---- Colour Palette ---- */
-  --bg-primary: #fafaff;
-  --bg-secondary: #eef0f2;
-  --bg-card: #ecebe4;
-  --bg-card-hover: #daddd8;
-  --border: rgba(28, 28, 28, 0.1);
-  --border-hover: rgba(28, 28, 28, 0.28);
+  /* ── Glass surface levels ───────────────────────────────────
+     Think of these like elevation layers: the higher/more
+     prominent an element, the more opaque its glass.          */
+  --glass-subtle: rgba(255, 255, 255, 0.055); /* barely-there wash   */
+  --glass-light: rgba(255, 255, 255, 0.08); /* cards, rows         */
+  --glass-medium: rgba(255, 255, 255, 0.12); /* nav, active states  */
+  --glass-heavy: rgba(255, 255, 255, 0.16); /* modal, hover        */
 
-  --text-primary: #1c1c1c;
-  --text-secondary: #5a5656;
-  --text-tertiary: #9e9898;
+  /* ── Borders ────────────────────────────────────────────────
+     White with transparency — visible against dark but subtle  */
+  --border: rgba(255, 255, 255, 0.12);
+  --border-hover: rgba(255, 255, 255, 0.3);
 
-  --accent: #1c1c1c;
+  /* ── Text ───────────────────────────────────────────────────
+     Using rgba so we can control opacity, keeping white base   */
+  --text-primary: rgba(255, 255, 255, 0.93);
+  --text-secondary: rgba(255, 255, 255, 0.58);
+  --text-tertiary: rgba(255, 255, 255, 0.32);
 
-  /* ---- Typography ---- */
+  /* ── Accent ─────────────────────────────────────────────────
+     Solid white — used for key interactive elements            */
+  --accent: rgba(255, 255, 255, 0.93);
+
+  /* ── Specular highlight ─────────────────────────────────────
+     The inset box-shadow that creates the gloss at the top
+     of a glass panel, imitating light reflecting off glass     */
+  --specular: inset 0 1px 0 rgba(255, 255, 255, 0.24);
+
+  /* ── Shadows ────────────────────────────────────────────────
+     Dark shadows ground glass elements against the aurora      */
+  --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.45);
+
+  /* ── Typography ─────────────────────────────────────────────*/
   --font-family: "Instrument Sans", "Manrope", sans-serif;
   --font-serif: "Instrument Serif", Georgia, serif;
 
-  /* ---- Spacing ---- */
-  --space-xs: 0.25rem;
-  --space-sm: 0.5rem;
-  --space-md: 1rem;
-  --space-lg: 1.5rem;
-  --space-xl: 2.5rem;
-  --space-2xl: 4rem;
-  --space-3xl: 7rem;
+  /* ── Spacing scale ──────────────────────────────────────────*/
+  --space-xs: 0.25rem; /*  4px */
+  --space-sm: 0.5rem; /*  8px */
+  --space-md: 1rem; /* 16px */
+  --space-lg: 1.5rem; /* 24px */
+  --space-xl: 2.5rem; /* 40px */
+  --space-2xl: 4rem; /* 64px */
+  --space-3xl: 7rem; /* 112px */
 
-  /* ---- Layout ---- */
+  /* ── Layout ─────────────────────────────────────────────────*/
   --content-max: 1100px;
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
   --radius-xl: 24px;
 
-  /* ---- Transitions ---- */
+  /* ── Easing curve for smooth animations ────────────────────*/
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ============================================================
-   RESET & BASE
-============================================================ */
+/* ════════════════════════════════════════════════════════════════
+   2. RESET & BASE
+   Clears browser default styles and sets global behaviour.
+════════════════════════════════════════════════════════════════ */
 *,
 *::before,
 *::after {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: border-box; /* padding doesn't increase an element's total size */
 }
 
 html {
   scroll-behavior: smooth;
   scrollbar-width: thin;
-  scrollbar-color: var(--bg-card-hover) transparent;
+  scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
 }
 
 body {
   font-family: var(--font-family);
-  background: var(--bg-primary);
+  /* Dark fallback — canvas aurora paints over this once loaded */
+  background: #080c14;
   color: var(--text-primary);
   line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased; /* crisper text on Mac/iOS */
   overflow-x: hidden;
 }
 
+/* Webkit (Chrome/Safari) custom scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--bg-card-hover);
+  background: rgba(255, 255, 255, 0.15);
   border-radius: 3px;
 }
 
-/* ============================================================
-   AMBIENT BACKGROUND  (very subtle warm wash)
-============================================================ */
-.ambient-glow {
+/* ════════════════════════════════════════════════════════════════
+   3. AURORA CANVAS  (the animated background layer)
+   aurora.js creates this; we just position it behind everything.
+════════════════════════════════════════════════════════════════ */
+#aurora-bg {
+  position: fixed; /* stays in place even when page is scrolled */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2; /* below everything including vignette */
+  pointer-events: none; /* mouse clicks pass through to the page */
+  display: block;
+}
+
+/* ── Vignette overlay ─────────────────────────────────────────
+   A dark radial gradient that fades from transparent in the
+   centre to dark at the edges. This improves text readability
+   and stops the aurora feeling too distracting at the borders. */
+#aurora-vignette {
   position: fixed;
-  inset: 0;
+  inset: 0; /* shorthand for top:0; right:0; bottom:0; left:0 */
+  z-index: -1;
   pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
+  /* radial-gradient draws from the centre outward */
+  background: radial-gradient(
+    ellipse at 50% 40%,
+    transparent 30%,
+    rgba(8, 12, 20, 0.55) 100%
+  );
 }
 
-.ambient-glow .orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(180px);
-  opacity: 0.35;
-}
-
-.orb-1 {
-  width: 700px;
-  height: 700px;
-  background: #ecebe4;
-  top: -200px;
-  right: -150px;
-}
-
-.orb-2 {
-  width: 600px;
-  height: 600px;
-  background: #eef0f2;
-  bottom: 15%;
-  left: -200px;
-}
-
-.orb-3 {
-  width: 500px;
-  height: 500px;
-  background: #ecebe4;
-  bottom: -80px;
-  right: 20%;
-}
-
-/* ============================================================
-   TOP NAVIGATION
-============================================================ */
+/* ════════════════════════════════════════════════════════════════
+   4. NAVIGATION BAR
+   Fixed at the top — uses glass effect so the aurora shows
+   through it faintly, like frosted glass.
+════════════════════════════════════════════════════════════════ */
 .topnav {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 100;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: var(--space-md) var(--space-2xl);
-  background: rgba(250, 250, 255, 0.72);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+
+  /* ── Liquid Glass properties ──────────────────────────────
+     backdrop-filter: blur() frosts the aurora behind the nav.
+     saturate() boosts the colour of whatever is behind it.    */
+  background: rgba(8, 12, 20, 0.3);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+
   border-bottom: 1px solid var(--border);
+  /* Top-edge specular + bottom shadow */
+  box-shadow:
+    var(--specular),
+    0 1px 24px rgba(0, 0, 0, 0.25);
+
   transition: background 0.4s;
 }
 
+/* Slightly darker nav when the user scrolls down */
 .topnav.scrolled {
-  background: rgba(250, 250, 255, 0.94);
+  background: rgba(8, 12, 20, 0.55);
 }
 
+/* Logo / name on the left */
 .topnav-logo {
   font-size: 0.95rem;
   font-weight: 600;
@@ -161,14 +210,17 @@ body {
   gap: var(--space-sm);
 }
 
+/* Solid dot beside the logo name */
 .topnav-logo .dot {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--accent);
+  background: var(--text-primary);
+  opacity: 0.85;
   display: inline-block;
 }
 
+/* Navigation links on the right */
 .topnav-links {
   display: flex;
   align-items: center;
@@ -191,9 +243,10 @@ body {
 .topnav-links a:hover,
 .topnav-links a.active {
   color: var(--text-primary);
-  background: rgba(28, 28, 28, 0.05);
+  background: var(--glass-medium);
 }
 
+/* "Available for work" badge */
 .topnav-status {
   display: flex;
   align-items: center;
@@ -206,11 +259,12 @@ body {
   letter-spacing: 0.02em;
 }
 
+/* Pulsing green dot for "available" */
 .status-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #2d9d6e;
+  background: #4ade80; /* bright green */
   animation: pulse 2s ease-in-out infinite;
   flex-shrink: 0;
 }
@@ -225,14 +279,14 @@ body {
   }
 }
 
-/* Mobile hamburger */
+/* ── Mobile hamburger button ─────────────────────────────── */
 .menu-toggle {
   display: none;
   width: 38px;
   height: 38px;
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  background: transparent;
+  background: var(--glass-light);
   cursor: pointer;
   flex-direction: column;
   align-items: center;
@@ -249,6 +303,7 @@ body {
   transition: all 0.3s var(--ease-out);
 }
 
+/* Animate the three lines into an X when menu is open */
 .menu-toggle.open span:nth-child(1) {
   transform: translateY(6.5px) rotate(45deg);
 }
@@ -259,16 +314,19 @@ body {
   transform: translateY(-6.5px) rotate(-45deg);
 }
 
+/* Mobile dropdown panel — glass style */
 .mobile-nav-panel {
   display: none;
   position: fixed;
   top: 60px;
   right: var(--space-md);
-  background: rgba(250, 250, 255, 0.97);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  /* Stronger glass for the dropdown */
+  background: rgba(8, 12, 20, 0.72);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md), var(--specular);
   padding: var(--space-sm);
   z-index: 99;
   flex-direction: column;
@@ -293,16 +351,16 @@ body {
 .mobile-nav-panel a:hover,
 .mobile-nav-panel a.active {
   color: var(--text-primary);
-  background: rgba(28, 28, 28, 0.05);
+  background: var(--glass-medium);
 }
 
-/* ============================================================
-   MAIN CONTENT
-============================================================ */
+/* ════════════════════════════════════════════════════════════════
+   5. MAIN CONTENT CONTAINER
+════════════════════════════════════════════════════════════════ */
 .main-content {
   max-width: var(--content-max);
   margin: 0 auto;
-  padding-top: 80px;
+  padding-top: 80px; /* offset for fixed nav */
   position: relative;
   z-index: 1;
 }
@@ -311,9 +369,7 @@ body {
   padding: var(--space-3xl) var(--space-2xl);
 }
 
-/* ============================================================
-   SECTION LABELS
-============================================================ */
+/* ── Section labels ────────────────────────────────────────── */
 .section-label {
   font-size: 0.65rem;
   font-weight: 600;
@@ -326,19 +382,21 @@ body {
   gap: var(--space-sm);
 }
 
+/* Short decorative line before each label */
 .section-label::before {
   content: "";
   width: 18px;
   height: 1px;
-  background: var(--text-primary);
+  background: rgba(255, 255, 255, 0.35);
   display: inline-block;
   flex-shrink: 0;
-  opacity: 0.3;
 }
 
-/* ============================================================
-   HERO / ABOUT SECTION
-============================================================ */
+/* ════════════════════════════════════════════════════════════════
+   6. HERO / ABOUT SECTION
+   No glass panel here — the text floats directly over the aurora
+   for maximum visual impact.
+════════════════════════════════════════════════════════════════ */
 .hero {
   padding-top: var(--space-3xl);
   padding-bottom: var(--space-3xl);
@@ -348,6 +406,7 @@ body {
   justify-content: center;
 }
 
+/* Top row: "About" label on left, "Available" status on right */
 .hero-top-row {
   display: flex;
   align-items: center;
@@ -366,11 +425,12 @@ body {
   font-size: 0.68rem;
   color: var(--text-tertiary);
   letter-spacing: 0.06em;
+  /* Fade in on load */
   opacity: 0;
   animation: fadeUp 0.8s var(--ease-out) 0.1s forwards;
 }
 
-/* Hero display name */
+/* ── Display name ──────────────────────────────────────────── */
 .hero-display-wrap {
   opacity: 0;
   animation: fadeUp 0.9s var(--ease-out) 0.2s forwards;
@@ -384,6 +444,11 @@ body {
   letter-spacing: 0.02em;
 }
 
+/*
+ * hero-display: the large name at the top.
+ * clamp(min, preferred, max) makes it scale with the viewport
+ * while staying within limits — so it never gets too small or too huge.
+ */
 .hero-display {
   font-size: clamp(3.8rem, 9vw, 7.5rem);
   font-weight: 400;
@@ -393,6 +458,7 @@ body {
   margin-bottom: var(--space-2xl);
 }
 
+/* "Kamesh Raj" — italic serif for editorial contrast */
 .hero-display .serif-italic {
   font-family: var(--font-serif);
   font-style: italic;
@@ -400,31 +466,42 @@ body {
   display: block;
 }
 
+/* "Shanmugam ✦" — bold sans */
 .hero-display .hero-display-line2 {
   display: block;
   font-family: var(--font-family);
   font-weight: 600;
 }
 
+/* The decorative ✦ character */
 .hero-display .deco {
   color: var(--text-tertiary);
   font-style: normal;
 }
 
-/* Hero lower — two-column */
+/* ── Hero lower row: subtitle + meta ──────────────────────── */
+/* Subtle glass panel for the info row at the bottom of the hero */
 .hero-lower {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-2xl);
   align-items: start;
-  padding-top: var(--space-xl);
-  border-top: 1px solid var(--border);
+  padding: var(--space-xl);
+
+  /* Light glass panel */
+  background: var(--glass-subtle);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--specular), var(--shadow-sm);
+
   opacity: 0;
   animation: fadeUp 0.9s var(--ease-out) 0.4s forwards;
 }
 
 .hero-subtitle {
-  font-size: 1rem;
+  font-size: 0.98rem;
   color: var(--text-secondary);
   font-weight: 400;
   line-height: 1.75;
@@ -447,36 +524,46 @@ body {
 .hero-meta-item span {
   display: block;
   color: var(--text-secondary);
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 500;
   text-transform: none;
   letter-spacing: 0;
   margin-top: 3px;
 }
 
-/* ============================================================
-   WORK / PROJECTS — EDITORIAL HORIZONTAL ROWS
-============================================================ */
+/* ════════════════════════════════════════════════════════════════
+   7. WORK / PROJECTS — EDITORIAL HORIZONTAL ROWS (featured)
+════════════════════════════════════════════════════════════════ */
 .projects-list {
   margin-bottom: var(--space-3xl);
   border-top: 1px solid var(--border);
 }
 
+/* Each project row */
 .project-row {
   display: grid;
   grid-template-columns: 2.5rem 1fr 0.85fr;
   gap: var(--space-xl);
   align-items: center;
-  padding: var(--space-xl) 0;
+  padding: var(--space-xl) var(--space-md);
   border-bottom: 1px solid var(--border);
+  border-radius: var(--radius-md);
   cursor: pointer;
-  transition: border-color 0.35s var(--ease-out);
+  transition:
+    background 0.35s var(--ease-out),
+    border-color 0.35s var(--ease-out),
+    backdrop-filter 0.35s var(--ease-out);
 }
 
+/* Subtle glass wash appears on hover */
 .project-row:hover {
+  background: var(--glass-light);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
   border-color: var(--border-hover);
 }
 
+/* Project number  "01", "02", "03" */
 .project-row-num {
   font-size: 0.68rem;
   font-weight: 600;
@@ -491,11 +578,13 @@ body {
   color: var(--text-primary);
 }
 
+/* Thumbnail image container */
 .project-row-thumb {
   border-radius: var(--radius-md);
   overflow: hidden;
   aspect-ratio: 16 / 10;
-  background: var(--bg-card);
+  background: var(--glass-light);
+  border: 1px solid var(--border);
 }
 
 .project-row-thumb img {
@@ -510,6 +599,7 @@ body {
   transform: scale(1.04);
 }
 
+/* Text info column */
 .project-row-info {
   padding: var(--space-sm) 0;
   display: flex;
@@ -517,7 +607,8 @@ body {
   gap: var(--space-sm);
 }
 
-/* ---- Shared project labels ---- */
+/* ── Shared project label styles ──────────────────────────── */
+/* Small category tag above the project name */
 .project-tag {
   font-size: 0.62rem;
   font-weight: 600;
@@ -526,6 +617,7 @@ body {
   color: var(--text-tertiary);
 }
 
+/* Project name in italic serif */
 .project-name {
   font-size: clamp(1.3rem, 2.5vw, 1.9rem);
   font-weight: 400;
@@ -543,6 +635,7 @@ body {
   max-width: 360px;
 }
 
+/* "View project →" link */
 .project-link {
   display: inline-flex;
   align-items: center;
@@ -561,16 +654,20 @@ body {
   color: var(--text-primary);
 }
 
+/* Animate the arrow on hover */
 .project-link .arrow {
   transition: transform 0.3s var(--ease-out);
 }
-
 .project-row:hover .project-link .arrow,
 .project-card:hover .project-link .arrow {
   transform: translateX(5px);
 }
 
-/* ---- Other projects compact grid ---- */
+/* ════════════════════════════════════════════════════════════════
+   8. OTHER PROJECTS — COMPACT GLASS CARDS
+   These use a more pronounced glass treatment since they are
+   clearly "elevated" surfaces above the aurora background.
+════════════════════════════════════════════════════════════════ */
 .other-label {
   font-size: 0.65rem;
   font-weight: 600;
@@ -588,22 +685,63 @@ body {
   gap: var(--space-lg);
 }
 
+/* ── Glass Card ────────────────────────────────────────────── */
 .project-card {
-  background: var(--bg-card);
+  position: relative; /* needed so ::after positions inside it */
+  overflow: hidden; /* clips the gloss highlight to the card shape */
+
+  /* Glass base */
+  background: var(--glass-light);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  overflow: hidden;
+
+  /* Outer shadow + top-edge specular highlight */
+  box-shadow: var(--shadow-md), var(--specular);
+
   cursor: pointer;
   transition: all 0.45s var(--ease-out);
 }
 
-.project-card:hover {
-  background: var(--bg-card-hover);
-  border-color: var(--border-hover);
-  transform: translateY(-5px);
-  box-shadow: 0 20px 48px rgba(28, 28, 28, 0.09);
+/*
+ * Glossy specular highlight  (Apple Liquid Glass signature)
+ * ──────────────────────────────────────────────────────────
+ * An ::after pseudo-element is layered ON TOP of the card.
+ * It has a gradient that goes from semi-transparent white at
+ * the top to fully transparent lower down — like light
+ * catching the top edge of a curved glass surface.
+ *
+ * We use ::after so ::before is still free for other uses.
+ */
+.project-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* Only covers the upper ~45% of the card */
+  height: 45%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.13) 0%,
+    rgba(255, 255, 255, 0.03) 55%,
+    transparent 100%
+  );
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  pointer-events: none; /* clicks pass through to card */
+  z-index: 2;
 }
 
+.project-card:hover {
+  background: var(--glass-heavy);
+  border-color: var(--border-hover);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg), var(--specular);
+}
+
+/* Thumbnail */
 .project-card .project-thumb {
   width: 100%;
   aspect-ratio: 16 / 10;
@@ -622,20 +760,27 @@ body {
   transform: scale(1.05);
 }
 
+/* Info area at bottom of card — also gets a mild glass wash */
 .project-card .project-info {
+  position: relative;
+  z-index: 1;
   padding: var(--space-lg);
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
+  /* Slight dark tint so the text is more legible */
+  background: rgba(8, 12, 20, 0.15);
 }
 
 .project-card .project-name {
   font-size: 1.15rem;
 }
 
-/* ============================================================
-   RESUME SECTION
-============================================================ */
+/* ════════════════════════════════════════════════════════════════
+   9. RESUME SECTION
+   Clean bordered list with subtle hover effects — no heavy glass
+   here, as the aurora showing through gives enough visual interest.
+════════════════════════════════════════════════════════════════ */
 .resume-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -684,6 +829,7 @@ body {
   line-height: 1.65;
 }
 
+/* Skills pill tags */
 .skills-wrap {
   display: flex;
   flex-wrap: wrap;
@@ -698,6 +844,9 @@ body {
   border: 1px solid var(--border);
   border-radius: 100px;
   color: var(--text-secondary);
+  background: var(--glass-subtle);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   transition: all 0.3s;
   cursor: default;
 }
@@ -705,12 +854,12 @@ body {
 .skill-tag:hover {
   border-color: var(--border-hover);
   color: var(--text-primary);
-  background: var(--bg-card);
+  background: var(--glass-medium);
 }
 
-/* ============================================================
-   CONTACT SECTION
-============================================================ */
+/* ════════════════════════════════════════════════════════════════
+   10. CONTACT SECTION
+════════════════════════════════════════════════════════════════ */
 .contact-content {
   max-width: 560px;
 }
@@ -723,6 +872,7 @@ body {
   margin-bottom: var(--space-lg);
 }
 
+/* "together." in italic serif */
 .contact-title .serif-italic {
   font-family: var(--font-serif);
   font-style: italic;
@@ -736,14 +886,22 @@ body {
   margin-bottom: var(--space-xl);
 }
 
+/* Email copy button — glass pill */
 .contact-email-btn {
+  position: relative;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
   gap: var(--space-sm);
   padding: 14px 28px;
+
+  background: var(--glass-light);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
   border: 1px solid var(--border-hover);
   border-radius: var(--radius-md);
-  background: transparent;
+  box-shadow: var(--specular), var(--shadow-sm);
+
   color: var(--text-primary);
   font-family: var(--font-family);
   font-size: 0.88rem;
@@ -752,17 +910,32 @@ body {
   transition: all 0.3s var(--ease-out);
 }
 
+/* Gloss highlight on the button */
+.contact-email-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), transparent);
+  pointer-events: none;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
 .contact-email-btn:hover {
-  background: var(--bg-card);
+  background: var(--glass-medium);
+  border-color: rgba(255, 255, 255, 0.4);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(28, 28, 28, 0.08);
+  box-shadow: var(--specular), var(--shadow-md);
 }
 
 .contact-email-btn.copied {
-  border-color: #2d9d6e;
-  color: #2d9d6e;
+  border-color: #4ade80;
+  color: #4ade80;
 }
 
+/* Social links */
 .social-links {
   display: flex;
   gap: var(--space-md);
@@ -782,7 +955,9 @@ body {
   color: var(--text-primary);
 }
 
-/* ---- Footer ---- */
+/* ════════════════════════════════════════════════════════════════
+   11. FOOTER
+════════════════════════════════════════════════════════════════ */
 .footer {
   padding: var(--space-xl) var(--space-2xl);
   border-top: 1px solid var(--border);
@@ -794,15 +969,19 @@ body {
   letter-spacing: 0.04em;
 }
 
-/* ============================================================
-   PROJECT MODAL
-============================================================ */
+/* ════════════════════════════════════════════════════════════════
+   12. PROJECT MODAL
+   The heaviest glass treatment — a thick frosted panel that
+   completely dominates the screen when a project is open.
+════════════════════════════════════════════════════════════════ */
+
+/* Dark backdrop overlay */
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(28, 28, 28, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(4, 6, 12, 0.7);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   z-index: 500;
   display: flex;
   align-items: center;
@@ -817,9 +996,17 @@ body {
   visibility: visible;
 }
 
+/* The modal panel */
 .modal {
-  background: var(--bg-primary);
-  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+
+  /* Heavy glass — strong blur, dark tint */
+  background: rgba(10, 14, 24, 0.62);
+  backdrop-filter: blur(48px) saturate(180%);
+  -webkit-backdrop-filter: blur(48px) saturate(180%);
+
+  border: 1px solid var(--border-hover);
   border-radius: var(--radius-xl);
   width: 90%;
   max-width: 900px;
@@ -827,9 +1014,30 @@ body {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+
+  box-shadow: var(--shadow-lg), var(--specular);
+
+  /* Slide-up entrance animation */
   transform: translateY(32px) scale(0.97);
   transition: transform 0.4s var(--ease-out);
-  box-shadow: 0 32px 80px rgba(28, 28, 28, 0.15);
+}
+
+/* Large gloss band across the top of the modal */
+.modal::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 35%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.09) 0%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 10;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
 }
 
 .modal-overlay.active .modal {
@@ -844,7 +1052,10 @@ body {
   border: none;
 }
 
+/* Toolbar with close / fullscreen buttons */
 .modal-toolbar {
+  position: relative;
+  z-index: 11;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -859,12 +1070,15 @@ body {
   gap: var(--space-sm);
 }
 
+/* Glass icon buttons */
 .modal-btn {
   width: 32px;
   height: 32px;
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  background: transparent;
+  background: var(--glass-subtle);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   color: var(--text-secondary);
   cursor: pointer;
   display: flex;
@@ -874,7 +1088,7 @@ body {
 }
 
 .modal-btn:hover {
-  background: var(--bg-card);
+  background: var(--glass-medium);
   color: var(--text-primary);
   border-color: var(--border-hover);
 }
@@ -886,10 +1100,16 @@ body {
   letter-spacing: 0.02em;
 }
 
+/* Scrollable content area */
 .modal-body {
   overflow-y: auto;
   flex: 1;
   padding: var(--space-2xl);
+  position: relative;
+  z-index: 1;
+  /* Custom scrollbar for the modal */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
 }
 
 .modal-body h2 {
@@ -899,6 +1119,7 @@ body {
   font-family: var(--font-serif);
   font-style: italic;
   margin-bottom: var(--space-md);
+  color: var(--text-primary);
 }
 
 .modal-meta {
@@ -933,6 +1154,7 @@ body {
   font-weight: 600;
   margin-top: var(--space-xl);
   margin-bottom: var(--space-md);
+  color: var(--text-primary);
 }
 
 .modal-body p {
@@ -949,9 +1171,11 @@ body {
   margin: var(--space-xl) 0;
 }
 
-/* ============================================================
-   SCROLL ANIMATIONS
-============================================================ */
+/* ════════════════════════════════════════════════════════════════
+   13. SCROLL-TRIGGERED ANIMATIONS
+   Elements with [data-animate] start invisible and slide up
+   into view as the user scrolls — handled by script.js.
+════════════════════════════════════════════════════════════════ */
 [data-animate] {
   opacity: 0;
   transform: translateY(28px);
@@ -965,6 +1189,7 @@ body {
   transform: translateY(0);
 }
 
+/* Staggered delays so grouped items appear one after another */
 [data-animate-delay="1"] {
   transition-delay: 0.1s;
 }
@@ -975,6 +1200,7 @@ body {
   transition-delay: 0.34s;
 }
 
+/* Keyframe for hero items that auto-animate on load */
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -986,10 +1212,14 @@ body {
   }
 }
 
-/* ============================================================
-   RESPONSIVE
-============================================================ */
+/* ════════════════════════════════════════════════════════════════
+   14. RESPONSIVE DESIGN
+   Adjusts layout for tablets and phones.
+════════════════════════════════════════════════════════════════ */
+
+/* ── Tablet (max 1024px) ──────────────────────────────────── */
 @media (max-width: 1024px) {
+  /* Stack project row: number+thumb on first row, info below */
   .project-row {
     grid-template-columns: 2rem 1fr;
     grid-template-rows: auto auto;
@@ -1009,13 +1239,16 @@ body {
     padding-left: 3rem;
   }
 
+  /* Stack resume columns */
   .resume-grid {
     grid-template-columns: 1fr;
     gap: var(--space-xl);
   }
 }
 
+/* ── Mobile (max 768px) ────────────────────────────────────── */
 @media (max-width: 768px) {
+  /* Show hamburger menu, hide desktop nav links */
   .menu-toggle {
     display: flex;
   }
@@ -1041,12 +1274,13 @@ body {
   }
   .hero-avail {
     display: none;
-  }
+  } /* hidden on mobile — shown in nav status instead */
 
   .hero-display {
     font-size: clamp(2.8rem, 12vw, 4.5rem);
   }
 
+  /* Stack hero lower row on mobile */
   .hero-lower {
     grid-template-columns: 1fr;
     gap: var(--space-lg);
@@ -1062,9 +1296,11 @@ body {
     min-width: 100px;
   }
 
+  /* Full-width project rows on mobile */
   .project-row {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
+    padding: var(--space-lg) 0;
   }
 
   .project-row-num {
@@ -1080,10 +1316,12 @@ body {
     padding-left: 0;
   }
 
+  /* Single-column grid */
   .projects-grid {
     grid-template-columns: 1fr;
   }
 
+  /* Full-width modal on mobile */
   .modal {
     width: 96%;
     max-height: 90vh;

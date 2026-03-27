@@ -8,7 +8,7 @@ const projects = [
     role: "Lead Designer",
     year: "2023",
     tools: "Figma & Protopie",
-    heroColor: "#daddd8",
+    heroColor: "rgba(13, 148, 136, 0.22)",
     overview:
       "FinFlow is a mobile banking app redesigned from the ground up for Gen-Z users who demand speed, clarity, and visual appeal from their financial tools. The goal was to strip away the intimidation of traditional banking and replace it with an experience that feels as smooth as their favourite social apps.",
     process:
@@ -22,7 +22,7 @@ const projects = [
     role: "Brand Designer",
     year: "2024",
     tools: "Illustrator, Photoshop, Figma",
-    heroColor: "#ecebe4",
+    heroColor: "rgba(124, 58, 237, 0.20)",
     overview:
       "Evora is a sustainable fashion start-up that needed a complete brand identity — from logo to packaging to a digital styleguide. The brief called for something modern, eco-conscious, and unmistakably premium.",
     process:
@@ -36,7 +36,7 @@ const projects = [
     role: "UI/UX Designer",
     year: "2024",
     tools: "Figma, Webflow, Lottie",
-    heroColor: "#eef0f2",
+    heroColor: "rgba(29, 78, 216, 0.22)",
     overview:
       "NomadStay is a responsive booking platform that connects digital nomads with unique work-friendly stays around the world. The design had to feel adventurous yet trustworthy, and support complex filtering and booking flows on every screen size.",
     process:
@@ -50,7 +50,7 @@ const projects = [
     role: "Product Designer",
     year: "2025",
     tools: "Figma, D3.js concepts, FigJam",
-    heroColor: "#daddd8",
+    heroColor: "rgba(5, 150, 105, 0.20)",
     overview:
       "TaskPulse is an analytics dashboard for a project-management SaaS tool used by mid-size teams. The challenge was to surface dense data in a way that's glanceable for managers and drill-downable for analysts.",
     process:
@@ -64,7 +64,7 @@ const projects = [
     role: "UI Designer",
     year: "2024",
     tools: "Figma, Principle, Procreate",
-    heroColor: "#ecebe4",
+    heroColor: "rgba(219, 39, 119, 0.18)",
     overview:
       "MindfulMe is a meditation and mindfulness app focused on calming micro-interactions and gentle onboarding. The target audience is beginners who find existing meditation apps overwhelming.",
     process:
@@ -87,7 +87,7 @@ function openProject(i) {
   modalTitle.textContent = p.title;
 
   modalBody.innerHTML = `
-    <div style="width:100%;aspect-ratio:16/8;border-radius:var(--radius-md);background:${p.heroColor};margin-bottom:var(--space-xl);display:flex;align-items:center;justify-content:center;font-size:1.8rem;font-weight:700;color:rgba(255,255,255,0.15);">${p.title}</div>
+    <div style="width:100%;aspect-ratio:16/8;border-radius:var(--radius-md);background:${p.heroColor};backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.12);margin-bottom:var(--space-xl);display:flex;align-items:center;justify-content:center;font-size:1.8rem;font-weight:700;color:rgba(255,255,255,0.18);font-family:'Instrument Serif',serif;font-style:italic;">${p.title}</div>
     <h2>${p.title}</h2>
     <div class="modal-meta">
       <div class="modal-meta-item"><div class="label">Role</div><div class="value">${p.role}</div></div>
@@ -98,12 +98,12 @@ function openProject(i) {
     <h3>Overview</h3>
     <p>${p.overview}</p>
     <div class="modal-image-grid">
-      <div style="aspect-ratio:4/3;border-radius:var(--radius-sm);background:${p.heroColor};opacity:0.6;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.2);font-weight:600;">Screen 1</div>
-      <div style="aspect-ratio:4/3;border-radius:var(--radius-sm);background:${p.heroColor};opacity:0.45;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.2);font-weight:600;">Screen 2</div>
+      <div style="aspect-ratio:4/3;border-radius:var(--radius-sm);background:${p.heroColor};border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.22);font-weight:600;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;">Screen 1</div>
+      <div style="aspect-ratio:4/3;border-radius:var(--radius-sm);background:${p.heroColor};border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.22);font-weight:600;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;">Screen 2</div>
     </div>
     <h3>Design Process</h3>
     <p>${p.process}</p>
-    <div style="width:100%;aspect-ratio:16/7;border-radius:var(--radius-sm);background:${p.heroColor};opacity:0.35;margin:var(--space-xl) 0;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.2);font-weight:600;font-size:1rem;">Process / Wireframes</div>
+    <div style="width:100%;aspect-ratio:16/7;border-radius:var(--radius-sm);background:${p.heroColor};border:1px solid rgba(255,255,255,0.08);margin:var(--space-xl) 0;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.22);font-weight:600;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;">Process / Wireframes</div>
     <h3>Outcome</h3>
     <p>${p.outcome}</p>
   `;

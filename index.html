@@ -19,13 +19,13 @@
 
   <body>
     <!-- ============================================================
-       AMBIENT BACKGROUND
+       AURORA BACKGROUND
+       The canvas is painted by aurora.js — it sits behind the
+       entire page (z-index: -2) so all content floats above it.
+       The vignette div darkens the canvas edges for readability.
     ============================================================ -->
-    <div class="ambient-glow" aria-hidden="true">
-      <div class="orb orb-1"></div>
-      <div class="orb orb-2"></div>
-      <div class="orb orb-3"></div>
-    </div>
+    <canvas id="aurora-bg" aria-hidden="true"></canvas>
+    <div id="aurora-vignette" aria-hidden="true"></div>
 
     <!-- ============================================================
        TOP NAVIGATION BAR
@@ -71,19 +71,13 @@
       <section class="section hero" id="about">
         <div class="hero-top-row">
           <div class="section-label">About</div>
-          <div class="hero-avail">
-            <span class="status-dot"></span>
-            Available for work
-          </div>
         </div>
 
         <div class="hero-display-wrap">
           <p class="hero-greeting">Hi, I'm</p>
           <h1 class="hero-display">
             <em class="serif-italic">Kamesh Raj</em>
-            <span class="hero-display-line2"
-              >Shanmugam <span class="deco">✦</span></span
-            >
+            <span class="hero-display-line2">Shanmugam</span>
           </h1>
         </div>
 
@@ -403,7 +397,9 @@
       </div>
     </div>
 
-    <!-- JavaScript -->
+    <!-- Aurora background animation (must load before script.js) -->
+    <script src="aurora.js"></script>
+    <!-- Main page interactions -->
     <script src="script.js"></script>
   </body>
 </html>
