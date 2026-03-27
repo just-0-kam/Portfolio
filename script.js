@@ -3,11 +3,11 @@
 ========================================================== */
 const projects = [
   {
-    title: "FinFlow Banking App",
+    title: "AllTrails App",
     tag: "Mobile App · UI/UX",
     role: "Lead Designer",
-    year: "2025",
-    tools: "Figma, Protopie, After Effects",
+    year: "2023",
+    tools: "Figma & Protopie",
     heroColor: "linear-gradient(135deg, #D63484, #FF9BD2)",
     overview:
       "FinFlow is a mobile banking app redesigned from the ground up for Gen-Z users who demand speed, clarity, and visual appeal from their financial tools. The goal was to strip away the intimidation of traditional banking and replace it with an experience that feels as smooth as their favourite social apps.",
@@ -145,14 +145,10 @@ const sectionObserver = new IntersectionObserver(
       if (entry.isIntersecting) {
         const id = entry.target.id;
         navLinks.forEach((link) => link.classList.remove("active"));
-        const ad = document.querySelector(
-          `.topnav-links a[href="#${id}"]`,
-        );
+        const ad = document.querySelector(`.topnav-links a[href="#${id}"]`);
         if (ad) ad.classList.add("active");
         mobileLinks.forEach((link) => link.classList.remove("active"));
-        const am = document.querySelector(
-          `.mobile-nav-panel a[href="#${id}"]`,
-        );
+        const am = document.querySelector(`.mobile-nav-panel a[href="#${id}"]`);
         if (am) am.classList.add("active");
       }
     });
