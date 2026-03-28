@@ -558,6 +558,8 @@ body {
 .project-card-new {
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
   background: var(--glass-light);
   backdrop-filter: blur(24px) saturate(160%);
   -webkit-backdrop-filter: blur(24px) saturate(160%);
@@ -616,6 +618,7 @@ body {
 .pcn-body {
   position: relative;
   z-index: 1;
+  flex: 1;
   padding: var(--space-lg);
   display: flex;
   flex-direction: column;
