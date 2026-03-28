@@ -167,35 +167,41 @@ body {
 ════════════════════════════════════════════════════════════════ */
 .topnav {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 100;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--space-md) var(--space-2xl);
+  padding: 10px 10px 10px 20px;
+  gap: var(--space-2xl);
+
+  /* Pill shape */
+  border-radius: 100px;
+  width: max-content;
+  max-width: calc(100vw - 48px);
 
   /* ── Liquid Glass properties ──────────────────────────────
      backdrop-filter: blur() frosts the aurora behind the nav.
      saturate() boosts the colour of whatever is behind it.    */
-  background: rgba(8, 12, 20, 0.3);
+  background: rgba(8, 12, 20, 0.35);
   backdrop-filter: blur(40px) saturate(180%);
   -webkit-backdrop-filter: blur(40px) saturate(180%);
 
-  border-bottom: 1px solid var(--border);
-  /* Top-edge specular + bottom shadow */
+  border: 1px solid var(--border);
   box-shadow:
-    var(--specular),
-    0 1px 24px rgba(0, 0, 0, 0.25);
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 8px 32px rgba(0, 0, 0, 0.35),
+    0 2px 8px rgba(0, 0, 0, 0.2);
 
   transition: background 0.4s;
 }
 
 /* Slightly darker nav when the user scrolls down */
 .topnav.scrolled {
-  background: rgba(8, 12, 20, 0.55);
+  background: rgba(8, 12, 20, 0.6);
 }
 
 /* Logo / name on the left */
@@ -232,8 +238,8 @@ body {
   text-decoration: none;
   font-size: 0.8rem;
   font-weight: 500;
-  padding: 7px 14px;
-  border-radius: var(--radius-sm);
+  padding: 8px 16px;
+  border-radius: 100px;
   transition:
     color 0.25s,
     background 0.25s;
@@ -244,19 +250,6 @@ body {
 .topnav-links a.active {
   color: var(--text-primary);
   background: var(--glass-medium);
-}
-
-/* "Available for work" badge */
-.topnav-status {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.68rem;
-  color: var(--text-tertiary);
-  margin-left: var(--space-md);
-  padding-left: var(--space-md);
-  border-left: 1px solid var(--border);
-  letter-spacing: 0.02em;
 }
 
 /* Pulsing green dot for "available" */
@@ -495,7 +488,7 @@ body {
 .btn-ghost {
   display: inline-flex;
   align-items: center;
-  padding: 13px 24px;
+  padding: 13px 28px;
   background: var(--glass-light);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -1158,7 +1151,9 @@ body {
     display: none;
   }
   .topnav {
-    padding: var(--space-md) var(--space-lg);
+    top: 12px;
+    padding: 8px 8px 8px 16px;
+    gap: var(--space-lg);
   }
 
   .section {

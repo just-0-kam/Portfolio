@@ -18,12 +18,12 @@ Open at `http://localhost:8000`. There are no install steps, build steps, or tes
 
 Four files, no dependencies:
 
-| File | Purpose |
-|------|---------|
-| `index.html` | Single HTML document (~405 lines) with all sections |
-| `styles.css` | All styling (~1343 lines), loaded first |
-| `aurora.js` | Canvas aurora background animation, loaded before `script.js` |
-| `script.js` | All page interactions and DOM logic (~232 lines) |
+| File         | Purpose                                                       |
+| ------------ | ------------------------------------------------------------- |
+| `index.html` | Single HTML document (~405 lines) with all sections           |
+| `styles.css` | All styling (~1343 lines), loaded first                       |
+| `aurora.js`  | Canvas aurora background animation, loaded before `script.js` |
+| `script.js`  | All page interactions and DOM logic (~232 lines)              |
 
 ### Sections
 
