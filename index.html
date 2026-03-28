@@ -101,7 +101,7 @@
           <div class="hero-meta-divider"></div>
           <div class="hero-meta-item">
             <span class="meta-label">Experience</span>
-            <span class="meta-value">1+ Years</span>
+            <span class="meta-value">Junior</span>
           </div>
           <div class="hero-meta-divider"></div>
           <div class="hero-meta-item">
@@ -116,11 +116,11 @@
         <div class="section-label" data-animate>Selected Work</div>
 
         <div class="projects-unified">
-          <div
+          <a
             class="project-card-new"
+            href="projects/alltrails.html"
             data-animate
             data-animate-delay="1"
-            onclick="openProject(0)"
           >
             <div class="pcn-thumb">
               <img
@@ -141,13 +141,13 @@
                 View case study <span class="arrow">→</span>
               </div>
             </div>
-          </div>
+          </a>
 
-          <div
+          <a
             class="project-card-new"
+            href="projects/service-hub.html"
             data-animate
             data-animate-delay="2"
-            onclick="openProject(1)"
           >
             <div class="pcn-thumb">
               <img
@@ -168,13 +168,13 @@
                 View case study <span class="arrow">→</span>
               </div>
             </div>
-          </div>
+          </a>
 
-          <div
+          <a
             class="project-card-new"
+            href="projects/lights-camera.html"
             data-animate
             data-animate-delay="3"
-            onclick="openProject(2)"
           >
             <div class="pcn-thumb">
               <img
@@ -196,13 +196,13 @@
                 View case study <span class="arrow">→</span>
               </div>
             </div>
-          </div>
+          </a>
 
-          <div
+          <a
             class="project-card-new"
+            href="projects/monocoque.html"
             data-animate
             data-animate-delay="1"
-            onclick="openProject(3)"
           >
             <div class="pcn-thumb">
               <img
@@ -223,13 +223,13 @@
                 View case study <span class="arrow">→</span>
               </div>
             </div>
-          </div>
+          </a>
 
-          <div
+          <a
             class="project-card-new"
+            href="projects/eco-challenges.html"
             data-animate
             data-animate-delay="2"
-            onclick="openProject(4)"
           >
             <div class="pcn-thumb">
               <img
@@ -251,7 +251,7 @@
                 View case study <span class="arrow">→</span>
               </div>
             </div>
-          </div>
+          </a>
         </div>
       </section>
 
@@ -320,6 +320,8 @@
               <span class="skill-tag">Python</span>
               <span class="skill-tag">Autodesk Maya</span>
               <span class="skill-tag">ProtoPie</span>
+              <span class="skill-tag">Linux</span>
+              <span class="skill-tag">Javascript</span>
             </div>
           </div>
         </div>
@@ -373,54 +375,6 @@
         <span id="localTime"></span>
       </footer>
     </main>
-
-    <!-- ============================================================
-       PROJECT MODAL OVERLAY
-    ============================================================ -->
-    <div class="modal-overlay" id="modalOverlay">
-      <div class="modal" id="modal">
-        <div class="modal-toolbar">
-          <span class="modal-project-title" id="modalProjectTitle"></span>
-          <div class="modal-toolbar-right">
-            <button
-              class="modal-btn"
-              onclick="toggleFullscreen()"
-              title="Toggle full screen"
-            >
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-              >
-                <polyline points="15 3 21 3 21 9" />
-                <polyline points="9 21 3 21 3 15" />
-                <line x1="21" y1="3" x2="14" y2="10" />
-                <line x1="3" y1="21" x2="10" y2="14" />
-              </svg>
-            </button>
-            <button class="modal-btn" onclick="closeModal()" title="Close">
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.5"
-                stroke-linecap="round"
-              >
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-              </svg>
-            </button>
-          </div>
-        </div>
-        <div class="modal-body" id="modalBody"></div>
-      </div>
-    </div>
 
     <!-- Aurora background animation (must load before script.js) -->
     <script src="aurora.js"></script>
