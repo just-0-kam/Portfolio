@@ -1,127 +1,175 @@
-/* ==========================================================
-   1. HERO NAME — SPLIT-TEXT ANIMATION
-========================================================== */
-(function initSplitText() {
-  const lines = [
-    {
-      el: document.querySelector(".hero-display .serif-italic"),
-      baseDelay: 0.35,
-    },
-    {
-      el: document.querySelector(".hero-display .hero-display-line2"),
-      baseDelay: 0.78,
-    },
-  ];
-
-  lines.forEach(({ el, baseDelay }) => {
-    if (!el) return;
-    const text = el.textContent;
-    el.textContent = "";
-    text.split("").forEach((char, i) => {
-      const span = document.createElement("span");
-      span.className = "split-char";
-      span.textContent = char === " " ? "\u00A0" : char;
-      span.style.animationDelay = `${baseDelay + i * 0.038}s`;
-      el.appendChild(span);
-    });
-  });
-})();
-
-/* ==========================================================
-   2. TOPNAV — ACTIVE LINK HIGHLIGHT ON SCROLL
-========================================================== */
-const sections = document.querySelectorAll(".section");
-const navLinks = document.querySelectorAll(".topnav-links a");
-const mobileLinks = document.querySelectorAll(".mobile-nav-panel a");
-
-const sectionObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const id = entry.target.id;
-        navLinks.forEach((link) => link.classList.remove("active"));
-        const ad = document.querySelector(`.topnav-links a[href="#${id}"]`);
-        if (ad) ad.classList.add("active");
-        mobileLinks.forEach((link) => link.classList.remove("active"));
-        const am = document.querySelector(`.mobile-nav-panel a[href="#${id}"]`);
-        if (am) am.classList.add("active");
-      }
-    });
-  },
-  { threshold: 0.3 },
-);
-
-sections.forEach((sec) => sectionObserver.observe(sec));
-
-/* ==========================================================
-   4. TOPNAV — DARKEN ON SCROLL
-========================================================== */
-const topnav = document.getElementById("topnav");
-window.addEventListener("scroll", () => {
-  topnav.classList.toggle("scrolled", window.scrollY > 40);
+/* 1. Init Lucide icons */
+document.addEventListener("DOMContentLoaded", () => {
+  lucide.createIcons();
 });
 
-/* ==========================================================
-   5. MOBILE MENU TOGGLE
-========================================================== */
+/* 2. Custom cursor with lerp-lagged follower ring */
+const cursor = document.getElementById("cursor");
+const follower = document.getElementById("cursorFollower");
+let mx = 0,
+  my = 0,
+  fx = 0,
+  fy = 0;
+
+document.addEventListener("mousemove", (e) => {
+  mx = e.clientX;
+  my = e.clientY;
+  cursor.style.left = mx + "px";
+  cursor.style.top = my + "px";
+});
+
+(function tick() {
+  fx += (mx - fx) * 0.12;
+  fy += (my - fy) * 0.12;
+  follower.style.left = fx + "px";
+  follower.style.top = fy + "px";
+  requestAnimationFrame(tick);
+})();
+
+document.querySelectorAll("a, button, .project-card").forEach((el) => {
+  el.addEventListener("mouseenter", () => cursor.classList.add("hovering"));
+  el.addEventListener("mouseleave", () => cursor.classList.remove("hovering"));
+});
+
+/* 3. Nav scroll state */
+const navbar = document.getElementById("navbar");
+window.addEventListener("scroll", () => {
+  navbar.classList.toggle("scrolled", window.scrollY > 40);
+});
+
+/* 4. Mobile menu toggle */
 const menuToggle = document.getElementById("menuToggle");
-const mobilePanel = document.getElementById("mobileNavPanel");
+const mobileNav = document.getElementById("mobileNav");
 
 menuToggle.addEventListener("click", () => {
   menuToggle.classList.toggle("open");
-  mobilePanel.classList.toggle("open");
+  mobileNav.classList.toggle("open");
 });
 
-mobileLinks.forEach((link) => {
+document.querySelectorAll(".mobile-nav a").forEach((link) => {
   link.addEventListener("click", () => {
     menuToggle.classList.remove("open");
-    mobilePanel.classList.remove("open");
+    mobileNav.classList.remove("open");
   });
 });
 
-/* ==========================================================
-   6. SCROLL-TRIGGERED ANIMATIONS
-========================================================== */
-const animatedEls = document.querySelectorAll("[data-animate]");
-const animObserver = new IntersectionObserver(
+/* 5. Scroll-triggered reveal via IntersectionObserver */
+const obs = new IntersectionObserver(
   (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        animObserver.unobserve(entry.target);
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add("visible");
+        obs.unobserve(e.target);
       }
     });
   },
-  { threshold: 0.15 },
+  { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
 );
-animatedEls.forEach((el) => animObserver.observe(el));
 
-/* ==========================================================
-   7. COPY EMAIL TO CLIPBOARD
-========================================================== */
-const copyBtn = document.getElementById("copyEmailBtn");
-copyBtn.addEventListener("click", () => {
-  const email = copyBtn.getAttribute("data-email");
+document
+  .querySelectorAll(".reveal, .reveal-stagger")
+  .forEach((el) => obs.observe(el));
+
+/* 6. Project data */
+const projects = [
+  {
+    title: "AllTrails",
+    tags: ["Mobile App", "Feature Design"],
+    text: "Designing a Group Hike feature for AllTrails to help outdoor enthusiasts connect, coordinate, and explore trails together. The project focused on enabling group coordination, real-time trail sharing, and social features that bring the hiking community closer.",
+    type: "Mobile App",
+    role: "Product Designer",
+    platform: "iOS / Android",
+    focus: "Feature Design & UX",
+    bg: "repeating-linear-gradient(45deg, #d0d0c8 0px, #d0d0c8 1px, transparent 1px, transparent 40px), #e8e8e3",
+    link: "projects/alltrails.html",
+  },
+  {
+    title: "Service Hub",
+    tags: ["Mobile App", "App Design"],
+    text: "End-to-end brand identity for a sustainable fashion start-up. The project encompassed the full design lifecycle from user research and wireframing through to high-fidelity prototypes and brand guidelines.",
+    type: "Mobile App",
+    role: "Brand & Product Designer",
+    platform: "Mobile",
+    focus: "App Design & Branding",
+    bg: "radial-gradient(circle at 30% 50%, #d0d0c8 0%, transparent 60%), #e8e8e3",
+    link: "projects/service-hub.html",
+  },
+  {
+    title: "Lights & Camera Magazine",
+    tags: ["Content Strategy", "Marketing"],
+    text: "A Vancouver film industry magazine connecting emerging talent with jobs, reviews, and curated content. The project involved editorial strategy, visual identity, layout design, and building a content pipeline for the local film community.",
+    type: "Magazine / Editorial",
+    role: "Content Strategist & Designer",
+    platform: "Print & Digital",
+    focus: "Content Strategy & Marketing",
+    bg: "repeating-linear-gradient(0deg, #d0d0c8 0px, #d0d0c8 1px, transparent 1px, transparent 24px), #e8e8e3",
+    link: "projects/lights-camera.html",
+  },
+  {
+    title: "Monocoque Magazine",
+    tags: ["Magazine Design", "Branding"],
+    text: "An independent Formula 1 magazine built from scratch, covering audience research, editorial direction, and full art direction. The project spanned naming, visual identity, typographic systems, and a complete editorial framework.",
+    type: "Magazine / Publication",
+    role: "Art Director & Designer",
+    platform: "Print",
+    focus: "Magazine Design & Branding",
+    bg: "repeating-linear-gradient(90deg, #d0d0c8 0px, #d0d0c8 1px, transparent 1px, transparent 32px), repeating-linear-gradient(0deg, #d0d0c8 0px, #d0d0c8 1px, transparent 1px, transparent 32px), #e8e8e3",
+    link: "projects/monocoque.html",
+  },
+];
+
+/* 7. Modal open/close */
+function openModal(i) {
+  const p = projects[i];
+  document.getElementById("modalTitle").textContent = p.title;
+  document.getElementById("modalText").textContent = p.text;
+  document.getElementById("modalType").textContent = p.type;
+  document.getElementById("modalRole").textContent = p.role;
+  document.getElementById("modalPlatform").textContent = p.platform;
+  document.getElementById("modalFocus").textContent = p.focus;
+  document.getElementById("modalImage").style.background = p.bg;
+  document.getElementById("modalTags").innerHTML = p.tags
+    .map((t) => '<span class="tag">' + t + "</span>")
+    .join("");
+  document.getElementById("modalCta").innerHTML =
+    '<a href="' +
+    p.link +
+    '" class="btn-primary">View Full Case Study <i data-lucide="arrow-up-right" style="width:12px;height:12px;"></i></a>';
+  document.getElementById("modalBackdrop").classList.add("open");
+  document.body.style.overflow = "hidden";
+  lucide.createIcons();
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById("modalBackdrop")) closeModalDirect();
+}
+
+function closeModalDirect() {
+  document.getElementById("modalBackdrop").classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeModalDirect();
+});
+
+/* 8. Copy email to clipboard */
+document.getElementById("copyEmail").addEventListener("click", function () {
+  const email = this.getAttribute("data-email");
+  const handle = document.getElementById("emailHandle");
+  const icon = this.querySelector("[data-lucide]");
   navigator.clipboard.writeText(email).then(() => {
-    copyBtn.classList.add("copied");
-    copyBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Copied to clipboard`;
+    handle.textContent = "Copied to clipboard";
+    if (icon) {
+      icon.setAttribute("data-lucide", "check");
+      lucide.createIcons();
+    }
     setTimeout(() => {
-      copyBtn.classList.remove("copied");
-      copyBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> ${email}`;
+      handle.textContent = email;
+      if (icon) {
+        icon.setAttribute("data-lucide", "copy");
+        lucide.createIcons();
+      }
     }, 2000);
   });
 });
-
-/* ==========================================================
-   8. LIVE LOCAL CLOCK
-========================================================== */
-function updateClock() {
-  document.getElementById("localTime").textContent =
-    new Date().toLocaleTimeString("en-US", {
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true,
-    });
-}
-updateClock();
-setInterval(updateClock, 1000);

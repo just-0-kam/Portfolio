@@ -1,1204 +1,486 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kamesh Raj Shanmugam — Product & Brand Designer</title>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-  <style>
-    /* ============================================================
-       DESIGN TOKENS — Swiss Minimalism
-       8pt grid. Strict black/white palette.
-    ============================================================ */
-    :root {
-      --black:        #0a0a0a;
-      --white:        #f5f5f0;
-      --grey-100:     #e8e8e3;
-      --grey-200:     #d0d0c8;
-      --grey-400:     #8a8a82;
-      --grey-600:     #4a4a44;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kamesh Raj Shanmugam — Product & Brand Designer</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  </head>
+  <body>
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
 
-      --font-display: 'IBM Plex Sans', sans-serif;
-      --font-mono:    'IBM Plex Mono', monospace;
-
-      --space-1:  8px;
-      --space-2:  16px;
-      --space-3:  24px;
-      --space-4:  32px;
-      --space-6:  48px;
-      --space-8:  64px;
-      --space-12: 96px;
-      --space-16: 128px;
-
-      --grid-max: 1440px;
-      --col-gap:  24px;
-
-      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; font-size: 16px; }
-
-    body {
-      background-color: var(--white);
-      color: var(--black);
-      font-family: var(--font-display);
-      font-weight: 300;
-      line-height: 1.6;
-      overflow-x: hidden;
-      cursor: none;
-    }
-
-    ::selection { background: var(--black); color: var(--white); }
-
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: var(--white); }
-    ::-webkit-scrollbar-thumb { background: var(--grey-200); }
-
-    /* ============================================================
-       CUSTOM CURSOR
-    ============================================================ */
-    .cursor {
-      position: fixed; top: 0; left: 0;
-      width: 10px; height: 10px;
-      background: var(--black);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: width 0.2s var(--ease-out), height 0.2s var(--ease-out), background 0.2s;
-    }
-    .cursor.hovering {
-      width: 40px; height: 40px;
-      background: transparent;
-      border: 1.5px solid var(--black);
-    }
-    .cursor-follower {
-      position: fixed; top: 0; left: 0;
-      width: 36px; height: 36px;
-      border: 1px solid var(--grey-400);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9998;
-      transform: translate(-50%, -50%);
-    }
-
-    @media (hover: none), (pointer: coarse) {
-      body, .btn-primary, .btn-ghost, .project-link, .project-card,
-      .contact-link-item, .modal-close, .menu-toggle { cursor: auto; }
-      .cursor, .cursor-follower { display: none; }
-    }
-
-    /* ============================================================
-       NAVIGATION
-    ============================================================ */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: var(--space-3) var(--space-6);
-      display: flex; align-items: center; justify-content: space-between;
-      transition: background 0.4s var(--ease-out);
-    }
-    nav.scrolled {
-      background: rgba(245, 245, 240, 0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--grey-100);
-    }
-    .nav-logo {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--black);
-      text-decoration: none;
-    }
-    .nav-links { display: flex; gap: var(--space-6); list-style: none; }
-    .nav-links a {
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--grey-600);
-      text-decoration: none;
-      position: relative;
-      transition: color 0.2s;
-    }
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -2px; left: 0;
-      width: 0; height: 1px;
-      background: var(--black);
-      transition: width 0.3s var(--ease-out);
-    }
-    .nav-links a:hover { color: var(--black); }
-    .nav-links a:hover::after { width: 100%; }
-
-    /* Mobile hamburger */
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: 1px solid var(--grey-200);
-      width: 36px; height: 36px;
-      cursor: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      z-index: 101;
-    }
-    .menu-toggle span {
-      display: block;
-      width: 16px; height: 1px;
-      background: var(--black);
-      transition: transform 0.3s var(--ease-out), opacity 0.2s;
-    }
-    .menu-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(3px, 3px); }
-    .menu-toggle.open span:nth-child(2) { opacity: 0; }
-    .menu-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(3px, -3px); }
-
-    .mobile-nav {
-      position: fixed; top: 0; left: 0; right: 0;
-      z-index: 99;
-      background: rgba(245, 245, 240, 0.97);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      padding: 80px var(--space-6) var(--space-6);
-      display: none;
-      flex-direction: column;
-      gap: var(--space-3);
-      border-bottom: 1px solid var(--grey-100);
-    }
-    .mobile-nav.open { display: flex; }
-    .mobile-nav a {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--grey-600);
-      text-decoration: none;
-      padding: var(--space-2) 0;
-      border-bottom: 1px solid var(--grey-100);
-      transition: color 0.2s;
-    }
-    .mobile-nav a:hover { color: var(--black); }
-
-    /* ============================================================
-       SHARED UTILITIES
-    ============================================================ */
-    .rule { width: 100%; height: 1px; background: var(--grey-100); border: none; }
-
-    .section-label {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--grey-400);
-      display: flex;
-      align-items: center;
-      gap: var(--space-2);
-    }
-    .section-label::before { content: attr(data-index); color: var(--grey-200); }
-
-    .section-header {
-      padding: var(--space-6) var(--space-8);
-      display: flex; align-items: baseline; justify-content: space-between;
-      border-bottom: 1px solid var(--grey-100);
-      margin-bottom: var(--space-8);
-    }
-    .section-title {
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      font-weight: 500;
-      letter-spacing: -0.025em;
-      line-height: 1;
-    }
-
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: var(--space-1);
-      padding: var(--space-2) var(--space-4);
-      background: var(--black); color: var(--white);
-      font-family: var(--font-mono); font-size: 0.7rem;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      text-decoration: none; border: 1px solid var(--black);
-      cursor: none;
-      transition: background 0.25s, color 0.25s;
-    }
-    .btn-primary:hover { background: var(--white); color: var(--black); }
-
-    .btn-ghost {
-      display: inline-flex; align-items: center; gap: var(--space-1);
-      padding: var(--space-2) var(--space-4);
-      background: transparent; color: var(--black);
-      font-family: var(--font-mono); font-size: 0.7rem;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      text-decoration: none; border: 1px solid var(--grey-200);
-      cursor: none;
-      transition: border-color 0.25s;
-    }
-    .btn-ghost:hover { border-color: var(--black); }
-
-    /* ============================================================
-       HERO
-    ============================================================ */
-    #hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-rows: 1fr auto;
-      padding-top: 80px;
-    }
-    .hero-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: end;
-      padding: var(--space-16) var(--space-8) var(--space-8);
-      gap: var(--space-8);
-    }
-    .hero-left { display: flex; flex-direction: column; gap: var(--space-6); }
-
-    .hero-name {
-      font-size: clamp(3.5rem, 7vw, 7rem);
-      font-weight: 500;
-      line-height: 0.95;
-      letter-spacing: -0.03em;
-    }
-    .hero-name em { font-style: italic; font-weight: 300; }
-
-    .hero-descriptor {
-      font-size: clamp(0.85rem, 1.1vw, 1rem);
-      font-weight: 300;
-      color: var(--grey-600);
-      max-width: 360px;
-      line-height: 1.7;
-    }
-    .hero-cta { display: flex; align-items: center; gap: var(--space-3); margin-top: var(--space-2); }
-
-    .hero-right { display: flex; flex-direction: column; justify-content: flex-end; }
-
-    .hero-meta-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 1px; background: var(--grey-100);
-      border: 1px solid var(--grey-100);
-    }
-    .hero-meta-item {
-      background: var(--white);
-      padding: var(--space-3);
-      display: flex; flex-direction: column; gap: 4px;
-    }
-    .hero-meta-item .label {
-      font-family: var(--font-mono); font-size: 0.6rem;
-      letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey-400);
-    }
-    .hero-meta-item .value { font-size: 0.9rem; font-weight: 500; }
-
-    .hero-scroll-hint {
-      padding: var(--space-3) var(--space-8);
-      display: flex; align-items: center; gap: var(--space-2);
-      font-family: var(--font-mono); font-size: 0.65rem;
-      letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey-400);
-      border-top: 1px solid var(--grey-100);
-    }
-    .scroll-line {
-      width: 48px; height: 1px;
-      background: var(--grey-200);
-      position: relative; overflow: hidden;
-    }
-    .scroll-line::after {
-      content: '';
-      position: absolute; left: -100%; top: 0;
-      width: 100%; height: 100%;
-      background: var(--black);
-      animation: scrollLine 2s var(--ease-out) infinite;
-    }
-    @keyframes scrollLine {
-      0% { left: -100%; } 50% { left: 0%; } 100% { left: 100%; }
-    }
-
-    /* ============================================================
-       WORK — 2×2 grid
-    ============================================================ */
-    #work { padding: var(--space-16) 0; }
-
-    .projects-grid {
-      padding: 0 var(--space-8);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--col-gap);
-    }
-
-    .project-card {
-      position: relative; overflow: hidden;
-      border: 1px solid var(--grey-100);
-      cursor: none;
-      transition: border-color 0.3s;
-      background: var(--white);
-    }
-    .project-card:hover { border-color: var(--black); }
-
-    .project-image {
-      width: 100%; overflow: hidden; position: relative;
-      aspect-ratio: 16/9;
-    }
-    .project-image-inner {
-      width: 100%; height: 100%;
-      transition: transform 0.6s var(--ease-out);
-      position: absolute; inset: 0;
-    }
-    .project-card:hover .project-image-inner { transform: scale(1.04); }
-
-    .project-card:nth-child(1) .project-image-inner {
-      background: repeating-linear-gradient(45deg, var(--grey-200) 0px, var(--grey-200) 1px, transparent 1px, transparent 40px), var(--grey-100);
-    }
-    .project-card:nth-child(2) .project-image-inner {
-      background: radial-gradient(circle at 30% 50%, var(--grey-200) 0%, transparent 60%), var(--grey-100);
-    }
-    .project-card:nth-child(3) .project-image-inner {
-      background: repeating-linear-gradient(0deg, var(--grey-200) 0px, var(--grey-200) 1px, transparent 1px, transparent 24px), var(--grey-100);
-    }
-    .project-card:nth-child(4) .project-image-inner {
-      background:
-        repeating-linear-gradient(90deg, var(--grey-200) 0px, var(--grey-200) 1px, transparent 1px, transparent 32px),
-        repeating-linear-gradient(0deg, var(--grey-200) 0px, var(--grey-200) 1px, transparent 1px, transparent 32px),
-        var(--grey-100);
-    }
-
-    .project-number {
-      position: absolute; top: var(--space-3); left: var(--space-3);
-      font-family: var(--font-mono); font-size: 0.65rem;
-      letter-spacing: 0.1em; color: var(--grey-400); z-index: 2;
-    }
-
-    .project-info {
-      padding: var(--space-3) var(--space-3) var(--space-4);
-      border-top: 1px solid var(--grey-100);
-      display: flex; flex-direction: column; gap: var(--space-2);
-    }
-    .project-tags { display: flex; gap: var(--space-1); flex-wrap: wrap; }
-    .tag {
-      font-family: var(--font-mono); font-size: 0.6rem;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--grey-400); border: 1px solid var(--grey-100); padding: 2px 8px;
-    }
-    .project-title { font-size: 1.05rem; font-weight: 500; letter-spacing: -0.01em; line-height: 1.2; }
-    .project-desc { font-size: 0.8rem; color: var(--grey-600); font-weight: 300; line-height: 1.6; }
-    .project-link {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-family: var(--font-mono); font-size: 0.65rem;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--black); text-decoration: none;
-      margin-top: var(--space-1);
-      transition: gap 0.2s var(--ease-out);
-      cursor: none;
-    }
-    .project-link:hover { gap: 12px; }
-
-    /* ============================================================
-       ABOUT
-    ============================================================ */
-    #about { padding: var(--space-16) 0; border-top: 1px solid var(--grey-100); }
-
-    .about-grid {
-      padding: 0 var(--space-8);
-      display: grid;
-      grid-template-columns: 3fr 5fr 4fr;
-      gap: var(--col-gap);
-    }
-    .about-label-col { padding-top: var(--space-2); }
-    .about-body { display: flex; flex-direction: column; gap: var(--space-4); }
-    .about-headline {
-      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
-      font-weight: 500; letter-spacing: -0.02em; line-height: 1.15;
-    }
-    .about-headline em { font-style: italic; font-weight: 300; }
-    .about-text { font-size: 0.9rem; color: var(--grey-600); line-height: 1.8; font-weight: 300; }
-
-    .about-sidebar { padding-top: var(--space-2); display: flex; flex-direction: column; gap: var(--space-4); }
-    .about-skill-group { display: flex; flex-direction: column; gap: var(--space-2); }
-    .about-skill-group h4 {
-      font-family: var(--font-mono); font-size: 0.6rem;
-      letter-spacing: 0.15em; text-transform: uppercase; color: var(--grey-400);
-      padding-bottom: var(--space-1); border-bottom: 1px solid var(--grey-100);
-    }
-    .skill-list { list-style: none; display: flex; flex-direction: column; gap: 4px; }
-    .skill-list li {
-      font-size: 0.8rem; font-weight: 400; color: var(--grey-600);
-      display: flex; align-items: center; gap: var(--space-1);
-    }
-    .skill-list li::before { content: '—'; color: var(--grey-200); font-family: var(--font-mono); font-size: 0.7rem; }
-
-    /* ============================================================
-       EXPERIENCE
-    ============================================================ */
-    #experience { padding: var(--space-16) 0; border-top: 1px solid var(--grey-100); }
-
-    .experience-list { padding: 0 var(--space-8); }
-    .experience-item {
-      display: grid;
-      grid-template-columns: 2fr 1fr 5fr 2fr;
-      gap: var(--col-gap);
-      align-items: baseline;
-      padding: var(--space-4) 0;
-      border-bottom: 1px solid var(--grey-100);
-      transition: padding-left 0.25s var(--ease-out);
-    }
-    .experience-item:first-child { border-top: 1px solid var(--grey-100); }
-    .experience-item:hover { padding-left: var(--space-2); }
-
-    .exp-company { font-size: 0.95rem; font-weight: 500; letter-spacing: -0.01em; }
-    .exp-role { font-size: 0.8rem; color: var(--grey-600); font-weight: 300; }
-    .exp-desc { font-size: 0.8rem; color: var(--grey-600); font-weight: 300; line-height: 1.7; }
-    .exp-period {
-      font-family: var(--font-mono); font-size: 0.65rem;
-      letter-spacing: 0.1em; color: var(--grey-400); text-align: right;
-    }
-
-    /* ============================================================
-       EDUCATION
-    ============================================================ */
-    #education { padding: var(--space-16) 0; border-top: 1px solid var(--grey-100); }
-
-    .education-grid {
-      padding: 0 var(--space-8);
-      display: grid; grid-template-columns: 3fr 9fr; gap: var(--col-gap);
-    }
-    .education-list { display: flex; flex-direction: column; }
-    .education-item {
-      padding: var(--space-4) 0;
-      border-bottom: 1px solid var(--grey-100);
-      display: grid; grid-template-columns: 1fr 1fr; gap: var(--col-gap);
-      align-items: start;
-    }
-    .education-item:first-child { border-top: 1px solid var(--grey-100); }
-    .edu-school { font-size: 1rem; font-weight: 500; letter-spacing: -0.01em; }
-    .edu-degree { font-size: 0.8rem; color: var(--grey-600); font-weight: 300; margin-top: 4px; }
-    .edu-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
-    .edu-year { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; color: var(--grey-400); }
-    .edu-note { font-size: 0.75rem; color: var(--grey-400); font-weight: 300; text-align: right; }
-
-    /* ============================================================
-       CONTACT
-    ============================================================ */
-    #contact { padding: var(--space-16) 0 var(--space-12); border-top: 1px solid var(--grey-100); }
-
-    .contact-grid {
-      padding: 0 var(--space-8);
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: var(--space-16); align-items: start;
-    }
-    .contact-left { display: flex; flex-direction: column; gap: var(--space-6); }
-    .contact-headline {
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      font-weight: 500; letter-spacing: -0.03em; line-height: 1;
-    }
-    .contact-headline em { font-style: italic; font-weight: 300; }
-    .contact-subtext { font-size: 0.85rem; color: var(--grey-600); font-weight: 300; line-height: 1.7; max-width: 320px; }
-
-    .contact-links { display: flex; flex-direction: column; }
-    .contact-link-item {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: var(--space-2) 0;
-      border-bottom: 1px solid var(--grey-100);
-      text-decoration: none; color: var(--black);
-      cursor: none;
-      transition: padding-right 0.2s var(--ease-out);
-    }
-    .contact-link-item:hover { padding-right: var(--space-2); }
-    .contact-link-item:hover .contact-link-arrow { transform: rotate(-45deg); }
-    .contact-link-name { font-size: 0.85rem; font-weight: 400; }
-    .contact-link-meta { display: flex; align-items: center; gap: var(--space-2); }
-    .contact-link-handle { font-family: var(--font-mono); font-size: 0.65rem; color: var(--grey-400); letter-spacing: 0.05em; }
-    .contact-link-arrow { transition: transform 0.2s var(--ease-out); color: var(--grey-400); }
-
-    button.contact-link-item {
-      background: none;
-      font-family: inherit;
-      font-size: inherit;
-      width: 100%;
-      text-align: left;
-      border-left: none;
-      border-right: none;
-      border-top: none;
-    }
-
-    /* ============================================================
-       FOOTER
-    ============================================================ */
-    footer {
-      padding: var(--space-4) var(--space-8);
-      border-top: 1px solid var(--grey-100);
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .footer-copy { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey-400); }
-    .footer-mark { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey-200); }
-
-    /* ============================================================
-       SCROLL REVEAL ANIMATIONS
-    ============================================================ */
-    .reveal {
-      opacity: 0; transform: translateY(20px);
-      transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
-    }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    .reveal-stagger > * {
-      opacity: 0; transform: translateY(16px);
-      transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
-    }
-    .reveal-stagger.visible > *:nth-child(1) { opacity: 1; transform: none; transition-delay: 0.05s; }
-    .reveal-stagger.visible > *:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.12s; }
-    .reveal-stagger.visible > *:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.19s; }
-    .reveal-stagger.visible > *:nth-child(4) { opacity: 1; transform: none; transition-delay: 0.26s; }
-
-    .hero-animate {
-      opacity: 0; transform: translateY(24px);
-      animation: heroIn 0.9s var(--ease-out) forwards;
-    }
-    .hero-animate:nth-child(1) { animation-delay: 0.1s; }
-    .hero-animate:nth-child(2) { animation-delay: 0.22s; }
-    .hero-animate:nth-child(3) { animation-delay: 0.34s; }
-    .hero-animate:nth-child(4) { animation-delay: 0.46s; }
-    @keyframes heroIn { to { opacity: 1; transform: translateY(0); } }
-
-    /* ============================================================
-       PROJECT MODAL
-    ============================================================ */
-    .modal-backdrop {
-      position: fixed; inset: 0;
-      background: rgba(10, 10, 10, 0.88);
-      z-index: 200;
-      display: none; align-items: center; justify-content: center;
-      padding: var(--space-6);
-      backdrop-filter: blur(4px);
-    }
-    .modal-backdrop.open { display: flex; }
-
-    .modal {
-      background: var(--white); width: 100%; max-width: 860px;
-      max-height: 90vh; overflow-y: auto; position: relative;
-      animation: modalIn 0.4s var(--ease-out);
-    }
-    @keyframes modalIn {
-      from { opacity: 0; transform: translateY(32px) scale(0.98); }
-      to   { opacity: 1; transform: translateY(0) scale(1); }
-    }
-    .modal-close {
-      position: absolute; top: var(--space-3); right: var(--space-3);
-      background: none; border: 1px solid var(--grey-100);
-      width: 36px; height: 36px;
-      display: flex; align-items: center; justify-content: center;
-      cursor: none; z-index: 10;
-      transition: border-color 0.2s, background 0.2s, color 0.2s;
-    }
-    .modal-close:hover { background: var(--black); border-color: var(--black); color: var(--white); }
-
-    .modal-image { width: 100%; aspect-ratio: 16/7; overflow: hidden; position: relative; }
-
-    .modal-body {
-      padding: var(--space-6);
-      display: grid; grid-template-columns: 3fr 2fr; gap: var(--space-6);
-    }
-    .modal-main { display: flex; flex-direction: column; gap: var(--space-3); }
-    .modal-title { font-size: 1.8rem; font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; }
-    .modal-text { font-size: 0.85rem; color: var(--grey-600); line-height: 1.8; font-weight: 300; }
-    .modal-sidebar {
-      padding-left: var(--space-4); border-left: 1px solid var(--grey-100);
-      display: flex; flex-direction: column; gap: var(--space-4);
-    }
-    .modal-meta-item { display: flex; flex-direction: column; gap: 4px; }
-    .modal-meta-label {
-      font-family: var(--font-mono); font-size: 0.6rem;
-      letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey-400);
-    }
-    .modal-meta-value { font-size: 0.85rem; font-weight: 400; }
-
-    /* ============================================================
-       RESPONSIVE
-    ============================================================ */
-    @media (max-width: 1024px) {
-      .hero-content { grid-template-columns: 1fr; padding: var(--space-12) var(--space-6) var(--space-6); }
-      .hero-right { display: none; }
-      .projects-grid { padding: 0 var(--space-6); grid-template-columns: 1fr 1fr; }
-      .about-grid { grid-template-columns: 1fr 2fr; padding: 0 var(--space-6); }
-      .about-sidebar { display: none; }
-      .experience-item { grid-template-columns: 2fr 3fr 1fr; }
-      .exp-desc { display: none; }
-      .education-grid { grid-template-columns: 1fr; padding: 0 var(--space-6); }
-      .contact-grid { grid-template-columns: 1fr; gap: var(--space-8); padding: 0 var(--space-6); }
-      .section-header { padding: var(--space-6); }
-      .modal-body { grid-template-columns: 1fr; }
-      .modal-sidebar { padding-left: 0; border-left: none; border-top: 1px solid var(--grey-100); padding-top: var(--space-4); }
-    }
-
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .menu-toggle { display: flex; }
-    }
-
-    @media (max-width: 600px) {
-      nav { padding: var(--space-2) var(--space-3); }
-      .hero-content { padding: var(--space-8) var(--space-3) var(--space-4); }
-      .hero-name { font-size: 3rem; }
-      .projects-grid { padding: 0 var(--space-3); gap: var(--space-2); grid-template-columns: 1fr; }
-      .about-grid { grid-template-columns: 1fr; padding: 0 var(--space-3); }
-      .about-label-col { display: none; }
-      .experience-list { padding: 0 var(--space-3); }
-      .experience-item { grid-template-columns: 1fr; gap: var(--space-1); }
-      .exp-period { text-align: left; }
-      .education-grid { padding: 0 var(--space-3); }
-      .education-item { grid-template-columns: 1fr; }
-      .edu-right { align-items: flex-start; }
-      .contact-grid { padding: 0 var(--space-3); }
-      footer { padding: var(--space-3); flex-direction: column; gap: var(--space-1); }
-      .footer-mark { display: none; }
-      .section-header { padding: var(--space-4) var(--space-3); }
-      .hero-scroll-hint { padding: var(--space-3); }
-      .modal { margin: var(--space-2); }
-    }
-  </style>
-</head>
-<body>
-
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-follower" id="cursorFollower"></div>
-
-  <!-- ================================================================
+    <!-- ================================================================
        NAV
   ================================================================ -->
-  <nav id="navbar">
-    <a href="#hero" class="nav-logo">KRS / Portfolio</a>
-    <ul class="nav-links">
-      <li><a href="#work">Work</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
+    <nav id="navbar">
+      <a href="#hero" class="nav-logo">KRS / Portfolio</a>
+      <ul class="nav-links">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Toggle navigation"
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
 
-  <!-- Mobile nav -->
-  <div class="mobile-nav" id="mobileNav">
-    <a href="#work">Work</a>
-    <a href="#about">About</a>
-    <a href="#experience">Experience</a>
-    <a href="#education">Education</a>
-    <a href="#contact">Contact</a>
-  </div>
+    <!-- Mobile nav -->
+    <div class="mobile-nav" id="mobileNav">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
 
-  <!-- ================================================================
+    <!-- ================================================================
        HERO
   ================================================================ -->
-  <section id="hero">
-    <div class="hero-content">
-      <div class="hero-left">
-        <div class="hero-animate">
-          <span class="section-label" data-index="00">Introduction</span>
+    <section id="hero">
+      <div class="hero-content">
+        <div class="hero-left">
+          <div class="hero-animate">
+            <span class="section-label" data-index="00">Introduction</span>
+          </div>
+          <h1 class="hero-name hero-animate">
+            Kamesh Raj<br /><em>Shanmugam.</em>
+          </h1>
+          <p class="hero-descriptor hero-animate">
+            Product &amp; Brand Designer blending user-centric thinking with
+            creative strategy to design products, brands, and interfaces that
+            connect meaningfully with people.
+          </p>
+          <div class="hero-cta hero-animate">
+            <a href="#work" class="btn-primary">
+              View Work
+              <i data-lucide="arrow-down" style="width: 12px; height: 12px"></i>
+            </a>
+            <a href="#contact" class="btn-ghost">Get in Touch</a>
+          </div>
         </div>
-        <h1 class="hero-name hero-animate">
-          Kamesh Raj<br/><em>Shanmugam.</em>
-        </h1>
-        <p class="hero-descriptor hero-animate">
-          Product &amp; Brand Designer blending user-centric thinking with
-          creative strategy to design products, brands, and interfaces
-          that connect meaningfully with people.
-        </p>
-        <div class="hero-cta hero-animate">
-          <a href="#work" class="btn-primary">
-            View Work
-            <i data-lucide="arrow-down" style="width:12px;height:12px;"></i>
-          </a>
-          <a href="#contact" class="btn-ghost">Get in Touch</a>
+
+        <div class="hero-right hero-animate">
+          <div class="hero-meta-grid">
+            <div class="hero-meta-item">
+              <span class="label">Based in</span>
+              <span class="value">Vancouver, BC</span>
+            </div>
+            <div class="hero-meta-item">
+              <span class="label">Available</span>
+              <span class="value">Now</span>
+            </div>
+            <div class="hero-meta-item">
+              <span class="label">Experience</span>
+              <span class="value">Junior</span>
+            </div>
+            <div class="hero-meta-item">
+              <span class="label">Focus</span>
+              <span class="value">Product &amp; Brand</span>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="hero-right hero-animate">
-        <div class="hero-meta-grid">
-          <div class="hero-meta-item">
-            <span class="label">Based in</span>
-            <span class="value">Vancouver, BC</span>
-          </div>
-          <div class="hero-meta-item">
-            <span class="label">Available</span>
-            <span class="value">Now</span>
-          </div>
-          <div class="hero-meta-item">
-            <span class="label">Experience</span>
-            <span class="value">Junior</span>
-          </div>
-          <div class="hero-meta-item">
-            <span class="label">Focus</span>
-            <span class="value">Product &amp; Brand</span>
-          </div>
-        </div>
+      <div class="hero-scroll-hint">
+        <div class="scroll-line"></div>
+        Scroll to explore
       </div>
-    </div>
+    </section>
 
-    <div class="hero-scroll-hint">
-      <div class="scroll-line"></div>
-      Scroll to explore
-    </div>
-  </section>
+    <hr class="rule" />
 
-  <hr class="rule"/>
-
-  <!-- ================================================================
+    <!-- ================================================================
        WORK
   ================================================================ -->
-  <section id="work">
-    <div class="section-header reveal">
-      <h2 class="section-title">Selected Work</h2>
-      <span class="section-label" data-index="01">Projects</span>
-    </div>
-
-    <div class="projects-grid reveal-stagger">
-
-      <div class="project-card" onclick="openModal(0)">
-        <div class="project-image">
-          <div class="project-image-inner"></div>
-          <span class="project-number">01</span>
-        </div>
-        <div class="project-info">
-          <div class="project-tags">
-            <span class="tag">Mobile App</span>
-            <span class="tag">Feature Design</span>
-          </div>
-          <h3 class="project-title">AllTrails</h3>
-          <p class="project-desc">Designing a Group Hike feature for AllTrails to help outdoor enthusiasts connect, coordinate, and explore trails together.</p>
-          <span class="project-link">
-            View Case Study
-            <i data-lucide="arrow-right" style="width:12px;height:12px;"></i>
-          </span>
-        </div>
+    <section id="work">
+      <div class="section-header reveal">
+        <h2 class="section-title">Selected Work</h2>
+        <span class="section-label" data-index="01">Projects</span>
       </div>
 
-      <div class="project-card" onclick="openModal(1)">
-        <div class="project-image">
-          <div class="project-image-inner"></div>
-          <span class="project-number">02</span>
-        </div>
-        <div class="project-info">
-          <div class="project-tags">
-            <span class="tag">Mobile App</span>
-            <span class="tag">App Design</span>
+      <div class="projects-grid reveal-stagger">
+        <div class="project-card" onclick="openModal(0)">
+          <div class="project-image">
+            <div class="project-image-inner"></div>
+            <span class="project-number">01</span>
           </div>
-          <h3 class="project-title">Service Hub</h3>
-          <p class="project-desc">End-to-end brand identity for a sustainable fashion start-up.</p>
-          <span class="project-link">
-            View Case Study
-            <i data-lucide="arrow-right" style="width:12px;height:12px;"></i>
-          </span>
+          <div class="project-info">
+            <div class="project-tags">
+              <span class="tag">Mobile App</span>
+              <span class="tag">Feature Design</span>
+            </div>
+            <h3 class="project-title">AllTrails</h3>
+            <p class="project-desc">
+              Designing a Group Hike feature for AllTrails to help outdoor
+              enthusiasts connect, coordinate, and explore trails together.
+            </p>
+            <span class="project-link">
+              View Case Study
+              <i
+                data-lucide="arrow-right"
+                style="width: 12px; height: 12px"
+              ></i>
+            </span>
+          </div>
+        </div>
+
+        <div class="project-card" onclick="openModal(1)">
+          <div class="project-image">
+            <div class="project-image-inner"></div>
+            <span class="project-number">02</span>
+          </div>
+          <div class="project-info">
+            <div class="project-tags">
+              <span class="tag">Mobile App</span>
+              <span class="tag">App Design</span>
+            </div>
+            <h3 class="project-title">Service Hub</h3>
+            <p class="project-desc">
+              End-to-end brand identity for a sustainable fashion start-up.
+            </p>
+            <span class="project-link">
+              View Case Study
+              <i
+                data-lucide="arrow-right"
+                style="width: 12px; height: 12px"
+              ></i>
+            </span>
+          </div>
+        </div>
+
+        <div class="project-card" onclick="openModal(2)">
+          <div class="project-image">
+            <div class="project-image-inner"></div>
+            <span class="project-number">03</span>
+          </div>
+          <div class="project-info">
+            <div class="project-tags">
+              <span class="tag">Content Strategy</span>
+              <span class="tag">Marketing</span>
+            </div>
+            <h3 class="project-title">Lights &amp; Camera Magazine</h3>
+            <p class="project-desc">
+              A Vancouver film industry magazine connecting emerging talent with
+              jobs, reviews, and curated content.
+            </p>
+            <span class="project-link">
+              View Case Study
+              <i
+                data-lucide="arrow-right"
+                style="width: 12px; height: 12px"
+              ></i>
+            </span>
+          </div>
+        </div>
+
+        <div class="project-card" onclick="openModal(3)">
+          <div class="project-image">
+            <div class="project-image-inner"></div>
+            <span class="project-number">04</span>
+          </div>
+          <div class="project-info">
+            <div class="project-tags">
+              <span class="tag">Magazine Design</span>
+              <span class="tag">Branding</span>
+            </div>
+            <h3 class="project-title">Monocoque Magazine</h3>
+            <p class="project-desc">
+              An independent Formula 1 magazine built from scratch, covering
+              audience research, editorial direction, and full art direction.
+            </p>
+            <span class="project-link">
+              View Case Study
+              <i
+                data-lucide="arrow-right"
+                style="width: 12px; height: 12px"
+              ></i>
+            </span>
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="project-card" onclick="openModal(2)">
-        <div class="project-image">
-          <div class="project-image-inner"></div>
-          <span class="project-number">03</span>
-        </div>
-        <div class="project-info">
-          <div class="project-tags">
-            <span class="tag">Content Strategy</span>
-            <span class="tag">Marketing</span>
-          </div>
-          <h3 class="project-title">Lights &amp; Camera Magazine</h3>
-          <p class="project-desc">A Vancouver film industry magazine connecting emerging talent with jobs, reviews, and curated content.</p>
-          <span class="project-link">
-            View Case Study
-            <i data-lucide="arrow-right" style="width:12px;height:12px;"></i>
-          </span>
-        </div>
-      </div>
+    <hr class="rule" />
 
-      <div class="project-card" onclick="openModal(3)">
-        <div class="project-image">
-          <div class="project-image-inner"></div>
-          <span class="project-number">04</span>
-        </div>
-        <div class="project-info">
-          <div class="project-tags">
-            <span class="tag">Magazine Design</span>
-            <span class="tag">Branding</span>
-          </div>
-          <h3 class="project-title">Monocoque Magazine</h3>
-          <p class="project-desc">An independent Formula 1 magazine built from scratch, covering audience research, editorial direction, and full art direction.</p>
-          <span class="project-link">
-            View Case Study
-            <i data-lucide="arrow-right" style="width:12px;height:12px;"></i>
-          </span>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <hr class="rule"/>
-
-  <!-- ================================================================
+    <!-- ================================================================
        ABOUT
   ================================================================ -->
-  <section id="about">
-    <div class="section-header reveal">
-      <h2 class="section-title">About</h2>
-      <span class="section-label" data-index="02">Profile</span>
-    </div>
-    <div class="about-grid reveal">
-      <div class="about-label-col">
-        <span class="section-label" data-index="—">Designer · Strategist · Storyteller</span>
+    <section id="about">
+      <div class="section-header reveal">
+        <h2 class="section-title">About</h2>
+        <span class="section-label" data-index="02">Profile</span>
       </div>
-      <div class="about-body">
-        <h3 class="about-headline">
-          I blend user-centric thinking<br/>
-          <em>with creative strategy.</em>
-        </h3>
-        <p class="about-text">
-          I design products, brands, and interfaces that connect meaningfully with
-          people. With a background in Interactive Arts &amp; Technology and Publishing
-          from Simon Fraser University, I work at the intersection of user research,
-          visual design, and brand strategy.
-        </p>
-        <p class="about-text">
-          My process is rooted in understanding — I observe, research, and design
-          with intention. Whether it's a mobile feature, a magazine identity, or an
-          illustrated publication, I bring the same rigour and care to every project.
-          Currently open to new opportunities.
-        </p>
-        <div style="margin-top: var(--space-2);">
-          <a href="#contact" class="btn-ghost">Work With Me</a>
+      <div class="about-grid reveal">
+        <div class="about-label-col">
+          <span class="section-label" data-index="—"
+            >Designer · Strategist · Storyteller</span
+          >
+        </div>
+        <div class="about-body">
+          <h3 class="about-headline">
+            I blend user-centric thinking<br />
+            <em>with creative strategy.</em>
+          </h3>
+          <p class="about-text">
+            I design products, brands, and interfaces that connect meaningfully
+            with people. With a background in Interactive Arts &amp; Technology
+            and Publishing from Simon Fraser University, I work at the
+            intersection of user research, visual design, and brand strategy.
+          </p>
+          <p class="about-text">
+            My process is rooted in understanding — I observe, research, and
+            design with intention. Whether it's a mobile feature, a magazine
+            identity, or an illustrated publication, I bring the same rigour and
+            care to every project. Currently open to new opportunities.
+          </p>
+          <div style="margin-top: var(--space-2)">
+            <a href="#contact" class="btn-ghost">Work With Me</a>
+          </div>
+        </div>
+        <div class="about-sidebar">
+          <div class="about-skill-group">
+            <h4>Core Skills</h4>
+            <ul class="skill-list">
+              <li>User Research</li>
+              <li>Design Systems</li>
+              <li>Prototyping</li>
+              <li>Wireframing</li>
+              <li>Responsive Design</li>
+              <li>Accessibility</li>
+              <li>Motion Design</li>
+            </ul>
+          </div>
+          <div class="about-skill-group">
+            <h4>Tools</h4>
+            <ul class="skill-list">
+              <li>Figma</li>
+              <li>Adobe Suite</li>
+              <li>ProtoPie</li>
+              <li>HTML / CSS</li>
+              <li>Javascript</li>
+              <li>Python</li>
+              <li>Autodesk Maya</li>
+              <li>Linux</li>
+            </ul>
+          </div>
         </div>
       </div>
-      <div class="about-sidebar">
-        <div class="about-skill-group">
-          <h4>Core Skills</h4>
-          <ul class="skill-list">
-            <li>User Research</li>
-            <li>Design Systems</li>
-            <li>Prototyping</li>
-            <li>Wireframing</li>
-            <li>Responsive Design</li>
-            <li>Accessibility</li>
-            <li>Motion Design</li>
-          </ul>
-        </div>
-        <div class="about-skill-group">
-          <h4>Tools</h4>
-          <ul class="skill-list">
-            <li>Figma</li>
-            <li>Adobe Suite</li>
-            <li>ProtoPie</li>
-            <li>HTML / CSS</li>
-            <li>Javascript</li>
-            <li>Python</li>
-            <li>Autodesk Maya</li>
-            <li>Linux</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <hr class="rule"/>
+    <hr class="rule" />
 
-  <!-- ================================================================
+    <!-- ================================================================
        EXPERIENCE
   ================================================================ -->
-  <section id="experience">
-    <div class="section-header reveal">
-      <h2 class="section-title">Experience</h2>
-      <span class="section-label" data-index="03">Career</span>
-    </div>
-    <div class="experience-list">
-      <div class="experience-item reveal">
-        <span class="exp-company">Apple</span>
-        <span class="exp-role">Specialist · Contract Part-time</span>
-        <p class="exp-desc">Leveraged the "Connect and Personalize" tool with 96% consistency, ensuring every client received custom hardware and software recommendations. Introduced 24% of eligible customers to Apple's subscription services and maintained a 44% accessory attach rate. Sold 70 units per month, exceeding the sales benchmark by 18%, and met the 30% AppleCare+ benchmark consistently.</p>
-        <span class="exp-period">Jul 2025 — Jan 2026</span>
+    <section id="experience">
+      <div class="section-header reveal">
+        <h2 class="section-title">Experience</h2>
+        <span class="section-label" data-index="03">Career</span>
       </div>
-      <div class="experience-item reveal">
-        <span class="exp-company">Starbucks</span>
-        <span class="exp-role">Barista · Permanent Part-time</span>
-        <p class="exp-desc">Maintained a 95%+ customer satisfaction rating by delivering high-quality service. Mentored and trained junior baristas, achieving a 98% accuracy rate in drink preparation. Served 100+ customers per shift with average wait times under 5 minutes and processed daily cash transactions exceeding $5,000 with zero discrepancies.</p>
-        <span class="exp-period">Jun 2021 — Feb 2026</span>
+      <div class="experience-list">
+        <div class="experience-item reveal">
+          <span class="exp-company">Apple</span>
+          <span class="exp-role">Specialist · Contract Part-time</span>
+          <p class="exp-desc">
+            Leveraged the "Connect and Personalize" tool with 96% consistency,
+            ensuring every client received custom hardware and software
+            recommendations. Introduced 24% of eligible customers to Apple's
+            subscription services and maintained a 44% accessory attach rate.
+            Sold 70 units per month, exceeding the sales benchmark by 18%, and
+            met the 30% AppleCare+ benchmark consistently.
+          </p>
+          <span class="exp-period">Jul 2025 — Jan 2026</span>
+        </div>
+        <div class="experience-item reveal">
+          <span class="exp-company">Starbucks</span>
+          <span class="exp-role">Barista · Permanent Part-time</span>
+          <p class="exp-desc">
+            Maintained a 95%+ customer satisfaction rating by delivering
+            high-quality service. Mentored and trained junior baristas,
+            achieving a 98% accuracy rate in drink preparation. Served 100+
+            customers per shift with average wait times under 5 minutes and
+            processed daily cash transactions exceeding $5,000 with zero
+            discrepancies.
+          </p>
+          <span class="exp-period">Jun 2021 — Feb 2026</span>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <hr class="rule"/>
+    <hr class="rule" />
 
-  <!-- ================================================================
+    <!-- ================================================================
        EDUCATION
   ================================================================ -->
-  <section id="education">
-    <div class="section-header reveal">
-      <h2 class="section-title">Education</h2>
-      <span class="section-label" data-index="04">Academic</span>
-    </div>
-    <div class="education-grid reveal">
-      <div class="about-label-col">
-        <span class="section-label" data-index="—">Formal Training</span>
+    <section id="education">
+      <div class="section-header reveal">
+        <h2 class="section-title">Education</h2>
+        <span class="section-label" data-index="04">Academic</span>
       </div>
-      <div class="education-list">
-        <div class="education-item">
-          <div>
-            <h3 class="edu-school">Simon Fraser University</h3>
-            <p class="edu-degree">B.A in Interactive Arts and Technology; Publishing</p>
+      <div class="education-grid reveal">
+        <div class="about-label-col">
+          <span class="section-label" data-index="—">Formal Training</span>
+        </div>
+        <div class="education-list">
+          <div class="education-item">
+            <div>
+              <h3 class="edu-school">Simon Fraser University</h3>
+              <p class="edu-degree">
+                B.A in Interactive Arts and Technology; Publishing
+              </p>
+            </div>
+            <div class="edu-right">
+              <span class="edu-year">2021 — 2024</span>
+              <span class="edu-note">Vancouver, BC</span>
+            </div>
           </div>
-          <div class="edu-right">
-            <span class="edu-year">2021 — 2024</span>
-            <span class="edu-note">Vancouver, BC</span>
+          <div class="education-item">
+            <div>
+              <h3 class="edu-school">Fraser International College</h3>
+              <p class="edu-degree">B.A in Communication</p>
+            </div>
+            <div class="edu-right">
+              <span class="edu-year">Jan 2020 — Dec 2020</span>
+              <span class="edu-note">Vancouver, BC</span>
+            </div>
           </div>
         </div>
-        <div class="education-item">
-          <div>
-            <h3 class="edu-school">Fraser International College</h3>
-            <p class="edu-degree">B.A in Communication</p>
-          </div>
-          <div class="edu-right">
-            <span class="edu-year">Jan 2020 — Dec 2020</span>
-            <span class="edu-note">Vancouver, BC</span>
-          </div>
-        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <hr class="rule"/>
+    <hr class="rule" />
 
-  <!-- ================================================================
+    <!-- ================================================================
        CONTACT
   ================================================================ -->
-  <section id="contact">
-    <div class="section-header reveal">
-      <h2 class="section-title">Contact</h2>
-      <span class="section-label" data-index="05">Get in Touch</span>
-    </div>
-    <div class="contact-grid reveal">
-      <div class="contact-left">
-        <h3 class="contact-headline">Let's work<br/><em>together.</em></h3>
-        <p class="contact-subtext">
-          I'm always open to new projects, creative ideas, or opportunities
-          to be part of something great. Drop me a message and let's chat!
-        </p>
+    <section id="contact">
+      <div class="section-header reveal">
+        <h2 class="section-title">Contact</h2>
+        <span class="section-label" data-index="05">Get in Touch</span>
       </div>
-      <div class="contact-links">
-        <button class="contact-link-item" id="copyEmail" data-email="kameshrajshan@gmail.com">
-          <span class="contact-link-name">Email</span>
-          <div class="contact-link-meta">
-            <span class="contact-link-handle" id="emailHandle">kameshrajshan@gmail.com</span>
-            <i data-lucide="copy" class="contact-link-arrow" style="width:14px;height:14px;"></i>
-          </div>
-        </button>
-        <a href="https://www.linkedin.com/in/kamesh-raj-shanmugam-a33677364/" class="contact-link-item" target="_blank" rel="noopener">
-          <span class="contact-link-name">LinkedIn</span>
-          <div class="contact-link-meta">
-            <span class="contact-link-handle">/in/kamesh-raj-shanmugam</span>
-            <i data-lucide="arrow-up-right" class="contact-link-arrow" style="width:14px;height:14px;"></i>
-          </div>
-        </a>
-        <a href="resume.pdf" class="contact-link-item" target="_blank" rel="noopener">
-          <span class="contact-link-name">Resume</span>
-          <div class="contact-link-meta">
-            <span class="contact-link-handle">Download PDF</span>
-            <i data-lucide="arrow-up-right" class="contact-link-arrow" style="width:14px;height:14px;"></i>
-          </div>
-        </a>
+      <div class="contact-grid reveal">
+        <div class="contact-left">
+          <h3 class="contact-headline">Let's work<br /><em>together.</em></h3>
+          <p class="contact-subtext">
+            I'm always open to new projects, creative ideas, or opportunities to
+            be part of something great. Drop me a message and let's chat!
+          </p>
+        </div>
+        <div class="contact-links">
+          <button
+            class="contact-link-item"
+            id="copyEmail"
+            data-email="kameshrajshan@gmail.com"
+          >
+            <span class="contact-link-name">Email</span>
+            <div class="contact-link-meta">
+              <span class="contact-link-handle" id="emailHandle"
+                >kameshrajshan@gmail.com</span
+              >
+              <i
+                data-lucide="copy"
+                class="contact-link-arrow"
+                style="width: 14px; height: 14px"
+              ></i>
+            </div>
+          </button>
+          <a
+            href="https://www.linkedin.com/in/kamesh-raj-shanmugam-a33677364/"
+            class="contact-link-item"
+            target="_blank"
+            rel="noopener"
+          >
+            <span class="contact-link-name">LinkedIn</span>
+            <div class="contact-link-meta">
+              <span class="contact-link-handle">/in/kamesh-raj-shanmugam</span>
+              <i
+                data-lucide="arrow-up-right"
+                class="contact-link-arrow"
+                style="width: 14px; height: 14px"
+              ></i>
+            </div>
+          </a>
+          <a
+            href="resume.pdf"
+            class="contact-link-item"
+            target="_blank"
+            rel="noopener"
+          >
+            <span class="contact-link-name">Resume</span>
+            <div class="contact-link-meta">
+              <span class="contact-link-handle">Download PDF</span>
+              <i
+                data-lucide="arrow-up-right"
+                class="contact-link-arrow"
+                style="width: 14px; height: 14px"
+              ></i>
+            </div>
+          </a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ================================================================
+    <!-- ================================================================
        FOOTER
   ================================================================ -->
-  <footer>
-    <span class="footer-copy">&copy; 2026 Kamesh Raj Shanmugam</span>
-    <span class="footer-mark">Designed with rigour. Built with intent.</span>
-  </footer>
+    <footer>
+      <span class="footer-copy">&copy; 2026 Kamesh Raj Shanmugam</span>
+      <span class="footer-mark">Designed with rigour. Built with intent.</span>
+    </footer>
 
-  <!-- ================================================================
+    <!-- ================================================================
        PROJECT MODAL
   ================================================================ -->
-  <div class="modal-backdrop" id="modalBackdrop" onclick="closeModal(event)">
-    <div class="modal" id="modal">
-      <button class="modal-close" onclick="closeModalDirect()">
-        <i data-lucide="x" style="width:14px;height:14px;"></i>
-      </button>
-      <div class="modal-image" id="modalImage"></div>
-      <div class="modal-body">
-        <div class="modal-main">
-          <div class="project-tags" id="modalTags"></div>
-          <h2 class="modal-title" id="modalTitle"></h2>
-          <p class="modal-text" id="modalText"></p>
-          <div style="margin-top: var(--space-4);" id="modalCta"></div>
-        </div>
-        <div class="modal-sidebar">
-          <div class="modal-meta-item">
-            <span class="modal-meta-label">Type</span>
-            <span class="modal-meta-value" id="modalType"></span>
+    <div class="modal-backdrop" id="modalBackdrop" onclick="closeModal(event)">
+      <div class="modal" id="modal">
+        <button class="modal-close" onclick="closeModalDirect()">
+          <i data-lucide="x" style="width: 14px; height: 14px"></i>
+        </button>
+        <div class="modal-image" id="modalImage"></div>
+        <div class="modal-body">
+          <div class="modal-main">
+            <div class="project-tags" id="modalTags"></div>
+            <h2 class="modal-title" id="modalTitle"></h2>
+            <p class="modal-text" id="modalText"></p>
+            <div style="margin-top: var(--space-4)" id="modalCta"></div>
           </div>
-          <div class="modal-meta-item">
-            <span class="modal-meta-label">Role</span>
-            <span class="modal-meta-value" id="modalRole"></span>
-          </div>
-          <div class="modal-meta-item">
-            <span class="modal-meta-label">Platform</span>
-            <span class="modal-meta-value" id="modalPlatform"></span>
-          </div>
-          <div class="modal-meta-item">
-            <span class="modal-meta-label">Focus</span>
-            <span class="modal-meta-value" id="modalFocus"></span>
+          <div class="modal-sidebar">
+            <div class="modal-meta-item">
+              <span class="modal-meta-label">Type</span>
+              <span class="modal-meta-value" id="modalType"></span>
+            </div>
+            <div class="modal-meta-item">
+              <span class="modal-meta-label">Role</span>
+              <span class="modal-meta-value" id="modalRole"></span>
+            </div>
+            <div class="modal-meta-item">
+              <span class="modal-meta-label">Platform</span>
+              <span class="modal-meta-value" id="modalPlatform"></span>
+            </div>
+            <div class="modal-meta-item">
+              <span class="modal-meta-label">Focus</span>
+              <span class="modal-meta-value" id="modalFocus"></span>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- ================================================================
+    <!-- ================================================================
        JAVASCRIPT
   ================================================================ -->
-  <script>
-    /* 1. Init Lucide icons */
-    document.addEventListener('DOMContentLoaded', () => { lucide.createIcons(); });
-
-    /* 2. Custom cursor with lerp-lagged follower ring */
-    const cursor = document.getElementById('cursor');
-    const follower = document.getElementById('cursorFollower');
-    let mx = 0, my = 0, fx = 0, fy = 0;
-
-    document.addEventListener('mousemove', (e) => {
-      mx = e.clientX; my = e.clientY;
-      cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
-    });
-
-    (function tick() {
-      fx += (mx - fx) * 0.12;
-      fy += (my - fy) * 0.12;
-      follower.style.left = fx + 'px'; follower.style.top = fy + 'px';
-      requestAnimationFrame(tick);
-    })();
-
-    document.querySelectorAll('a, button, .project-card').forEach(el => {
-      el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
-      el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
-    });
-
-    /* 3. Nav scroll state */
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 40);
-    });
-
-    /* 4. Mobile menu toggle */
-    const menuToggle = document.getElementById('menuToggle');
-    const mobileNav = document.getElementById('mobileNav');
-
-    menuToggle.addEventListener('click', () => {
-      menuToggle.classList.toggle('open');
-      mobileNav.classList.toggle('open');
-    });
-
-    document.querySelectorAll('.mobile-nav a').forEach(link => {
-      link.addEventListener('click', () => {
-        menuToggle.classList.remove('open');
-        mobileNav.classList.remove('open');
-      });
-    });
-
-    /* 5. Scroll-triggered reveal via IntersectionObserver */
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          obs.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-    document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => obs.observe(el));
-
-    /* 6. Project data */
-    const projects = [
-      {
-        title: 'AllTrails',
-        tags: ['Mobile App', 'Feature Design'],
-        text: 'Designing a Group Hike feature for AllTrails to help outdoor enthusiasts connect, coordinate, and explore trails together. The project focused on enabling group coordination, real-time trail sharing, and social features that bring the hiking community closer.',
-        type: 'Mobile App', role: 'Product Designer', platform: 'iOS / Android', focus: 'Feature Design & UX',
-        bg: 'repeating-linear-gradient(45deg, #d0d0c8 0px, #d0d0c8 1px, transparent 1px, transparent 40px), #e8e8e3',
-        link: 'projects/alltrails.html'
-      },
-      {
-        title: 'Service Hub',
-        tags: ['Mobile App', 'App Design'],
-        text: 'End-to-end brand identity for a sustainable fashion start-up. The project encompassed the full design lifecycle from user research and wireframing through to high-fidelity prototypes and brand guidelines.',
-        type: 'Mobile App', role: 'Brand & Product Designer', platform: 'Mobile', focus: 'App Design & Branding',
-        bg: 'radial-gradient(circle at 30% 50%, #d0d0c8 0%, transparent 60%), #e8e8e3',
-        link: 'projects/service-hub.html'
-      },
-      {
-        title: 'Lights & Camera Magazine',
-        tags: ['Content Strategy', 'Marketing'],
-        text: 'A Vancouver film industry magazine connecting emerging talent with jobs, reviews, and curated content. The project involved editorial strategy, visual identity, layout design, and building a content pipeline for the local film community.',
-        type: 'Magazine / Editorial', role: 'Content Strategist & Designer', platform: 'Print & Digital', focus: 'Content Strategy & Marketing',
-        bg: 'repeating-linear-gradient(0deg, #d0d0c8 0px, #d0d0c8 1px, transparent 1px, transparent 24px), #e8e8e3',
-        link: 'projects/lights-camera.html'
-      },
-      {
-        title: 'Monocoque Magazine',
-        tags: ['Magazine Design', 'Branding'],
-        text: 'An independent Formula 1 magazine built from scratch, covering audience research, editorial direction, and full art direction. The project spanned naming, visual identity, typographic systems, and a complete editorial framework.',
-        type: 'Magazine / Publication', role: 'Art Director & Designer', platform: 'Print', focus: 'Magazine Design & Branding',
-        bg: 'repeating-linear-gradient(90deg, #d0d0c8 0px, #d0d0c8 1px, transparent 1px, transparent 32px), repeating-linear-gradient(0deg, #d0d0c8 0px, #d0d0c8 1px, transparent 1px, transparent 32px), #e8e8e3',
-        link: 'projects/monocoque.html'
-      }
-    ];
-
-    /* 7. Modal open/close */
-    function openModal(i) {
-      const p = projects[i];
-      document.getElementById('modalTitle').textContent    = p.title;
-      document.getElementById('modalText').textContent     = p.text;
-      document.getElementById('modalType').textContent     = p.type;
-      document.getElementById('modalRole').textContent     = p.role;
-      document.getElementById('modalPlatform').textContent = p.platform;
-      document.getElementById('modalFocus').textContent    = p.focus;
-      document.getElementById('modalImage').style.background = p.bg;
-      document.getElementById('modalTags').innerHTML =
-        p.tags.map(t => '<span class="tag">' + t + '</span>').join('');
-      document.getElementById('modalCta').innerHTML =
-        '<a href="' + p.link + '" class="btn-primary">View Full Case Study <i data-lucide="arrow-up-right" style="width:12px;height:12px;"></i></a>';
-      document.getElementById('modalBackdrop').classList.add('open');
-      document.body.style.overflow = 'hidden';
-      lucide.createIcons();
-    }
-
-    function closeModal(e) {
-      if (e.target === document.getElementById('modalBackdrop')) closeModalDirect();
-    }
-
-    function closeModalDirect() {
-      document.getElementById('modalBackdrop').classList.remove('open');
-      document.body.style.overflow = '';
-    }
-
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalDirect(); });
-
-    /* 8. Copy email to clipboard */
-    document.getElementById('copyEmail').addEventListener('click', function() {
-      const email = this.getAttribute('data-email');
-      const handle = document.getElementById('emailHandle');
-      const icon = this.querySelector('[data-lucide]');
-      navigator.clipboard.writeText(email).then(() => {
-        handle.textContent = 'Copied to clipboard';
-        if (icon) { icon.setAttribute('data-lucide', 'check'); lucide.createIcons(); }
-        setTimeout(() => {
-          handle.textContent = email;
-          if (icon) { icon.setAttribute('data-lucide', 'copy'); lucide.createIcons(); }
-        }, 2000);
-      });
-    });
-  </script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
