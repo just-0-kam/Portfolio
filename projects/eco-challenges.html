@@ -1,377 +1,408 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Eco Challenges &amp; Indigenous People | Kamesh Raj</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eco Challenges &amp; Indigenous People | Kamesh Raj Shanmugam</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <link rel="stylesheet" href="../project-styles.css"/>
+</head>
+<body>
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Instrument+Serif:ital@0;1&display=swap"
-      rel="stylesheet"
-    />
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="../styles.css" />
-  </head>
+  <!-- ================================================================
+       NAV
+  ================================================================ -->
+  <nav class="proj-nav" id="projNav">
+    <a href="../index.html" class="nav-logo">KRS / Portfolio</a>
+    <ul class="nav-links">
+      <li><a href="../index.html#work">Work</a></li>
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#experience">Experience</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+    <a href="../index.html" class="nav-back">
+      <i data-lucide="arrow-left" style="width:12px;height:12px;"></i>
+      Back to Portfolio
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 
-  <body>
-    <!-- Aurora background -->
-    <canvas id="aurora-bg" aria-hidden="true"></canvas>
-    <div id="aurora-vignette" aria-hidden="true"></div>
+  <!-- Mobile nav -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="../index.html#work">Work</a>
+    <a href="../index.html#about">About</a>
+    <a href="../index.html#experience">Experience</a>
+    <a href="../index.html#contact">Contact</a>
+    <a href="../index.html">Back to Portfolio</a>
+  </div>
 
-    <!-- Project Content -->
-    <main class="project-page-main">
-      <div class="project-page-container">
-        <!-- Close button -->
-        <div class="project-page-close-row">
-          <a
-            href="../index.html"
-            class="project-page-close"
-            title="Back to Portfolio"
-          >
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2.5"
-              stroke-linecap="round"
-            >
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
-          </a>
+  <!-- ================================================================
+       PAGE
+  ================================================================ -->
+  <main class="project-page">
+
+    <!-- Hero -->
+    <header class="project-hero">
+      <div class="project-hero-left">
+        <div class="page-animate">
+          <span class="project-hero-label">Case Study — 05</span>
         </div>
-
-        <!-- Hero -->
-        <div
-          class="project-page-hero"
-          style="
-            background: linear-gradient(
-              135deg,
-              rgba(22, 78, 45, 0.4) 0%,
-              rgba(74, 121, 60, 0.22) 60%,
-              rgba(15, 60, 40, 0.35) 100%
-            );
-          "
-        >
-          Eco Challenges &amp; Indigenous People
+        <h1 class="project-hero-title page-animate">Eco Challenges &amp;<br/>Indigenous People</h1>
+        <div class="project-hero-tags page-animate">
+          <span class="tag">Book Design</span>
+          <span class="tag">Illustration</span>
+          <span class="tag">Editorial</span>
         </div>
-
-        <!-- Tags -->
-        <div class="project-page-tags">
-          <span class="project-page-tag">Book Design</span>
-          <span class="project-page-tag">Illustration</span>
-          <span class="project-page-tag">Editorial</span>
+      </div>
+      <div class="project-meta-grid page-animate">
+        <div class="project-meta-item">
+          <span class="label">Role</span>
+          <span class="value">Primary Designer</span>
         </div>
-
-        <!-- Title -->
-        <h1 class="project-page-title">
-          Eco Challenges &amp; Indigenous People
-        </h1>
-
-        <!-- Meta -->
-        <div class="project-page-meta">
-          <div class="project-page-meta-item">
-            <div class="label">Role</div>
-            <div class="value">Primary Designer</div>
-          </div>
-          <div class="project-page-meta-item">
-            <div class="label">Year</div>
-            <div class="value">2024</div>
-          </div>
-          <div class="project-page-meta-item">
-            <div class="label">Tools</div>
-            <div class="value">Adobe InDesign, Photoshop &amp; Illustrator</div>
-          </div>
-          <div class="project-page-meta-item">
-            <div class="label">Type</div>
-            <div class="value">Illustrated Book</div>
-          </div>
+        <div class="project-meta-item">
+          <span class="label">Year</span>
+          <span class="value">2024</span>
         </div>
+        <div class="project-meta-item">
+          <span class="label">Tools</span>
+          <span class="value">Adobe InDesign, Photoshop, Illustrator</span>
+        </div>
+        <div class="project-meta-item">
+          <span class="label">Type</span>
+          <span class="value">Illustrated Book</span>
+        </div>
+      </div>
+    </header>
+
+    <hr class="rule"/>
+
+    <!-- Banner -->
+    <div class="wide-image radial">
+      <div class="wide-image-inner"></div>
+      <span class="wide-image-label">Eco Challenges &amp; Indigenous People — Illustrated Book</span>
+    </div>
+
+    <!-- Body -->
+    <div class="project-content">
+      <div class="project-body">
 
         <!-- Overview -->
-        <div class="project-page-section">
-          <h3>Overview</h3>
+        <section class="content-section reveal">
+          <div class="content-section-header">
+            <h2 class="content-section-title">Overview</h2>
+            <span class="content-section-index">01</span>
+          </div>
           <p>
-            Eco Challenges and Indigenous People is a non-fictional illustrated
-            book that explores several environmental issues through the
-            perspectives of Indigenous communities. It offers a comprehensive
-            look at the interplay between Indigenous peoples and the ecological
-            challenges they face and address. The book is structured around four
-            themes: <em>Water</em>, <em>Fire</em>, <em>Forest</em>, and
-            <em>Earth</em>. Each theme provides a nuanced perspective on
-            ecological challenges and the important contributions Indigenous
-            communities make to environmental sustainability and cultural
+            Eco Challenges and Indigenous People is a non-fictional illustrated book that
+            explores several environmental issues through the perspectives of Indigenous
+            communities. It offers a comprehensive look at the interplay between Indigenous
+            peoples and the ecological challenges they face and address. The book is structured
+            around four themes: <em>Water</em>, <em>Fire</em>, <em>Forest</em>, and <em>Earth</em>.
+            Each theme provides a nuanced perspective on ecological challenges and the important
+            contributions Indigenous communities make to environmental sustainability and cultural
             heritage.
           </p>
-        </div>
+        </section>
 
-        <!-- Three Themes -->
-        <div class="project-page-section">
-          <h3>The Four Themes</h3>
-          <div class="project-page-img-grid">
-            <div
-              class="project-page-img-placeholder"
-              style="
-                background: linear-gradient(
-                  160deg,
-                  rgba(10, 60, 120, 0.35) 0%,
-                  rgba(30, 100, 160, 0.2) 100%
-                );
-              "
-            >
-              <strong style="display: block; margin-bottom: 6px">Water</strong>
-              <span style="font-size: 0.85em; opacity: 0.65"
-                >Indigenous relationships with water systems, water rights, and
-                conservation practices</span
-              >
+        <hr class="rule"/>
+
+        <!-- The Four Themes -->
+        <section class="content-section reveal">
+          <div class="content-section-header">
+            <h2 class="content-section-title">The Four Themes</h2>
+            <span class="content-section-index">02</span>
+          </div>
+          <div class="image-grid reveal-stagger">
+            <div class="image-placeholder horiz">
+              <div class="image-placeholder-content">
+                <p class="image-placeholder-title">Water</p>
+                <p class="image-placeholder-desc">
+                  Indigenous relationships with water systems, water rights, and conservation practices
+                </p>
+              </div>
             </div>
-            <div
-              class="project-page-img-placeholder"
-              style="
-                background: linear-gradient(
-                  160deg,
-                  rgba(180, 70, 10, 0.3) 0%,
-                  rgba(220, 120, 20, 0.18) 100%
-                );
-              "
-            >
-              <strong style="display: block; margin-bottom: 6px">Fire</strong>
-              <span style="font-size: 0.85em; opacity: 0.65"
-                >Traditional burning practices, wildfire crises, and Indigenous
-                land stewardship</span
-              >
+            <div class="image-placeholder diag">
+              <div class="image-placeholder-content">
+                <p class="image-placeholder-title">Fire</p>
+                <p class="image-placeholder-desc">
+                  Traditional burning practices, wildfire crises, and Indigenous land stewardship
+                </p>
+              </div>
             </div>
-            <div
-              class="project-page-img-placeholder"
-              style="
-                background: linear-gradient(
-                  160deg,
-                  rgba(22, 78, 45, 0.4) 0%,
-                  rgba(60, 110, 50, 0.22) 100%
-                );
-              "
-            >
-              <strong style="display: block; margin-bottom: 6px">Forest</strong>
-              <span style="font-size: 0.85em; opacity: 0.65"
-                >Deforestation, biodiversity loss, and the role of Indigenous
-                communities as forest guardians</span
-              >
+            <div class="image-placeholder vert">
+              <div class="image-placeholder-content">
+                <p class="image-placeholder-title">Forest</p>
+                <p class="image-placeholder-desc">
+                  Deforestation, biodiversity loss, and the role of Indigenous communities as forest guardians
+                </p>
+              </div>
             </div>
-            <div
-              class="project-page-img-placeholder"
-              style="
-                background: linear-gradient(
-                  160deg,
-                  rgba(120, 80, 30, 0.35) 0%,
-                  rgba(160, 110, 50, 0.2) 100%
-                );
-              "
-            >
-              <strong style="display: block; margin-bottom: 6px">Earth</strong>
-              <span style="font-size: 0.85em; opacity: 0.65"
-                >Soil degradation, land rights, and Indigenous agricultural
-                knowledge and practices</span
-              >
+            <div class="image-placeholder grid-pat">
+              <div class="image-placeholder-content">
+                <p class="image-placeholder-title">Earth</p>
+                <p class="image-placeholder-desc">
+                  Soil degradation, land rights, and Indigenous agricultural knowledge and practices
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        </section>
 
-        <!-- Persona -->
-        <div class="project-page-section">
-          <h3>Reader Persona</h3>
-          <div class="project-page-persona">
+        <hr class="rule"/>
+
+        <!-- Reader Persona -->
+        <section class="content-section reveal">
+          <div class="content-section-header">
+            <h2 class="content-section-title">Reader Persona</h2>
+            <span class="content-section-index">03</span>
+          </div>
+          <div class="persona">
             <div class="persona-header">
-              <div
-                class="persona-avatar"
-                style="background: rgba(22, 78, 45, 0.3)"
-              >
-                AR
-              </div>
+              <div class="persona-avatar">AR</div>
               <div>
-                <div class="persona-name">Alex Rivera</div>
-                <div class="persona-details">
-                  Environmentally conscious reader &nbsp;·&nbsp; Interested in
-                  Indigenous perspectives
-                </div>
+                <p class="persona-name">Alex Rivera</p>
+                <p class="persona-role">Environmentally conscious reader &nbsp;·&nbsp; Interested in Indigenous perspectives</p>
               </div>
             </div>
             <div class="persona-body">
               <div class="persona-col">
-                <strong>Goals</strong>
+                <p class="persona-col-title">Goals</p>
                 <ul>
-                  <li>
-                    Learn about environmental challenges through an Indigenous
-                    lens
-                  </li>
+                  <li>Learn about environmental challenges through an Indigenous lens</li>
                   <li>Access well-researched, visually engaging non-fiction</li>
-                  <li>
-                    Deepen understanding of ecological and cultural
-                    interconnections
-                  </li>
+                  <li>Deepen understanding of ecological and cultural interconnections</li>
                 </ul>
               </div>
               <div class="persona-col">
-                <strong>Pain Points</strong>
+                <p class="persona-col-title">Pain Points</p>
                 <ul>
-                  <li>
-                    Difficulty finding content that authentically centres
-                    Indigenous voices
-                  </li>
+                  <li>Difficulty finding content that authentically centres Indigenous voices</li>
                   <li>Environmental books that feel dry or inaccessible</li>
                   <li>Lack of visual storytelling in non-fiction publishing</li>
                 </ul>
               </div>
             </div>
           </div>
-        </div>
+        </section>
+
+        <hr class="rule"/>
 
         <!-- Mood Boards -->
-        <div class="project-page-section">
-          <h3>Mood Boards</h3>
+        <section class="content-section reveal">
+          <div class="content-section-header">
+            <h2 class="content-section-title">Mood Boards</h2>
+            <span class="content-section-index">04</span>
+          </div>
           <p>
-            Three distinct mood boards guided the visual tone of each chapter,
-            drawn from the natural world to establish an authentic, grounded
-            aesthetic throughout the book.
+            Three distinct mood boards guided the visual tone of each chapter, drawn from the
+            natural world to establish an authentic, grounded aesthetic throughout the book.
           </p>
-        </div>
+          <div class="wide-image diag">
+            <div class="wide-image-inner"></div>
+            <span class="wide-image-label">Water · Fire · Forest · Earth Mood Boards</span>
+          </div>
+        </section>
 
-        <div
-          class="project-page-wide-img"
-          style="
-            background: linear-gradient(
-              135deg,
-              rgba(10, 60, 120, 0.25) 0%,
-              rgba(180, 70, 10, 0.2) 50%,
-              rgba(22, 78, 45, 0.3) 100%
-            );
-          "
-        >
-          Water · Fire · Forest · Earth Mood Boards
-        </div>
+        <hr class="rule"/>
 
         <!-- Design Rationale -->
-        <div class="project-page-section">
-          <h3>Design Rationale</h3>
+        <section class="content-section reveal">
+          <div class="content-section-header">
+            <h2 class="content-section-title">Design Rationale</h2>
+            <span class="content-section-index">05</span>
+          </div>
           <p>
-            The design of Eco Challenges and Indigenous People reflects the
-            project's mission through a considered, contemporary aesthetic.
-            Typography draws inspiration from nature and Indigenous art,
-            striking a balance between visual interest and legibility. Chapter
-            and section layouts are structured to maintain clear hierarchy
-            across a 120-page print run, while the use of full-bleed imagery
-            immerses readers in each theme. The overall approach prioritises
-            consistency and visual impact while keeping the content and the
-            communities it represents at the centre.
+            The design of Eco Challenges and Indigenous People reflects the project's mission
+            through a considered, contemporary aesthetic. Typography draws inspiration from
+            nature and Indigenous art, striking a balance between visual interest and legibility.
+            Chapter and section layouts are structured to maintain clear hierarchy across a
+            120-page print run, while the use of full-bleed imagery immerses readers in each
+            theme. The overall approach prioritises consistency and visual impact while keeping
+            the content and the communities it represents at the centre.
           </p>
-        </div>
+        </section>
+
+        <hr class="rule"/>
 
         <!-- Visual Design -->
-        <div class="project-page-section">
-          <h3>Visual Design</h3>
+        <section class="content-section reveal">
+          <div class="content-section-header">
+            <h2 class="content-section-title">Visual Design</h2>
+            <span class="content-section-index">06</span>
+          </div>
           <p>
-            The colour palette is rooted in the natural world, featuring earthy
-            greens, deep blacks, and muted naturals that reflect the book's
-            ecological subject matter without competing with the photography.
-            Two typefaces carry the typographic system: a serif for body text to
-            support long-form reading, and a contrasting display face for
+            The colour palette is rooted in the natural world, featuring earthy greens, deep
+            blacks, and muted naturals that reflect the book's ecological subject matter without
+            competing with the photography. Two typefaces carry the typographic system: a serif
+            for body text to support long-form reading, and a contrasting display face for
             headings and chapter openers.
           </p>
-          <div class="project-page-palette">
-            <div class="palette-swatch">
-              <div class="swatch-block" style="background: #2d4a2d"></div>
-              <div class="swatch-label">Forest</div>
+          <div class="palette-grid reveal-stagger">
+            <div class="swatch">
+              <div class="swatch-block" style="background:#2d4a2d;"></div>
+              <span class="swatch-label">Forest</span>
             </div>
-            <div class="palette-swatch">
-              <div
-                class="swatch-block"
-                style="
-                  background: #f5f0e8;
-                  border: 1px solid rgba(255, 255, 255, 0.12);
-                "
-              ></div>
-              <div class="swatch-label">Natural</div>
+            <div class="swatch">
+              <div class="swatch-block" style="background:#f5f0e8; border-color:var(--grey-200);"></div>
+              <span class="swatch-label">Natural</span>
             </div>
-            <div class="palette-swatch">
-              <div class="swatch-block" style="background: #1a1a1a"></div>
-              <div class="swatch-label">Ink</div>
+            <div class="swatch">
+              <div class="swatch-block" style="background:#1a1a1a;"></div>
+              <span class="swatch-label">Ink</span>
             </div>
           </div>
-        </div>
+        </section>
+
+        <hr class="rule"/>
 
         <!-- Print Production -->
-        <div class="project-page-section">
-          <h3>Print Production</h3>
+        <section class="content-section reveal">
+          <div class="content-section-header">
+            <h2 class="content-section-title">Print Production</h2>
+            <span class="content-section-index">07</span>
+          </div>
           <p>
-            The final book runs to 120 pages across four chapters. Full-bleed
-            photography is used throughout, with chapter openers designed as
-            bold, typographic statements. The layout system was built in Adobe
-            InDesign with a consistent grid to ensure coherence across all three
-            thematic sections.
+            The final book runs to 120 pages across four chapters. Full-bleed photography is
+            used throughout, with chapter openers designed as bold, typographic statements.
+            The layout system was built in Adobe InDesign with a consistent grid to ensure
+            coherence across all four thematic sections.
           </p>
-        </div>
+          <div class="stat-grid reveal-stagger">
+            <div class="stat-item">
+              <span class="stat-value">120</span>
+              <span class="stat-label">Print Pages</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value">4</span>
+              <span class="stat-label">Thematic Chapters</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value">2</span>
+              <span class="stat-label">Typefaces in System</span>
+            </div>
+          </div>
+        </section>
+
+        <hr class="rule"/>
 
         <!-- Final Spreads -->
-        <div
-          class="project-page-wide-img"
-          style="
-            background: linear-gradient(
-              135deg,
-              rgba(22, 78, 45, 0.35) 0%,
-              rgba(10, 30, 20, 0.5) 100%
-            );
-          "
-        >
-          Chapter 01 Spread
-        </div>
+        <section class="content-section reveal">
+          <div class="content-section-header">
+            <h2 class="content-section-title">Final Spreads</h2>
+            <span class="content-section-index">08</span>
+          </div>
+          <div class="wide-image horiz">
+            <div class="wide-image-inner"></div>
+            <span class="wide-image-label">Chapter 01 Spread</span>
+          </div>
+          <div class="image-grid reveal-stagger">
+            <div class="image-placeholder radial">
+              <div class="image-placeholder-content">
+                <p class="image-placeholder-title">Water Chapter Spread</p>
+                <p class="image-placeholder-desc">Full-bleed photography with editorial typesetting</p>
+              </div>
+            </div>
+            <div class="image-placeholder vert">
+              <div class="image-placeholder-content">
+                <p class="image-placeholder-title">Forest Chapter Spread</p>
+                <p class="image-placeholder-desc">Nature photography paired with long-form body copy</p>
+              </div>
+            </div>
+          </div>
+        </section>
 
-        <div class="project-page-img-grid">
-          <div
-            class="project-page-img-placeholder"
-            style="background: rgba(10, 60, 120, 0.2)"
-          >
-            <strong style="display: block; margin-bottom: 6px"
-              >Water Chapter Spread</strong
-            >
-            <span style="font-size: 0.85em; opacity: 0.65"
-              >Full-bleed photography with editorial typesetting</span
-            >
-          </div>
-          <div
-            class="project-page-img-placeholder"
-            style="background: rgba(22, 78, 45, 0.28)"
-          >
-            <strong style="display: block; margin-bottom: 6px"
-              >Forest Chapter Spread</strong
-            >
-            <span style="font-size: 0.85em; opacity: 0.65"
-              >Nature photography paired with long-form body copy</span
-            >
-          </div>
-        </div>
+        <hr class="rule"/>
 
         <!-- Reflection -->
-        <div class="project-page-section">
-          <h3>Reflection</h3>
+        <section class="content-section reveal">
+          <div class="content-section-header">
+            <h2 class="content-section-title">Reflection</h2>
+            <span class="content-section-index">09</span>
+          </div>
           <p>
-            The typesetting and consistent use of a modular grid were the
-            strongest outcomes of this project. Mood boards proved invaluable in
-            anchoring the visual language of each theme early. Looking back, I
-            would invest more time in the complexity and variety of individual
-            page layouts, and source more powerful imagery to match the weight
-            of the subject matter. The project reinforced the importance of
-            typography as a design tool and deepened my understanding of
-            designing with cultural sensitivity and context.
+            The typesetting and consistent use of a modular grid were the strongest outcomes
+            of this project. Mood boards proved invaluable in anchoring the visual language of
+            each theme early. Looking back, I would invest more time in the complexity and
+            variety of individual page layouts, and source more powerful imagery to match the
+            weight of the subject matter. The project reinforced the importance of typography
+            as a design tool and deepened my understanding of designing with cultural
+            sensitivity and context.
           </p>
-        </div>
-      </div>
-    </main>
+        </section>
 
-    <script src="../aurora.js"></script>
-  </body>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="project-sidebar">
+        <div class="sidebar-group reveal">
+          <p class="sidebar-group-title">Project Info</p>
+          <div class="sidebar-item">
+            <span class="sidebar-label">Type</span>
+            <span class="sidebar-value">Illustrated Book</span>
+          </div>
+          <div class="sidebar-item">
+            <span class="sidebar-label">Medium</span>
+            <span class="sidebar-value">Print</span>
+          </div>
+          <div class="sidebar-item">
+            <span class="sidebar-label">Role</span>
+            <span class="sidebar-value">Primary Designer</span>
+          </div>
+          <div class="sidebar-item">
+            <span class="sidebar-label">Pages</span>
+            <span class="sidebar-value">120</span>
+          </div>
+          <div class="sidebar-item">
+            <span class="sidebar-label">Year</span>
+            <span class="sidebar-value">2024</span>
+          </div>
+        </div>
+        <div class="sidebar-group reveal">
+          <p class="sidebar-group-title">Tools Used</p>
+          <div class="sidebar-item">
+            <span class="sidebar-value">Adobe InDesign</span>
+          </div>
+          <div class="sidebar-item">
+            <span class="sidebar-value">Adobe Photoshop</span>
+          </div>
+          <div class="sidebar-item">
+            <span class="sidebar-value">Adobe Illustrator</span>
+          </div>
+        </div>
+        <div class="sidebar-group reveal">
+          <p class="sidebar-group-title">Focus Areas</p>
+          <div class="sidebar-item">
+            <span class="sidebar-value">Editorial Design</span>
+          </div>
+          <div class="sidebar-item">
+            <span class="sidebar-value">Illustration</span>
+          </div>
+          <div class="sidebar-item">
+            <span class="sidebar-value">Typography</span>
+          </div>
+          <div class="sidebar-item">
+            <span class="sidebar-value">Print Production</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+  </main>
+
+  <!-- ================================================================
+       FOOTER
+  ================================================================ -->
+  <footer class="proj-footer">
+    <span class="footer-copy">&copy; 2026 Kamesh Raj Shanmugam</span>
+    <a href="../index.html" class="footer-back">Back to Portfolio</a>
+  </footer>
+
+  <script src="../project-script.js"></script>
+</body>
 </html>

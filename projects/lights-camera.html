@@ -3,376 +3,459 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lights &amp; Camera Magazine | Kamesh Raj</title>
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <title>Lights &amp; Camera Magazine | Kamesh Raj Shanmugam</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Instrument+Serif:ital@0;1&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
       rel="stylesheet"
     />
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="../styles.css" />
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <link rel="stylesheet" href="../project-styles.css" />
   </head>
-
   <body>
-    <!-- Aurora background -->
-    <canvas id="aurora-bg" aria-hidden="true"></canvas>
-    <div id="aurora-vignette" aria-hidden="true"></div>
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
 
-    <!-- Project Content -->
-    <main class="project-page-main">
-      <div class="project-page-container">
-        <!-- Close button -->
-        <div class="project-page-close-row">
-          <a
-            href="../index.html"
-            class="project-page-close"
-            title="Back to Portfolio"
-          >
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2.5"
-              stroke-linecap="round"
-            >
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
-          </a>
-        </div>
+    <!-- ================================================================
+       NAV
+  ================================================================ -->
+    <nav class="proj-nav" id="projNav">
+      <a href="../index.html" class="nav-logo">KRS / Portfolio</a>
+      <ul class="nav-links">
+        <li><a href="../index.html#work">Work</a></li>
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#experience">Experience</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+      </ul>
+      <a href="../index.html" class="nav-back">
+        <i data-lucide="arrow-left" style="width: 12px; height: 12px"></i>
+        Back to Portfolio
+      </a>
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Toggle navigation"
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
 
-        <!-- Hero -->
-        <div
-          class="project-page-hero"
-          style="
-            background: linear-gradient(
-              135deg,
-              rgba(18, 18, 18, 0.85) 0%,
-              rgba(240, 200, 0, 0.22) 60%,
-              rgba(240, 200, 0, 0.1) 100%
-            );
-          "
-        >
-          Lights &amp; Camera Magazine
-        </div>
+    <!-- Mobile nav -->
+    <div class="mobile-nav" id="mobileNav">
+      <a href="../index.html#work">Work</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#experience">Experience</a>
+      <a href="../index.html#contact">Contact</a>
+      <a href="../index.html">Back to Portfolio</a>
+    </div>
 
-        <!-- Tags -->
-        <div class="project-page-tags">
-          <span class="project-page-tag">Content Strategy</span>
-          <span class="project-page-tag">Digital Marketing</span>
-          <span class="project-page-tag">Brand Identity</span>
-        </div>
-
-        <!-- Title -->
-        <h1 class="project-page-title">Lights &amp; Camera Magazine</h1>
-
-        <!-- Meta -->
-        <div class="project-page-meta">
-          <div class="project-page-meta-item">
-            <div class="label">Role</div>
-            <div class="value">Marketing</div>
+    <!-- ================================================================
+       PAGE
+  ================================================================ -->
+    <main class="project-page">
+      <!-- Hero -->
+      <header class="project-hero">
+        <div class="project-hero-left">
+          <div class="page-animate">
+            <span class="project-hero-label">Case Study — 03</span>
           </div>
-          <div class="project-page-meta-item">
-            <div class="label">Year</div>
-            <div class="value">2022</div>
-          </div>
-          <div class="project-page-meta-item">
-            <div class="label">Team</div>
-            <div class="value">4 Members</div>
-          </div>
-          <div class="project-page-meta-item">
-            <div class="label">Type</div>
-            <div class="value">Digital Magazine · Content Strategy</div>
+          <h1 class="project-hero-title page-animate">
+            Lights &amp; Camera<br />Magazine
+          </h1>
+          <div class="project-hero-tags page-animate">
+            <span class="tag">Content Strategy</span>
+            <span class="tag">Digital Marketing</span>
+            <span class="tag">Brand Identity</span>
           </div>
         </div>
-
-        <!-- Overview -->
-        <div class="project-page-section">
-          <h3>Overview</h3>
-          <p>
-            Lights &amp; Camera Magazine is a Vancouver-based digital magazine
-            built to close the gap between the film industry and emerging
-            talent. As the Marketing lead, I was responsible for growing the
-            magazine's audience across social channels, developing the content
-            distribution strategy, and driving traffic to the website. The
-            magazine covers film reviews, industry articles, curated interviews,
-            and a dedicated job board for Vancouver's film community.
-          </p>
-        </div>
-
-        <!-- Problem -->
-        <div class="project-page-section">
-          <h3>The Problem</h3>
-          <p>
-            Aspiring filmmakers in Vancouver had no centralized resource for
-            industry news and job opportunities specific to the local film
-            scene. Searching on general job platforms like Indeed meant being
-            overwhelmed by unrelated positions, making the process stressful and
-            inefficient. L&amp;C Magazine was built to solve exactly that — a
-            focused, accessible platform for Vancouver's film community.
-          </p>
-        </div>
-
-        <!-- Mission & Purpose -->
-        <div class="project-page-section">
-          <h3>Mission &amp; Purpose</h3>
-          <div class="project-page-audience-grid">
-            <div class="audience-stat">
-              <div
-                class="audience-stat-label"
-                style="
-                  font-size: 0.8em;
-                  text-transform: uppercase;
-                  letter-spacing: 0.08em;
-                  opacity: 0.6;
-                  margin-bottom: 8px;
-                "
-              >
-                Mission
-              </div>
-              <div style="font-size: 1rem; line-height: 1.5">
-                Provide a platform which promotes the film industry &amp;
-                student work in Vancouver.
-              </div>
-            </div>
-            <div class="audience-stat">
-              <div
-                class="audience-stat-label"
-                style="
-                  font-size: 0.8em;
-                  text-transform: uppercase;
-                  letter-spacing: 0.08em;
-                  opacity: 0.6;
-                  margin-bottom: 8px;
-                "
-              >
-                Purpose
-              </div>
-              <div style="font-size: 1rem; line-height: 1.5">
-                Bridge the gap between filmmakers and film companies to grow the
-                industry.
-              </div>
-            </div>
-            <div class="audience-stat">
-              <div
-                class="audience-stat-label"
-                style="
-                  font-size: 0.8em;
-                  text-transform: uppercase;
-                  letter-spacing: 0.08em;
-                  opacity: 0.6;
-                  margin-bottom: 8px;
-                "
-              >
-                Services
-              </div>
-              <div style="font-size: 1rem; line-height: 1.5">
-                Job Search · Curated Content · Student Showcase
-              </div>
-            </div>
+        <div class="project-meta-grid page-animate">
+          <div class="project-meta-item">
+            <span class="label">Role</span>
+            <span class="value">Marketing Lead</span>
+          </div>
+          <div class="project-meta-item">
+            <span class="label">Year</span>
+            <span class="value">2022</span>
+          </div>
+          <div class="project-meta-item">
+            <span class="label">Team</span>
+            <span class="value">4 Members</span>
+          </div>
+          <div class="project-meta-item">
+            <span class="label">Type</span>
+            <span class="value">Digital Magazine · Content Strategy</span>
           </div>
         </div>
+      </header>
 
-        <!-- Marketing Channels -->
-        <div class="project-page-section">
-          <h3>Marketing Channels</h3>
-          <p>
-            The distribution strategy spanned four channels, each serving a
-            distinct purpose in building the magazine's audience and reach.
-          </p>
-          <div class="project-page-audience-grid">
-            <div class="audience-stat">
-              <div class="audience-stat-value" style="font-size: 1.1rem">
-                Website
+      <hr class="rule" />
+
+      <!-- Banner -->
+      <div class="wide-image horiz">
+        <div class="wide-image-inner"></div>
+        <span class="wide-image-label">Lights &amp; Camera Magazine</span>
+      </div>
+
+      <!-- Body -->
+      <div class="project-content">
+        <div class="project-body">
+          <!-- Overview -->
+          <section class="content-section reveal">
+            <div class="content-section-header">
+              <h2 class="content-section-title">Overview</h2>
+              <span class="content-section-index">01</span>
+            </div>
+            <p>
+              Lights &amp; Camera Magazine is a Vancouver-based digital magazine
+              built to close the gap between the film industry and emerging
+              talent. As the Marketing lead, I was responsible for growing the
+              magazine's audience across social channels, developing the content
+              distribution strategy, and driving traffic to the website. The
+              magazine covers film reviews, industry articles, curated
+              interviews, and a dedicated job board for Vancouver's film
+              community.
+            </p>
+          </section>
+
+          <hr class="rule" />
+
+          <!-- The Problem -->
+          <section class="content-section reveal">
+            <div class="content-section-header">
+              <h2 class="content-section-title">The Problem</h2>
+              <span class="content-section-index">02</span>
+            </div>
+            <p>
+              Aspiring filmmakers in Vancouver had no centralized resource for
+              industry news and job opportunities specific to the local film
+              scene. Searching on general job platforms like Indeed meant being
+              overwhelmed by unrelated positions, making the process stressful
+              and inefficient. L&amp;C Magazine was built to solve exactly that
+              — a focused, accessible platform for Vancouver's film community.
+            </p>
+          </section>
+
+          <hr class="rule" />
+
+          <!-- Mission & Purpose -->
+          <section class="content-section reveal">
+            <div class="content-section-header">
+              <h2 class="content-section-title">Mission &amp; Purpose</h2>
+              <span class="content-section-index">03</span>
+            </div>
+            <div class="stat-grid reveal-stagger">
+              <div class="stat-item">
+                <span class="stat-label">Mission</span>
+                <p
+                  style="
+                    font-size: 0.85rem;
+                    color: var(--black);
+                    font-weight: 300;
+                    line-height: 1.6;
+                    margin-top: 6px;
+                  "
+                >
+                  Provide a platform which promotes the film industry &amp;
+                  student work in Vancouver.
+                </p>
               </div>
-              <div class="audience-stat-label">
-                All content free with ads — primary conversion point for
-                newsletter sign-ups and job seekers.
+              <div class="stat-item">
+                <span class="stat-label">Purpose</span>
+                <p
+                  style="
+                    font-size: 0.85rem;
+                    color: var(--black);
+                    font-weight: 300;
+                    line-height: 1.6;
+                    margin-top: 6px;
+                  "
+                >
+                  Bridge the gap between filmmakers and film companies to grow
+                  the industry.
+                </p>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Services</span>
+                <p
+                  style="
+                    font-size: 0.85rem;
+                    color: var(--black);
+                    font-weight: 300;
+                    line-height: 1.6;
+                    margin-top: 6px;
+                  "
+                >
+                  Job Search · Curated Content · Student Showcase
+                </p>
               </div>
             </div>
-            <div class="audience-stat">
-              <div class="audience-stat-value" style="font-size: 1.1rem">
-                Instagram
+          </section>
+
+          <hr class="rule" />
+
+          <!-- Marketing Channels -->
+          <section class="content-section reveal">
+            <div class="content-section-header">
+              <h2 class="content-section-title">Marketing Channels</h2>
+              <span class="content-section-index">04</span>
+            </div>
+            <p>
+              The distribution strategy spanned four channels, each serving a
+              distinct purpose in building the magazine's audience and reach.
+            </p>
+            <div class="goal-list reveal-stagger">
+              <div class="goal-item">
+                <span class="goal-number">01</span>
+                <div>
+                  <p class="goal-title">Website</p>
+                  <p class="goal-desc">
+                    All content free with ads — primary conversion point for
+                    newsletter sign-ups and job seekers.
+                  </p>
+                </div>
               </div>
-              <div class="audience-stat-label">
-                @landc_magazine — primary social channel for brand awareness and
-                community engagement. Grew to 18.5K followers.
+              <div class="goal-item">
+                <span class="goal-number">02</span>
+                <div>
+                  <p class="goal-title">Instagram</p>
+                  <p class="goal-desc">
+                    @landc_magazine — primary social channel for brand awareness
+                    and community engagement. Grew to 18.5K followers.
+                  </p>
+                </div>
+              </div>
+              <div class="goal-item">
+                <span class="goal-number">03</span>
+                <div>
+                  <p class="goal-title">YouTube</p>
+                  <p class="goal-desc">
+                    Lights &amp; Camera MAG — secondary channel for long-form
+                    video content and interviews.
+                  </p>
+                </div>
+              </div>
+              <div class="goal-item">
+                <span class="goal-number">04</span>
+                <div>
+                  <p class="goal-title">Newsletter</p>
+                  <p class="goal-desc">
+                    Weekly email newsletter delivering job listings, new
+                    articles, and exclusive deals to subscribers.
+                  </p>
+                </div>
               </div>
             </div>
-            <div class="audience-stat">
-              <div class="audience-stat-value" style="font-size: 1.1rem">
-                YouTube
+          </section>
+
+          <hr class="rule" />
+
+          <!-- Social Media Growth -->
+          <section class="content-section reveal">
+            <div class="content-section-header">
+              <h2 class="content-section-title">Social Media Growth</h2>
+              <span class="content-section-index">05</span>
+            </div>
+            <p>
+              Instagram was established as the primary growth channel. Content
+              strategy focused on increasing brand awareness, driving web
+              traffic, and building a community around Vancouver's film
+              industry. Partnering with local film schools and production
+              companies amplified reach.
+            </p>
+            <div class="stat-grid reveal-stagger">
+              <div class="stat-item">
+                <span class="stat-value">18.5K</span>
+                <span class="stat-label">Instagram Followers</span>
               </div>
-              <div class="audience-stat-label">
-                Lights &amp; Camera MAG — secondary channel for long-form video
-                content and interviews.
+              <div class="stat-item">
+                <span class="stat-value">1,966</span>
+                <span class="stat-label">Posts Published</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-value">102K+</span>
+                <span class="stat-label">YouTube Video Likes</span>
               </div>
             </div>
-            <div class="audience-stat">
-              <div class="audience-stat-value" style="font-size: 1.1rem">
-                Newsletter
+          </section>
+
+          <hr class="rule" />
+
+          <!-- Brand Identity -->
+          <section class="content-section reveal">
+            <div class="content-section-header">
+              <h2 class="content-section-title">Brand Identity</h2>
+              <span class="content-section-index">06</span>
+            </div>
+            <p>
+              The L&amp;C visual identity was built around a high-contrast,
+              editorial palette anchored by Golden Dream yellow — a colour that
+              signals energy, creativity, and accessibility against the dark,
+              cinematic backgrounds.
+            </p>
+            <div class="palette-grid reveal-stagger">
+              <div class="swatch">
+                <div class="swatch-block" style="background: #f0cc00"></div>
+                <span class="swatch-label">Golden Dream</span>
               </div>
-              <div class="audience-stat-label">
-                Weekly email newsletter delivering job listings, new articles,
-                and exclusive deals to subscribers.
+              <div class="swatch">
+                <div
+                  class="swatch-block"
+                  style="background: #ffffff; border-color: var(--grey-200)"
+                ></div>
+                <span class="swatch-label">White</span>
+              </div>
+              <div class="swatch">
+                <div class="swatch-block" style="background: #1a2820"></div>
+                <span class="swatch-label">Dark Jungle Green</span>
+              </div>
+              <div class="swatch">
+                <div class="swatch-block" style="background: #2b2b2b"></div>
+                <span class="swatch-label">Dark Grey</span>
               </div>
             </div>
-          </div>
+            <p>
+              Typography used <strong>Telegraf Ultra Bold</strong> for headings
+              — commanding and modern — paired with
+              <strong>Writer Book</strong> for body copy, giving the editorial
+              content a clean, readable quality without industry jargon.
+            </p>
+          </section>
+
+          <hr class="rule" />
+
+          <!-- Revenue Strategy -->
+          <section class="content-section reveal">
+            <div class="content-section-header">
+              <h2 class="content-section-title">
+                Revenue &amp; Business Model
+              </h2>
+              <span class="content-section-index">07</span>
+            </div>
+            <p>
+              The magazine operated on a free-access model monetized through
+              advertising and in-kind partnerships. Projected average revenue of
+              <strong>$101,180 per year</strong> against operating expenses of
+              <strong>$79,957 per year</strong>, yielding a projected profit of
+              approximately <strong>$21,223 per year</strong>.
+            </p>
+            <div class="stat-grid reveal-stagger">
+              <div class="stat-item">
+                <span class="stat-value">$101K</span>
+                <span class="stat-label">Avg Projected Revenue / Year</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-value">$80K</span>
+                <span class="stat-label">Avg Projected Expenses / Year</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-value">$21K</span>
+                <span class="stat-label">Avg Projected Profit / Year</span>
+              </div>
+            </div>
+            <p>
+              Revenue sources included YouTube advertisements, Instagram
+              sponsored content, and affiliate marketing partnerships (e.g.,
+              Canada Film Equipment), supplemented by in-kind funding from the
+              Canada Periodical Fund, Vancouver film companies, and local film
+              schools.
+            </p>
+          </section>
+
+          <hr class="rule" />
+
+          <!-- The Team -->
+          <section class="content-section reveal">
+            <div class="content-section-header">
+              <h2 class="content-section-title">The Team</h2>
+              <span class="content-section-index">08</span>
+            </div>
+            <div class="team-grid reveal-stagger">
+              <div class="team-item">
+                <p class="team-name">Kai von Dehn</p>
+                <p class="team-role">Art Director</p>
+              </div>
+              <div class="team-item">
+                <p class="team-name">Angellyn Phua</p>
+                <p class="team-role">Editor</p>
+              </div>
+              <div class="team-item">
+                <p class="team-name">Han Yan</p>
+                <p class="team-role">Publisher</p>
+              </div>
+              <div class="team-item">
+                <p class="team-name">Kamesh Raj Shanmugam</p>
+                <p class="team-role">Marketing</p>
+              </div>
+            </div>
+          </section>
         </div>
 
-        <!-- Social Media Performance -->
-        <div class="project-page-section">
-          <h3>Social Media Growth</h3>
-          <p>
-            Instagram was established as the primary growth channel. Content
-            strategy focused on increasing brand awareness, driving web traffic,
-            and building a community around Vancouver's film industry.
-            Partnering with local film schools and production companies
-            amplified reach.
-          </p>
-          <div class="project-page-audience-grid">
-            <div class="audience-stat">
-              <div class="audience-stat-value">18.5K</div>
-              <div class="audience-stat-label">Instagram Followers</div>
+        <!-- Sidebar -->
+        <aside class="project-sidebar">
+          <div class="sidebar-group reveal">
+            <p class="sidebar-group-title">Project Info</p>
+            <div class="sidebar-item">
+              <span class="sidebar-label">Type</span>
+              <span class="sidebar-value">Digital Magazine</span>
             </div>
-            <div class="audience-stat">
-              <div class="audience-stat-value">1,966</div>
-              <div class="audience-stat-label">Posts Published</div>
+            <div class="sidebar-item">
+              <span class="sidebar-label">Platform</span>
+              <span class="sidebar-value">Print &amp; Digital</span>
             </div>
-            <div class="audience-stat">
-              <div class="audience-stat-value">102K+</div>
-              <div class="audience-stat-label">YouTube Video Likes</div>
+            <div class="sidebar-item">
+              <span class="sidebar-label">Role</span>
+              <span class="sidebar-value">Marketing Lead</span>
             </div>
-          </div>
-        </div>
-
-        <!-- Brand Identity -->
-        <div class="project-page-section">
-          <h3>Brand Identity</h3>
-          <p>
-            The L&amp;C visual identity was built around a high-contrast,
-            editorial palette anchored by Golden Dream yellow — a colour that
-            signals energy, creativity, and accessibility against the dark,
-            cinematic backgrounds.
-          </p>
-          <div class="project-page-palette">
-            <div class="palette-swatch">
-              <div class="swatch-block" style="background: #f0cc00"></div>
-              <div class="swatch-label">Golden Dream</div>
+            <div class="sidebar-item">
+              <span class="sidebar-label">Team Size</span>
+              <span class="sidebar-value">4 Members</span>
             </div>
-            <div class="palette-swatch">
-              <div
-                class="swatch-block"
-                style="
-                  background: #ffffff;
-                  border: 1px solid rgba(255, 255, 255, 0.15);
-                "
-              ></div>
-              <div class="swatch-label">White</div>
-            </div>
-            <div class="palette-swatch">
-              <div class="swatch-block" style="background: #1a2820"></div>
-              <div class="swatch-label">Dark Jungle Green</div>
-            </div>
-            <div class="palette-swatch">
-              <div class="swatch-block" style="background: #2b2b2b"></div>
-              <div class="swatch-label">Dark Grey</div>
+            <div class="sidebar-item">
+              <span class="sidebar-label">Year</span>
+              <span class="sidebar-value">2022</span>
             </div>
           </div>
-          <p style="margin-top: var(--space-md)">
-            Typography used <strong>Telegraf Ultra Bold</strong> for headings —
-            commanding and modern — paired with <strong>Writer Book</strong> for
-            body copy, giving the editorial content a clean, readable quality
-            without industry jargon.
-          </p>
-        </div>
-
-        <!-- Revenue Strategy -->
-        <div class="project-page-section">
-          <h3>Revenue &amp; Business Model</h3>
-          <p>
-            The magazine operated on a free-access model monetized through
-            advertising and inkind partnerships. Projected average revenue of
-            <strong>$101,180 per year</strong> against operating expenses of
-            <strong>$79,957 per year</strong>, yielding a projected profit of
-            approximately <strong>$21,223 per year</strong>.
-          </p>
-          <div class="project-page-audience-grid">
-            <div class="audience-stat">
-              <div class="audience-stat-value" style="font-size: 1.4rem">
-                $101K
-              </div>
-              <div class="audience-stat-label">
-                Avg Projected Revenue / Year
-              </div>
+          <div class="sidebar-group reveal">
+            <p class="sidebar-group-title">Results</p>
+            <div class="sidebar-item">
+              <span class="sidebar-label">Instagram</span>
+              <span class="sidebar-value">18.5K followers</span>
             </div>
-            <div class="audience-stat">
-              <div class="audience-stat-value" style="font-size: 1.4rem">
-                $80K
-              </div>
-              <div class="audience-stat-label">
-                Avg Projected Expenses / Year
-              </div>
+            <div class="sidebar-item">
+              <span class="sidebar-label">YouTube</span>
+              <span class="sidebar-value">102K+ likes</span>
             </div>
-            <div class="audience-stat">
-              <div class="audience-stat-value" style="font-size: 1.4rem">
-                $21K
-              </div>
-              <div class="audience-stat-label">Avg Projected Profit / Year</div>
+            <div class="sidebar-item">
+              <span class="sidebar-label">Posts</span>
+              <span class="sidebar-value">1,966 published</span>
             </div>
           </div>
-          <p style="margin-top: var(--space-md)">
-            Revenue sources included YouTube advertisements, Instagram sponsored
-            content, and affiliate marketing partnerships (e.g., Canada Film
-            Equipment), supplemented by inkind funding from the Canada
-            Periodical Fund, Vancouver film companies, and local film schools.
-          </p>
-        </div>
-
-        <!-- Team -->
-        <div class="project-page-section">
-          <h3>The Team</h3>
-          <div class="project-page-persona">
-            <div
-              class="persona-body"
-              style="grid-template-columns: repeat(2, 1fr)"
-            >
-              <div class="persona-col">
-                <strong>Kai von Dehn</strong>
-                <ul>
-                  <li>Art Director</li>
-                </ul>
-              </div>
-              <div class="persona-col">
-                <strong>Angellyn Phua</strong>
-                <ul>
-                  <li>Editor</li>
-                </ul>
-              </div>
-              <div class="persona-col">
-                <strong>Han Yan</strong>
-                <ul>
-                  <li>Publisher</li>
-                </ul>
-              </div>
-              <div class="persona-col">
-                <strong>Kamesh Raj Shanmugam</strong>
-                <ul>
-                  <li>Marketing</li>
-                </ul>
-              </div>
+          <div class="sidebar-group reveal">
+            <p class="sidebar-group-title">Focus Areas</p>
+            <div class="sidebar-item">
+              <span class="sidebar-value">Content Strategy</span>
+            </div>
+            <div class="sidebar-item">
+              <span class="sidebar-value">Digital Marketing</span>
+            </div>
+            <div class="sidebar-item">
+              <span class="sidebar-value">Brand Identity</span>
+            </div>
+            <div class="sidebar-item">
+              <span class="sidebar-value">Growth Strategy</span>
             </div>
           </div>
-        </div>
+        </aside>
       </div>
     </main>
 
-    <script src="../aurora.js"></script>
+    <!-- ================================================================
+       FOOTER
+  ================================================================ -->
+    <footer class="proj-footer">
+      <span class="footer-copy">&copy; 2026 Kamesh Raj Shanmugam</span>
+      <a href="../index.html" class="footer-back">Back to Portfolio</a>
+    </footer>
+
+    <script src="../project-script.js"></script>
   </body>
 </html>

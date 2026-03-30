@@ -3,309 +3,417 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AllTrails | Kamesh Raj</title>
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <title>AllTrails — Group Hike Feature | Kamesh Raj Shanmugam</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Instrument+Serif:ital@0;1&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
       rel="stylesheet"
     />
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="../styles.css" />
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <link rel="stylesheet" href="../project-styles.css" />
   </head>
-
   <body>
-    <!-- Aurora background -->
-    <canvas id="aurora-bg" aria-hidden="true"></canvas>
-    <div id="aurora-vignette" aria-hidden="true"></div>
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
 
-    <!-- Project Content -->
-    <main class="project-page-main">
-      <div class="project-page-container">
-        <!-- Close button -->
-        <div class="project-page-close-row">
-          <a
-            href="../index.html"
-            class="project-page-close"
-            title="Back to Portfolio"
-          >
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2.5"
-              stroke-linecap="round"
-            >
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
-          </a>
-        </div>
+    <!-- ================================================================
+       NAV
+  ================================================================ -->
+    <nav class="proj-nav" id="projNav">
+      <a href="../index.html" class="nav-logo">KRS / Portfolio</a>
+      <ul class="nav-links">
+        <li><a href="../index.html#work">Work</a></li>
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#experience">Experience</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+      </ul>
+      <a href="../index.html" class="nav-back">
+        <i data-lucide="arrow-left" style="width: 12px; height: 12px"></i>
+        Back to Portfolio
+      </a>
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Toggle navigation"
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
 
-        <!-- Hero -->
-        <div
-          class="project-page-hero"
-          style="
-            background: linear-gradient(
-              135deg,
-              rgba(34, 113, 74, 0.3) 0%,
-              rgba(16, 185, 96, 0.18) 100%
-            );
-          "
-        >
-          AllTrails
-        </div>
+    <!-- Mobile nav -->
+    <div class="mobile-nav" id="mobileNav">
+      <a href="../index.html#work">Work</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#experience">Experience</a>
+      <a href="../index.html#contact">Contact</a>
+      <a href="../index.html">Back to Portfolio</a>
+    </div>
 
-        <!-- Tags -->
-        <div class="project-page-tags">
-          <span class="project-page-tag">Mobile App</span>
-          <span class="project-page-tag">Feature Design</span>
-          <span class="project-page-tag">UX Research</span>
-        </div>
-
-        <!-- Title -->
-        <h1 class="project-page-title">AllTrails: Group Hike Feature</h1>
-
-        <!-- Meta -->
-        <div class="project-page-meta">
-          <div class="project-page-meta-item">
-            <div class="label">Role</div>
-            <div class="value">Primary Designer</div>
+    <!-- ================================================================
+       PAGE
+  ================================================================ -->
+    <main class="project-page">
+      <!-- Hero -->
+      <header class="project-hero">
+        <div class="project-hero-left">
+          <div class="page-animate">
+            <span class="project-hero-label">Case Study — 01</span>
           </div>
-          <div class="project-page-meta-item">
-            <div class="label">Year</div>
-            <div class="value">2023</div>
-          </div>
-          <div class="project-page-meta-item">
-            <div class="label">Duration</div>
-            <div class="value">3 Weeks</div>
-          </div>
-          <div class="project-page-meta-item">
-            <div class="label">Tools</div>
-            <div class="value">Figma, ProtoPie &amp; Adobe Suite</div>
-          </div>
-          <div class="project-page-meta-item">
-            <div class="label">Type</div>
-            <div class="value">Feature Design</div>
+          <h1 class="project-hero-title page-animate">
+            AllTrails<br />Group Hike
+          </h1>
+          <div class="project-hero-tags page-animate">
+            <span class="tag">Mobile App</span>
+            <span class="tag">Feature Design</span>
+            <span class="tag">UX Research</span>
           </div>
         </div>
-
-        <!-- Overview -->
-        <div class="project-page-section">
-          <h3>Overview</h3>
-          <p>
-            AllTrails is an outdoor enthusiast's companion, empowering users to
-            explore hiking, running, and biking trails with essential
-            information like weather updates, navigation guidance, and user
-            reviews. This project focused on the seamless integration of a new
-            Group Hike feature to further enhance the outdoor experience and
-            foster community among its 6.5 million registered users.
-          </p>
+        <div class="project-meta-grid page-animate">
+          <div class="project-meta-item">
+            <span class="label">Role</span>
+            <span class="value">Primary Designer</span>
+          </div>
+          <div class="project-meta-item">
+            <span class="label">Year</span>
+            <span class="value">2023</span>
+          </div>
+          <div class="project-meta-item">
+            <span class="label">Duration</span>
+            <span class="value">3 Weeks</span>
+          </div>
+          <div class="project-meta-item">
+            <span class="label">Tools</span>
+            <span class="value">Figma, ProtoPie, Adobe Suite</span>
+          </div>
+          <div class="project-meta-item">
+            <span class="label">Type</span>
+            <span class="value">Feature Design</span>
+          </div>
         </div>
+      </header>
 
-        <!-- Problem Statement -->
-        <div class="project-page-section">
-          <h3>Problem Statement</h3>
-          <p>
-            AllTrails users expressed a growing interest in connecting with
-            like-minded outdoor enthusiasts to enjoy group hiking experiences.
-            The platform lacked a way to organise, join, and coordinate group
-            activities, leaving a gap between the app's individual trail
-            discovery tools and the community-driven spirit of outdoor
-            adventure.
-          </p>
-        </div>
+      <hr class="rule" />
 
-        <!-- Goals -->
-        <div class="project-page-section">
-          <h3>Goals</h3>
-          <div class="project-page-goals">
-            <div class="project-page-goal">
-              <div class="goal-number">01</div>
-              <div>
-                <strong>Social Interactions</strong>
-                <p>
-                  Enable hikers to connect with like-minded people by joining or
-                  creating events based on location, date, time, and group size
-                  , building a sense of community and shared experience.
-                </p>
-              </div>
+      <!-- Banner -->
+      <div class="wide-image diag">
+        <div class="wide-image-inner"></div>
+        <span class="wide-image-label">AllTrails — Group Hike Feature</span>
+      </div>
+
+      <!-- Body -->
+      <div class="project-content">
+        <div class="project-body">
+          <!-- Overview -->
+          <section class="content-section reveal">
+            <div class="content-section-header">
+              <h2 class="content-section-title">Overview</h2>
+              <span class="content-section-index">01</span>
             </div>
-            <div class="project-page-goal">
-              <div class="goal-number">02</div>
-              <div>
-                <strong>Safety</strong>
-                <p>
-                  Group hiking boosts confidence and ensures safety guidance is
-                  shared among participants, minimising risks, especially on
-                  unfamiliar or remote trails.
-                </p>
-              </div>
+            <p>
+              AllTrails is an outdoor enthusiast's companion, empowering users
+              to explore hiking, running, and biking trails with essential
+              information like weather updates, navigation guidance, and user
+              reviews. This project focused on the seamless integration of a new
+              Group Hike feature to further enhance the outdoor experience and
+              foster community among its 6.5 million registered users.
+            </p>
+          </section>
+
+          <hr class="rule" />
+
+          <!-- Problem Statement -->
+          <section class="content-section reveal">
+            <div class="content-section-header">
+              <h2 class="content-section-title">Problem Statement</h2>
+              <span class="content-section-index">02</span>
             </div>
-            <div class="project-page-goal">
-              <div class="goal-number">03</div>
-              <div>
-                <strong>Personalised Experiences</strong>
-                <p>
-                  Hikers come from different skill and fitness levels. The
-                  feature lets users join events that are the right fit for
-                  them, creating a more inclusive and tailored experience.
-                </p>
-              </div>
+            <p>
+              AllTrails users expressed a growing interest in connecting with
+              like-minded outdoor enthusiasts to enjoy group hiking experiences.
+              The platform lacked a way to organise, join, and coordinate group
+              activities, leaving a gap between the app's individual trail
+              discovery tools and the community-driven spirit of outdoor
+              adventure.
+            </p>
+          </section>
+
+          <hr class="rule" />
+
+          <!-- Goals -->
+          <section class="content-section reveal">
+            <div class="content-section-header">
+              <h2 class="content-section-title">Goals</h2>
+              <span class="content-section-index">03</span>
             </div>
-          </div>
-        </div>
-
-        <!-- Wide image placeholder: User Flow -->
-        <div
-          class="project-page-wide-img"
-          style="
-            background: linear-gradient(
-              135deg,
-              rgba(34, 113, 74, 0.18) 0%,
-              rgba(16, 185, 96, 0.1) 100%
-            );
-          "
-        >
-          User Flow Diagram
-        </div>
-
-        <!-- Research & Analysis -->
-        <div class="project-page-section">
-          <h3>Research &amp; Analysis</h3>
-          <p>
-            I conducted primary research on the existing AllTrails app to
-            understand interaction patterns, interface design, and target
-            audience needs. This was supplemented with a competitor analysis of
-            the two closest rivals in the space.
-          </p>
-        </div>
-
-        <!-- Competitor cards -->
-        <div class="project-page-img-grid">
-          <div
-            class="project-page-img-placeholder"
-            style="background: rgba(34, 113, 74, 0.14)"
-          >
-            <strong style="display: block; margin-bottom: 6px">Gaia GPS</strong>
-            <span style="font-size: 0.85em; opacity: 0.75"
-              >Trail finding, route recording, weather forecast. No group hike
-              option, representing a gap in the market.</span
-            >
-          </div>
-          <div
-            class="project-page-img-placeholder"
-            style="background: rgba(16, 185, 96, 0.1)"
-          >
-            <strong style="display: block; margin-bottom: 6px"
-              >Hiking Project</strong
-            >
-            <span style="font-size: 0.85em; opacity: 0.75"
-              >Crowd-sourced, North America focused. Features "Gems" (points of
-              interest) and trail popularity sorting. Free, no group
-              feature.</span
-            >
-          </div>
-        </div>
-
-        <!-- User Persona -->
-        <div class="project-page-section">
-          <h3>User Persona</h3>
-          <p>
-            Research pointed to a clear primary user: a young professional, new
-            to a city, who loves outdoor activities but struggles to find
-            adventure companions.
-          </p>
-          <div class="project-page-persona">
-            <div class="persona-header">
-              <div
-                class="persona-avatar"
-                style="background: rgba(34, 113, 74, 0.22)"
-              >
-                VR
+            <div class="goal-list reveal-stagger">
+              <div class="goal-item">
+                <span class="goal-number">01</span>
+                <div>
+                  <p class="goal-title">Social Interactions</p>
+                  <p class="goal-desc">
+                    Enable hikers to connect with like-minded people by joining
+                    or creating events based on location, date, time, and group
+                    size, building a sense of community and shared experience.
+                  </p>
+                </div>
               </div>
-              <div>
-                <div class="persona-name">Valentina Beatrice Reynolds</div>
-                <div class="persona-details">
-                  Age 28 &nbsp;·&nbsp; Software Engineer &nbsp;·&nbsp;
-                  Vancouver, BC
+              <div class="goal-item">
+                <span class="goal-number">02</span>
+                <div>
+                  <p class="goal-title">Safety</p>
+                  <p class="goal-desc">
+                    Group hiking boosts confidence and ensures safety guidance
+                    is shared among participants, minimising risks, especially
+                    on unfamiliar or remote trails.
+                  </p>
+                </div>
+              </div>
+              <div class="goal-item">
+                <span class="goal-number">03</span>
+                <div>
+                  <p class="goal-title">Personalised Experiences</p>
+                  <p class="goal-desc">
+                    Hikers come from different skill and fitness levels. The
+                    feature lets users join events that are the right fit for
+                    them, creating a more inclusive and tailored experience.
+                  </p>
                 </div>
               </div>
             </div>
-            <div class="persona-body">
-              <div class="persona-col">
-                <strong>Goals &amp; Needs</strong>
-                <ul>
-                  <li>
-                    Meet like-minded individuals who share her passion for
-                    hiking
-                  </li>
-                  <li>
-                    Find and join group hikes with minimal planning friction
-                  </li>
-                  <li>Feel safe on unfamiliar and remote trails</li>
-                </ul>
+          </section>
+
+          <hr class="rule" />
+
+          <!-- User Flow -->
+          <section class="content-section reveal">
+            <div class="content-section-header">
+              <h2 class="content-section-title">User Flow</h2>
+              <span class="content-section-index">04</span>
+            </div>
+            <div class="wide-image horiz" style="aspect-ratio: 16/7">
+              <div class="wide-image-inner"></div>
+              <span class="wide-image-label">User Flow Diagram</span>
+            </div>
+          </section>
+
+          <hr class="rule" />
+
+          <!-- Research -->
+          <section class="content-section reveal">
+            <div class="content-section-header">
+              <h2 class="content-section-title">Research &amp; Analysis</h2>
+              <span class="content-section-index">05</span>
+            </div>
+            <p>
+              I conducted primary research on the existing AllTrails app to
+              understand interaction patterns, interface design, and target
+              audience needs. This was supplemented with a competitor analysis
+              of the two closest rivals in the space.
+            </p>
+            <div class="compare-grid reveal-stagger">
+              <div class="compare-item">
+                <span class="compare-name">Gaia GPS</span>
+                <span class="compare-desc">
+                  Trail finding, route recording, weather forecast. No group
+                  hike option, representing a gap in the market.
+                </span>
               </div>
-              <div class="persona-col">
-                <strong>Pain Points</strong>
-                <ul>
-                  <li>
-                    Limited social circle after recently moving to Vancouver
-                  </li>
-                  <li>Demanding job leaves little time to organise outings</li>
-                  <li>Safety concerns as a solo hiker in unfamiliar areas</li>
-                </ul>
+              <div class="compare-item">
+                <span class="compare-name">Hiking Project</span>
+                <span class="compare-desc">
+                  Crowd-sourced, North America focused. Features "Gems" (points
+                  of interest) and trail popularity sorting. Free, no group
+                  feature.
+                </span>
               </div>
             </div>
+          </section>
+
+          <hr class="rule" />
+
+          <!-- User Persona -->
+          <section class="content-section reveal">
+            <div class="content-section-header">
+              <h2 class="content-section-title">User Persona</h2>
+              <span class="content-section-index">06</span>
+            </div>
+            <p>
+              Research pointed to a clear primary user: a young professional,
+              new to a city, who loves outdoor activities but struggles to find
+              adventure companions.
+            </p>
+            <div class="persona">
+              <div class="persona-header">
+                <div class="persona-avatar">VR</div>
+                <div>
+                  <p class="persona-name">Valentina Beatrice Reynolds</p>
+                  <p class="persona-role">
+                    Age 28 &nbsp;·&nbsp; Software Engineer &nbsp;·&nbsp;
+                    Vancouver, BC
+                  </p>
+                </div>
+              </div>
+              <div class="persona-body">
+                <div class="persona-col">
+                  <p class="persona-col-title">Goals &amp; Needs</p>
+                  <ul>
+                    <li>
+                      Meet like-minded individuals who share her passion for
+                      hiking
+                    </li>
+                    <li>
+                      Find and join group hikes with minimal planning friction
+                    </li>
+                    <li>Feel safe on unfamiliar and remote trails</li>
+                  </ul>
+                </div>
+                <div class="persona-col">
+                  <p class="persona-col-title">Pain Points</p>
+                  <ul>
+                    <li>
+                      Limited social circle after recently moving to Vancouver
+                    </li>
+                    <li>
+                      Demanding job leaves little time to organise outings
+                    </li>
+                    <li>Safety concerns as a solo hiker in unfamiliar areas</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <hr class="rule" />
+
+          <!-- Visual Design -->
+          <section class="content-section reveal">
+            <div class="content-section-header">
+              <h2 class="content-section-title">Visual Design</h2>
+              <span class="content-section-index">07</span>
+            </div>
+            <p>
+              I developed a style guide aligned with AllTrails' existing brand
+              identity while giving the new feature its own visual language. The
+              guide defined primary and secondary colour palettes and a
+              typography system using <em>Manrope</em>, chosen for its modern,
+              legible character across heading and body sizes.
+            </p>
+            <div class="image-grid reveal-stagger">
+              <div class="image-placeholder diag">
+                <div class="image-placeholder-content">
+                  <p class="image-placeholder-title">Style Guide</p>
+                  <p class="image-placeholder-desc">
+                    Colour palette &amp; typography system
+                  </p>
+                </div>
+              </div>
+              <div class="image-placeholder grid-pat">
+                <div class="image-placeholder-content">
+                  <p class="image-placeholder-title">Component Library</p>
+                  <p class="image-placeholder-desc">
+                    Reusable UI components &amp; patterns
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <hr class="rule" />
+
+          <!-- High Fidelity -->
+          <section class="content-section reveal">
+            <div class="content-section-header">
+              <h2 class="content-section-title">High Fidelity Screens</h2>
+              <span class="content-section-index">08</span>
+            </div>
+            <div class="wide-image grid-pat">
+              <div class="wide-image-inner"></div>
+              <span class="wide-image-label">High Fidelity Designs</span>
+            </div>
+          </section>
+
+          <hr class="rule" />
+
+          <!-- Reflection -->
+          <section class="content-section reveal">
+            <div class="content-section-header">
+              <h2 class="content-section-title">Reflection</h2>
+              <span class="content-section-index">09</span>
+            </div>
+            <p>
+              This project was an exciting opportunity to learn ProtoPie as a
+              new prototyping tool. Although it took time to get up to speed,
+              the end result was rewarding and reinforced the importance of
+              grounding design decisions in user research. The Group Hike
+              feature emerged directly from identified user needs, including
+              social connection, safety, and personalised trail experiences.
+            </p>
+          </section>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="project-sidebar">
+          <div class="sidebar-group reveal">
+            <p class="sidebar-group-title">Project Info</p>
+            <div class="sidebar-item">
+              <span class="sidebar-label">Type</span>
+              <span class="sidebar-value">Feature Design</span>
+            </div>
+            <div class="sidebar-item">
+              <span class="sidebar-label">Platform</span>
+              <span class="sidebar-value">iOS / Android</span>
+            </div>
+            <div class="sidebar-item">
+              <span class="sidebar-label">Role</span>
+              <span class="sidebar-value">Primary Designer</span>
+            </div>
+            <div class="sidebar-item">
+              <span class="sidebar-label">Duration</span>
+              <span class="sidebar-value">3 Weeks</span>
+            </div>
+            <div class="sidebar-item">
+              <span class="sidebar-label">Year</span>
+              <span class="sidebar-value">2023</span>
+            </div>
           </div>
-        </div>
-
-        <!-- Visual Design -->
-        <div class="project-page-section">
-          <h3>Visual Design</h3>
-          <p>
-            I developed a style guide aligned with AllTrails' existing brand
-            identity while giving the new feature its own visual language. The
-            guide defined primary and secondary colour palettes and a typography
-            system using <em>Manrope</em>, chosen for its modern, legible
-            character across heading and body sizes.
-          </p>
-        </div>
-
-        <!-- Wide image placeholder: High Fidelity Designs -->
-        <div
-          class="project-page-wide-img"
-          style="
-            background: linear-gradient(
-              135deg,
-              rgba(34, 113, 74, 0.22) 0%,
-              rgba(16, 185, 96, 0.12) 100%
-            );
-          "
-        >
-          High Fidelity Screens
-        </div>
-
-        <!-- Outcome / Reflection -->
-        <div class="project-page-section">
-          <h3>Reflection</h3>
-          <p>
-            This project was an exciting opportunity to learn ProtoPie as a new
-            prototyping tool. Although it took time to get up to speed, the end
-            result was rewarding and reinforced the importance of grounding
-            design decisions in user research. The Group Hike feature emerged
-            directly from identified user needs, including social connection,
-            safety, and personalised trail experiences.
-          </p>
-        </div>
+          <div class="sidebar-group reveal">
+            <p class="sidebar-group-title">Tools Used</p>
+            <div class="sidebar-item">
+              <span class="sidebar-value">Figma</span>
+            </div>
+            <div class="sidebar-item">
+              <span class="sidebar-value">ProtoPie</span>
+            </div>
+            <div class="sidebar-item">
+              <span class="sidebar-value">Adobe Suite</span>
+            </div>
+          </div>
+          <div class="sidebar-group reveal">
+            <p class="sidebar-group-title">Focus Areas</p>
+            <div class="sidebar-item">
+              <span class="sidebar-value">UX Research</span>
+            </div>
+            <div class="sidebar-item">
+              <span class="sidebar-value">Information Architecture</span>
+            </div>
+            <div class="sidebar-item">
+              <span class="sidebar-value">Interaction Design</span>
+            </div>
+            <div class="sidebar-item">
+              <span class="sidebar-value">Prototyping</span>
+            </div>
+          </div>
+        </aside>
       </div>
     </main>
 
-    <script src="../aurora.js"></script>
+    <!-- ================================================================
+       FOOTER
+  ================================================================ -->
+    <footer class="proj-footer">
+      <span class="footer-copy">&copy; 2026 Kamesh Raj Shanmugam</span>
+      <a href="../index.html" class="footer-back">Back to </a>
+    </footer>
+
+    <script src="../project-script.js"></script>
   </body>
 </html>
