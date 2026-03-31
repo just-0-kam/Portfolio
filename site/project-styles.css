@@ -665,6 +665,23 @@ body {
   border: 1px solid var(--grey-100);
 }
 
+/* ============================================================
+   IMAGE CAPTION — left-border note style
+============================================================ */
+.image-caption {
+  border-left: 2px solid var(--grey-400);
+  padding: 0.6rem 0 0.6rem 1rem;
+  margin-top: 12px;
+  font-size: 0.78rem;
+  line-height: 1.6;
+  color: var(--grey-400);
+}
+
+.image-caption strong {
+  color: var(--black);
+  font-weight: 600;
+}
+
 .image-placeholder {
   background: var(--white);
   aspect-ratio: 4/3;

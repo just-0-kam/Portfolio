@@ -103,6 +103,7 @@ const projects = [
     platform: "Print & Digital",
     focus: "Content Strategy & Marketing",
     bg: "repeating-linear-gradient(0deg, #d0d0c8 0px, #d0d0c8 1px, transparent 1px, transparent 24px), #e8e8e3",
+    cover: "images/L%26C/Cover%20Homepage.png",
     link: "site/projects/lights-camera.html",
   },
   {
@@ -127,7 +128,14 @@ function openModal(i) {
   document.getElementById("modalRole").textContent = p.role;
   document.getElementById("modalPlatform").textContent = p.platform;
   document.getElementById("modalFocus").textContent = p.focus;
-  document.getElementById("modalImage").style.background = p.bg;
+  const modalImage = document.getElementById("modalImage");
+  if (p.cover) {
+    modalImage.style.background = "";
+    modalImage.innerHTML = '<img src="' + p.cover + '" alt="' + p.title + '" style="width:100%;height:100%;object-fit:cover;display:block">';
+  } else {
+    modalImage.style.background = p.bg;
+    modalImage.innerHTML = "";
+  }
   document.getElementById("modalTags").innerHTML = p.tags
     .map((t) => '<span class="tag">' + t + "</span>")
     .join("");
