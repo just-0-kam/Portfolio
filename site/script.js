@@ -81,7 +81,7 @@ const projects = [
     platform: "iOS / Android",
     focus: "Feature Design & UX",
     bg: "repeating-linear-gradient(45deg, #d0d0c8 0px, #d0d0c8 1px, transparent 1px, transparent 40px), #e8e8e3",
-    link: "projects/alltrails.html",
+    link: "site/projects/alltrails.html",
   },
   {
     title: "Service Hub",
@@ -92,7 +92,7 @@ const projects = [
     platform: "Mobile",
     focus: "App Design & Branding",
     bg: "radial-gradient(circle at 30% 50%, #d0d0c8 0%, transparent 60%), #e8e8e3",
-    link: "projects/service-hub.html",
+    link: "site/projects/service-hub.html",
   },
   {
     title: "Lights & Camera Magazine",
@@ -103,7 +103,7 @@ const projects = [
     platform: "Print & Digital",
     focus: "Content Strategy & Marketing",
     bg: "repeating-linear-gradient(0deg, #d0d0c8 0px, #d0d0c8 1px, transparent 1px, transparent 24px), #e8e8e3",
-    link: "projects/lights-camera.html",
+    link: "site/projects/lights-camera.html",
   },
   {
     title: "Monocoque Magazine",
@@ -114,7 +114,7 @@ const projects = [
     platform: "Print",
     focus: "Magazine Design & Branding",
     bg: "repeating-linear-gradient(90deg, #d0d0c8 0px, #d0d0c8 1px, transparent 1px, transparent 32px), repeating-linear-gradient(0deg, #d0d0c8 0px, #d0d0c8 1px, transparent 1px, transparent 32px), #e8e8e3",
-    link: "projects/monocoque.html",
+    link: "site/projects/monocoque.html",
   },
 ];
 
