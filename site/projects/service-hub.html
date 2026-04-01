@@ -5,16 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Service Hub — UX Case Study | Kamesh Raj Shanmugam</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <link rel="stylesheet" href="../project-styles.css" />
   </head>
   <body>
-    <div class="cursor" id="cursor"></div>
-    <div class="cursor-follower" id="cursorFollower"></div>
-
     <!-- ================================================================
        NAV
     ================================================================ -->
@@ -52,10 +48,7 @@
       <header class="project-hero">
         <div class="project-hero-left">
           <div class="page-animate">
-            <a href="../../index.html" class="nav-back">
-              <i data-lucide="arrow-left" style="width: 12px; height: 12px"></i>
-              Back to Portfolio
-            </a>
+            <a href="../../index.html" class="nav-back">Back to Portfolio</a>
           </div>
           <div class="page-animate">
             <span class="project-hero-label">Case Study — 02</span>
@@ -96,8 +89,6 @@
           </div>
         </div>
       </header>
-
-      <hr class="rule" />
 
       <!-- Banner -->
       <div class="wide-image radial">
@@ -143,20 +134,25 @@
               style="
                 margin-top: 1.5rem;
                 padding: 1.25rem 1.5rem;
-                border-left: 2px solid currentColor;
-                opacity: 0.8;
+                background: var(--surface-container-low);
               "
             >
-              <p style="font-size: 0.85rem; line-height: 1.7">
-                <strong>Design Requirement:</strong> Every interaction must be
-                navigable by a 74-year-old iPhone user with no prior experience
-                in on-demand service apps — and it must feel trustworthy enough
-                that they will do it again without help.
+              <p
+                style="
+                  font-size: 0.875rem;
+                  line-height: 1.7;
+                  color: var(--on-surface-secondary);
+                "
+              >
+                <strong style="color: var(--on-surface)"
+                  >Design Requirement:</strong
+                >
+                Every interaction must be navigable by a 74-year-old iPhone user
+                with no prior experience in on-demand service apps — and it must
+                feel trustworthy enough that they will do it again without help.
               </p>
             </div>
           </section>
-
-          <hr class="rule" />
 
           <!-- Problem -->
           <section class="content-section reveal">
@@ -212,13 +208,20 @@
               style="
                 margin-top: 1.5rem;
                 padding: 1.25rem 1.5rem;
-                border-left: 2px solid currentColor;
-                opacity: 0.8;
+                background: var(--surface-container-low);
               "
             >
-              <p style="font-size: 0.85rem; line-height: 1.7">
-                <strong>The JTBD framing:</strong> When a senior citizen needs a
-                leaking tap fixed, they want to
+              <p
+                style="
+                  font-size: 0.875rem;
+                  line-height: 1.7;
+                  color: var(--on-surface-secondary);
+                "
+              >
+                <strong style="color: var(--on-surface)"
+                  >The JTBD framing:</strong
+                >
+                When a senior citizen needs a leaking tap fixed, they want to
                 <em>feel confident they've hired someone reliable</em> without
                 having to ask their children for help — and they want
                 confirmation the job is scheduled so they can stop worrying
@@ -226,8 +229,6 @@
               </p>
             </div>
           </section>
-
-          <hr class="rule" />
 
           <!-- Research -->
           <section class="content-section reveal">
@@ -289,7 +290,7 @@
             <h3
               style="
                 font-size: 1rem;
-                font-weight: 500;
+                font-weight: 600;
                 letter-spacing: -0.01em;
                 margin-top: 2rem;
                 margin-bottom: 1rem;
@@ -306,30 +307,28 @@
                 <tr>
                   <th
                     style="
-                      font-family: var(--font-mono);
-                      font-size: 0.6rem;
-                      letter-spacing: 0.12em;
+                      font-size: 0.75rem;
+                      letter-spacing: 0.1em;
                       text-transform: uppercase;
                       font-weight: 500;
-                      color: var(--grey-400);
+                      color: var(--on-surface-tertiary);
                       text-align: left;
                       padding: 0.75rem 1rem;
-                      border: 1px solid var(--grey-100);
+                      background: var(--surface-container-low);
                     "
                   >
                     Validated Hypotheses
                   </th>
                   <th
                     style="
-                      font-family: var(--font-mono);
-                      font-size: 0.6rem;
-                      letter-spacing: 0.12em;
+                      font-size: 0.75rem;
+                      letter-spacing: 0.1em;
                       text-transform: uppercase;
                       font-weight: 500;
-                      color: var(--grey-400);
+                      color: var(--on-surface-tertiary);
                       text-align: left;
                       padding: 0.75rem 1rem;
-                      border: 1px solid var(--grey-100);
+                      background: var(--surface-container-low);
                     "
                   >
                     Invalidated Assumptions
@@ -342,7 +341,7 @@
                     style="
                       padding: 1rem;
                       vertical-align: top;
-                      border: 1px solid var(--grey-100);
+                      background: var(--surface-container-lowest);
                     "
                   >
                     <ol
@@ -355,8 +354,8 @@
                     >
                       <li
                         style="
-                          font-size: 0.8rem;
-                          color: var(--grey-600);
+                          font-size: 0.875rem;
+                          color: var(--on-surface-secondary);
                           line-height: 1.6;
                         "
                       >
@@ -365,8 +364,8 @@
                       </li>
                       <li
                         style="
-                          font-size: 0.8rem;
-                          color: var(--grey-600);
+                          font-size: 0.875rem;
+                          color: var(--on-surface-secondary);
                           line-height: 1.6;
                         "
                       >
@@ -375,8 +374,8 @@
                       </li>
                       <li
                         style="
-                          font-size: 0.8rem;
-                          color: var(--grey-600);
+                          font-size: 0.875rem;
+                          color: var(--on-surface-secondary);
                           line-height: 1.6;
                         "
                       >
@@ -385,8 +384,8 @@
                       </li>
                       <li
                         style="
-                          font-size: 0.8rem;
-                          color: var(--grey-600);
+                          font-size: 0.875rem;
+                          color: var(--on-surface-secondary);
                           line-height: 1.6;
                         "
                       >
@@ -399,7 +398,7 @@
                     style="
                       padding: 1rem;
                       vertical-align: top;
-                      border: 1px solid var(--grey-100);
+                      background: var(--surface-container-lowest);
                     "
                   >
                     <ol
@@ -412,8 +411,8 @@
                     >
                       <li
                         style="
-                          font-size: 0.8rem;
-                          color: var(--grey-600);
+                          font-size: 0.875rem;
+                          color: var(--on-surface-secondary);
                           line-height: 1.6;
                         "
                       >
@@ -422,8 +421,8 @@
                       </li>
                       <li
                         style="
-                          font-size: 0.8rem;
-                          color: var(--grey-600);
+                          font-size: 0.875rem;
+                          color: var(--on-surface-secondary);
                           line-height: 1.6;
                         "
                       >
@@ -432,8 +431,8 @@
                       </li>
                       <li
                         style="
-                          font-size: 0.8rem;
-                          color: var(--grey-600);
+                          font-size: 0.875rem;
+                          color: var(--on-surface-secondary);
                           line-height: 1.6;
                         "
                       >
@@ -442,8 +441,8 @@
                       </li>
                       <li
                         style="
-                          font-size: 0.8rem;
-                          color: var(--grey-600);
+                          font-size: 0.875rem;
+                          color: var(--on-surface-secondary);
                           line-height: 1.6;
                         "
                       >
@@ -456,8 +455,6 @@
               </tbody>
             </table>
           </section>
-
-          <hr class="rule" />
 
           <!-- Design Decisions -->
           <section class="content-section reveal">
@@ -476,7 +473,7 @@
                 <div>
                   <p class="goal-title">Category-First Homepage Architecture</p>
                   <p class="goal-desc">
-                    The homepage opens directly to a 3×4 category grid — no
+                    The homepage opens directly to a 3x4 category grid — no
                     onboarding carousel, no promotional banners. Seniors arrive
                     with a specific job in mind ("I need a plumber") — the UI
                     immediately presents that vocabulary in their terms, not app
@@ -565,8 +562,6 @@
             </div>
           </section>
 
-          <hr class="rule" />
-
           <!-- Usability Testing -->
           <section class="content-section reveal">
             <div class="content-section-header">
@@ -583,7 +578,7 @@
               <div class="goal-item">
                 <span
                   class="goal-number"
-                  style="font-size: 0.55rem; padding-top: 0.15rem"
+                  style="font-size: 0.6rem; padding-top: 0.15rem"
                   >CRIT</span
                 >
                 <div>
@@ -599,7 +594,7 @@
               <div class="goal-item">
                 <span
                   class="goal-number"
-                  style="font-size: 0.55rem; padding-top: 0.15rem"
+                  style="font-size: 0.6rem; padding-top: 0.15rem"
                   >CRIT</span
                 >
                 <div>
@@ -615,7 +610,7 @@
               <div class="goal-item">
                 <span
                   class="goal-number"
-                  style="font-size: 0.55rem; padding-top: 0.15rem"
+                  style="font-size: 0.6rem; padding-top: 0.15rem"
                   >CRIT</span
                 >
                 <div>
@@ -631,7 +626,7 @@
               <div class="goal-item">
                 <span
                   class="goal-number"
-                  style="font-size: 0.55rem; padding-top: 0.15rem"
+                  style="font-size: 0.6rem; padding-top: 0.15rem"
                   >CRIT</span
                 >
                 <div>
@@ -647,7 +642,7 @@
               <div class="goal-item">
                 <span
                   class="goal-number"
-                  style="font-size: 0.55rem; padding-top: 0.15rem"
+                  style="font-size: 0.6rem; padding-top: 0.15rem"
                   >HIGH</span
                 >
                 <div>
@@ -663,7 +658,7 @@
               <div class="goal-item">
                 <span
                   class="goal-number"
-                  style="font-size: 0.55rem; padding-top: 0.15rem"
+                  style="font-size: 0.6rem; padding-top: 0.15rem"
                   >HIGH</span
                 >
                 <div>
@@ -677,7 +672,7 @@
               <div class="goal-item">
                 <span
                   class="goal-number"
-                  style="font-size: 0.55rem; padding-top: 0.15rem"
+                  style="font-size: 0.6rem; padding-top: 0.15rem"
                   >HIGH</span
                 >
                 <div>
@@ -696,22 +691,27 @@
               style="
                 margin-top: 1.5rem;
                 padding: 1.25rem 1.5rem;
-                border-left: 2px solid currentColor;
-                opacity: 0.8;
+                background: var(--surface-container-low);
               "
             >
-              <p style="font-size: 0.85rem; line-height: 1.7">
-                <strong>Highest-signal insight:</strong> Every single user
-                validated the core concept without prompting — they said it
-                would be beneficial to their daily lives. Product-market fit
-                signal was strong. The problems were all execution-layer issues,
-                not concept-level failures. That is an excellent place to be
-                after a first prototype.
+              <p
+                style="
+                  font-size: 0.875rem;
+                  line-height: 1.7;
+                  color: var(--on-surface-secondary);
+                "
+              >
+                <strong style="color: var(--on-surface)"
+                  >Highest-signal insight:</strong
+                >
+                Every single user validated the core concept without prompting —
+                they said it would be beneficial to their daily lives.
+                Product-market fit signal was strong. The problems were all
+                execution-layer issues, not concept-level failures. That is an
+                excellent place to be after a first prototype.
               </p>
             </div>
           </section>
-
-          <hr class="rule" />
 
           <!-- Outcomes -->
           <section class="content-section reveal">
@@ -803,8 +803,6 @@
             </div>
           </section>
 
-          <hr class="rule" />
-
           <!-- Reflection -->
           <section class="content-section reveal">
             <div class="content-section-header">
@@ -854,7 +852,7 @@
             <p class="sidebar-group-title">Project Info</p>
             <div class="sidebar-item">
               <span class="sidebar-label">Type</span>
-              <span class="sidebar-value">UX · Mobile App</span>
+              <span class="sidebar-value">UX / Mobile App</span>
             </div>
             <div class="sidebar-item">
               <span class="sidebar-label">Platform</span>
