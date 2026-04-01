@@ -666,6 +666,43 @@ body {
 }
 
 /* ============================================================
+   MAGAZINE IMAGE LAYOUTS
+============================================================ */
+.mag-img-single {
+  width: 100%;
+  margin: 0;
+}
+
+.mag-img-single img {
+  width: 100%;
+  display: block;
+}
+
+/* Two images flush together, no gutter (magazine spread) */
+.mag-spread {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.mag-spread img {
+  width: 100%;
+  display: block;
+}
+
+/* Two images side by side with gutter */
+.mag-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+.mag-pair img {
+  width: 100%;
+  display: block;
+}
+
+/* ============================================================
    IMAGE CAPTION — left-border note style
 ============================================================ */
 .image-caption {

@@ -119,49 +119,7 @@ const projects = [
   },
 ];
 
-/* 7. Modal open/close */
-function openModal(i) {
-  const p = projects[i];
-  document.getElementById("modalTitle").textContent = p.title;
-  document.getElementById("modalText").textContent = p.text;
-  document.getElementById("modalType").textContent = p.type;
-  document.getElementById("modalRole").textContent = p.role;
-  document.getElementById("modalPlatform").textContent = p.platform;
-  document.getElementById("modalFocus").textContent = p.focus;
-  const modalImage = document.getElementById("modalImage");
-  if (p.cover) {
-    modalImage.style.background = "";
-    modalImage.innerHTML = '<img src="' + p.cover + '" alt="' + p.title + '" style="width:100%;height:100%;object-fit:cover;display:block">';
-  } else {
-    modalImage.style.background = p.bg;
-    modalImage.innerHTML = "";
-  }
-  document.getElementById("modalTags").innerHTML = p.tags
-    .map((t) => '<span class="tag">' + t + "</span>")
-    .join("");
-  document.getElementById("modalCta").innerHTML =
-    '<a href="' +
-    p.link +
-    '" class="btn-primary">View Full Case Study <i data-lucide="arrow-up-right" style="width:12px;height:12px;"></i></a>';
-  document.getElementById("modalBackdrop").classList.add("open");
-  document.body.style.overflow = "hidden";
-  lucide.createIcons();
-}
-
-function closeModal(e) {
-  if (e.target === document.getElementById("modalBackdrop")) closeModalDirect();
-}
-
-function closeModalDirect() {
-  document.getElementById("modalBackdrop").classList.remove("open");
-  document.body.style.overflow = "";
-}
-
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closeModalDirect();
-});
-
-/* 8. Copy email to clipboard */
+/* 7. Copy email to clipboard */
 document.getElementById("copyEmail").addEventListener("click", function () {
   const email = this.getAttribute("data-email");
   const handle = document.getElementById("emailHandle");
