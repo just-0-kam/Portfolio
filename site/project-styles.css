@@ -702,6 +702,21 @@ body {
   display: block;
 }
 
+/* Web ads pair — square takes more space, vertical is constrained */
+.mag-pair--ads {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.mag-pair--ads img:first-child {
+  width: 55%;
+}
+
+.mag-pair--ads img:last-child {
+  width: 25%;
+}
+
 /* ============================================================
    IMAGE CAPTION — left-border note style
 ============================================================ */
