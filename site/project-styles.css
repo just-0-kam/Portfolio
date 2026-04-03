@@ -676,6 +676,21 @@ body {
 }
 
 /* ============================================================
+   PHONE SCREENS GRID
+============================================================ */
+.screens-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-4);
+  margin-top: var(--spacing-6);
+}
+.screens-grid img {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+}
+
+/* ============================================================
    IMAGE CAPTION
 ============================================================ */
 .image-caption {
@@ -1187,6 +1202,9 @@ body {
   }
   .image-grid {
     grid-template-columns: 1fr;
+  }
+  .screens-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
   .stat-grid {
     grid-template-columns: 1fr 1fr;
