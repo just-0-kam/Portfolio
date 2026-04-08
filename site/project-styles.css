@@ -1203,6 +1203,31 @@ body {
   transform: none;
   transition-delay: 0.33s;
 }
+.reveal-stagger.visible > *:nth-child(6) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.4s;
+}
+.reveal-stagger.visible > *:nth-child(7) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.47s;
+}
+.reveal-stagger.visible > *:nth-child(8) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.54s;
+}
+.reveal-stagger.visible > *:nth-child(9) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.61s;
+}
+.reveal-stagger.visible > *:nth-child(10) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.68s;
+}
 
 .page-animate {
   opacity: 0;
