@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Service Hub UX Case Study | Kamesh Raj Shanmugam</title>
+    <meta name="description" content="Case study: Service Hub, an iOS home-services marketplace for adults 65+ and caregivers — dual-user UX and trust design." />
+    <meta property="og:title" content="Service Hub UX Case Study | Kamesh Raj Shanmugam" />
+    <meta property="og:description" content="Case study: Service Hub, an iOS home-services marketplace for adults 65+ and caregivers — dual-user UX and trust design." />
+    <meta property="og:type" content="article" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
@@ -11,10 +17,11 @@
     <link rel="stylesheet" href="../project-styles.css" />
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <!-- ================================================================
        NAV
     ================================================================ -->
-    <nav class="proj-nav" id="projNav">
+    <nav class="proj-nav" id="projNav" aria-label="Primary">
       <a href="../../index.html" class="nav-logo">KRS / Portfolio</a>
       <ul class="nav-links">
         <li><a href="../../index.html#work">Work</a></li>
@@ -45,7 +52,7 @@
     <!-- ================================================================
        PAGE
     ================================================================ -->
-    <main class="project-page">
+    <main id="main" class="project-page">
       <!-- Hero -->
       <header class="project-hero">
         <div class="project-hero-left">
@@ -95,7 +102,7 @@
         <img
           src="../../images/Service%20Hub/Cover.png"
           alt="Service Hub, a trusted home services marketplace"
-          style="width: 100%; height: 100%; object-fit: cover"
+          class="wide-image-media"
         />
         <span class="wide-image-label"
           >Service Hub, a trusted home services marketplace for adults 65+ and
@@ -120,7 +127,7 @@
               it to follow what is happening in their parent's home, even
               from another city.
             </p>
-            <p style="margin-top: 1rem">
+            <p class="stack-gap">
               The product is organised around a single idea: trust is not a
               feature to be added later but the architecture of the product
               itself. Every screen, badge, and piece of copy was tested
@@ -150,13 +157,13 @@
               demographic was never the target, neither in the interaction
               model, the trust layer, nor the pricing structure.
             </p>
-            <p style="margin-top: 1rem">
+            <p class="stack-gap">
               At the same time, older Americans lose an estimated $81.5
               billion per year to financial fraud, with home-repair scams
               among the most common vectors. The existing apps do not solve
               this problem; in many cases, they compound it.
             </p>
-            <div class="goal-list reveal-stagger" style="margin-top: 1.5rem">
+            <div class="goal-list stack-gap-lg reveal-stagger">
               <div class="goal-item">
                 <span class="goal-number">01</span>
                 <div>
@@ -213,7 +220,7 @@
               national average, and they control a growing share of
               residential spending.
             </p>
-            <p style="margin-top: 1rem">
+            <p class="stack-gap">
               The owner-occupied remodeling market is projected to reach
               $509 billion in 2025, with adults 55 and older accounting for
               more than 56% of that expenditure. With mortgage rates
@@ -227,15 +234,7 @@
               four years.
             </p>
 
-            <h3
-              style="
-                font-size: 1rem;
-                font-weight: 600;
-                letter-spacing: -0.01em;
-                margin-top: 2rem;
-                margin-bottom: 1rem;
-              "
-            >
+            <h3 class="content-subhead">
               Competitor landscape
             </h3>
             <p>
@@ -279,15 +278,7 @@
               </div>
             </div>
 
-            <h3
-              style="
-                font-size: 1rem;
-                font-weight: 600;
-                letter-spacing: -0.01em;
-                margin-top: 2rem;
-                margin-bottom: 1rem;
-              "
-            >
+            <h3 class="content-subhead">
               The two people the product serves
             </h3>
             <p>
@@ -338,7 +329,7 @@
                 </div>
               </div>
             </div>
-            <div class="persona" style="margin-top: 1.5rem">
+            <div class="persona stack-gap-lg">
               <div class="persona-header">
                 <div class="persona-avatar">D</div>
                 <div>
@@ -391,7 +382,7 @@
               Each emerged directly from the research and the competitor
               analysis.
             </p>
-            <div class="goal-list reveal-stagger" style="margin-top: 1.5rem">
+            <div class="goal-list stack-gap-lg reveal-stagger">
               <div class="goal-item">
                 <span class="goal-number">01</span>
                 <div>
@@ -523,7 +514,7 @@
               a specific finding from research, a competitor gap, or a
               rule drawn from established usability work.
             </p>
-            <div class="goal-list reveal-stagger" style="margin-top: 1.5rem">
+            <div class="goal-list stack-gap-lg reveal-stagger">
               <div class="goal-item">
                 <span class="goal-number">01</span>
                 <div>
@@ -866,7 +857,7 @@
               immediately, one validated decision to preserve unchanged,
               and one new feature worth building next.
             </p>
-            <div class="goal-list reveal-stagger" style="margin-top: 1.5rem">
+            <div class="goal-list stack-gap-lg reveal-stagger">
               <div class="goal-item">
                 <span class="goal-number">01</span>
                 <div>
@@ -946,7 +937,7 @@
               be traced back to a research finding, a competitor gap, or a
               testing insight, and no decision was made on taste alone.
             </p>
-            <p style="margin-top: 1rem">
+            <p class="stack-gap">
               The dual-customer approach held up under scrutiny. Designing
               two interfaces that share a single trust layer is harder
               than designing one, and it is also precisely what
@@ -956,7 +947,7 @@
               licence numbers, insurance carriers, and renewal dates did
               the real work.
             </p>
-            <p style="margin-top: 1rem">
+            <p class="stack-gap">
               The most useful lesson concerned autonomy. The caregiver
               approval toggle could have shipped as a default-on safety
               feature, but that approach would have failed; seniors would
@@ -965,7 +956,7 @@
               transformed the same feature from a reason to reject the
               product into a reason to trust it.
             </p>
-            <p style="margin-top: 1rem">
+            <p class="stack-gap">
               The next steps are clear: ship the four fixes surfaced in
               testing, build arrival confirmation, run a second round of
               testing with six participants, design the provider side of

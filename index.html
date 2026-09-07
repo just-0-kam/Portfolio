@@ -4,6 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kamesh Raj Shanmugam | Product & Brand Designer</title>
+    <meta
+      name="description"
+      content="Portfolio of Kamesh Raj Shanmugam — Product & Brand Designer based in Chennai. Selected work in product design, UX research, and editorial art direction."
+    />
+    <meta property="og:title" content="Kamesh Raj Shanmugam | Product & Brand Designer" />
+    <meta
+      property="og:description"
+      content="Selected work in product design, UX research, and editorial art direction."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
@@ -11,10 +23,11 @@
     <link rel="stylesheet" href="site/styles.css" />
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <!-- ================================================================
        NAV
     ================================================================ -->
-    <nav id="navbar">
+    <nav id="navbar" aria-label="Primary">
       <a href="#hero" class="nav-logo">KRS / Portfolio</a>
       <ul class="nav-links">
         <li><a href="#work">Work</a></li>
@@ -43,6 +56,7 @@
       <a href="#contact">Contact</a>
     </nav>
 
+    <main id="main">
     <!-- ================================================================
        HERO
     ================================================================ -->
@@ -87,6 +101,10 @@
             <img
               src="images/Alltrails/Cover.png"
               alt="AllTrails Group Hike Feature"
+              width="7680"
+              height="4320"
+              loading="lazy"
+              decoding="async"
             />
           </div>
           <div class="work-card-info">
@@ -112,6 +130,10 @@
             <img
               src="images/Service%20Hub/Cover.png"
               alt="Service Hub iOS App"
+              width="1920"
+              height="1080"
+              loading="lazy"
+              decoding="async"
             />
           </div>
           <div class="work-card-info">
@@ -137,6 +159,10 @@
             <img
               src="images/L%26C/Cover%20Homepage.png"
               alt="Lights &amp; Camera Magazine"
+              width="7680"
+              height="4320"
+              loading="lazy"
+              decoding="async"
             />
           </div>
           <div class="work-card-info">
@@ -162,6 +188,10 @@
             <img
               src="images/Monocoque%20Magazine/MM%20Project%20Cover.png"
               alt="Monocoque Magazine"
+              width="7680"
+              height="2880"
+              loading="lazy"
+              decoding="async"
             />
           </div>
           <div class="work-card-info">
@@ -215,7 +245,7 @@
             same rigour and care to every project. Currently open to new
             opportunities.
           </p>
-          <div style="margin-top: 1rem">
+          <div class="about-cta">
             <a href="#contact" class="btn-tertiary">Work With Me</a>
           </div>
         </div>
@@ -354,7 +384,7 @@
             data-email="kameshrajshan@gmail.com"
           >
             <span class="contact-link-name">Email</span>
-            <span class="label-md" id="emailHandle"
+            <span class="label-md" id="emailHandle" aria-live="polite"
               >kameshrajshan@gmail.com</span
             >
           </button>
@@ -379,6 +409,8 @@
         </div>
       </div>
     </section>
+
+    </main>
 
     <!-- ================================================================
        FOOTER

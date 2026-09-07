@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lights &amp; Camera Magazine | Kamesh Raj Shanmugam</title>
+    <meta name="description" content="Case study: art direction and editorial identity for Lights & Camera, a Vancouver film-industry digital magazine." />
+    <meta property="og:title" content="Lights &amp; Camera Magazine | Kamesh Raj Shanmugam" />
+    <meta property="og:description" content="Case study: art direction and editorial identity for Lights & Camera, a Vancouver film-industry digital magazine." />
+    <meta property="og:type" content="article" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
@@ -11,10 +17,11 @@
     <link rel="stylesheet" href="../project-styles.css" />
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <!-- ================================================================
        NAV
     ================================================================ -->
-    <nav class="proj-nav" id="projNav">
+    <nav class="proj-nav" id="projNav" aria-label="Primary">
       <a href="../../index.html" class="nav-logo">KRS / Portfolio</a>
       <ul class="nav-links">
         <li><a href="../../index.html#work">Work</a></li>
@@ -45,7 +52,7 @@
     <!-- ================================================================
        PAGE
     ================================================================ -->
-    <main class="project-page">
+    <main id="main" class="project-page">
       <!-- Hero -->
       <header class="project-hero">
         <div class="project-hero-left">
@@ -88,8 +95,8 @@
       <div class="wide-image">
         <img
           src="../../images/L%26C/Cover%20Project%20Page.png"
-          alt="Lights & Camera Magazine"
-          style="width: 100%; height: 100%; object-fit: cover; display: block"
+          alt="Lights &amp; Camera Magazine"
+          class="wide-image-media"
         />
       </div>
 
@@ -262,19 +269,19 @@
             </p>
             <div class="palette-grid reveal-stagger">
               <div class="swatch">
-                <div class="swatch-block" style="background: #f0cc00"></div>
+                <div class="swatch-block swatch-lc-gold"></div>
                 <span class="swatch-label">#F0CC00</span>
               </div>
               <div class="swatch">
-                <div class="swatch-block" style="background: #ffffff"></div>
+                <div class="swatch-block swatch-lc-white"></div>
                 <span class="swatch-label">#FFFFFF</span>
               </div>
               <div class="swatch">
-                <div class="swatch-block" style="background: #1a2820"></div>
+                <div class="swatch-block swatch-lc-green"></div>
                 <span class="swatch-label">#1A2820</span>
               </div>
               <div class="swatch">
-                <div class="swatch-block" style="background: #2b2b2b"></div>
+                <div class="swatch-block swatch-lc-charcoal"></div>
                 <span class="swatch-label">#2B2B2B</span>
               </div>
             </div>
@@ -285,19 +292,19 @@
               editorial content a clean, readable quality free of industry
               jargon.
             </p>
-            <div class="image-grid reveal-stagger" style="margin-top: 1px">
-              <div style="overflow: hidden">
+            <div class="image-grid image-grid--tight reveal-stagger">
+              <div class="media-frame">
                 <img
                   src="../../images/L%26C/Screen%20One.png"
-                  alt="L&C Magazine Screen One"
-                  style="width: 100%; display: block"
+                  alt="L&amp;C Magazine Screen One"
+                 
                 />
               </div>
-              <div style="overflow: hidden">
+              <div class="media-frame">
                 <img
                   src="../../images/L%26C/Screen%20Two.png"
-                  alt="L&C Magazine Screen Two"
-                  style="width: 100%; display: block"
+                  alt="L&amp;C Magazine Screen Two"
+                 
                 />
               </div>
             </div>
@@ -355,15 +362,14 @@
               pages, and job listings.
             </p>
             <div
-              class="image-grid reveal-stagger"
-              style="margin-top: 1.5rem; grid-template-columns: 1fr; gap: 24px"
+              class="image-grid image-grid--stack reveal-stagger"
             >
               <div>
-                <div style="overflow: hidden">
+                <div class="media-frame">
                   <img
                     src="../../images/L%26C/Home%20Page.svg"
-                    alt="L&C Magazine Home Page"
-                    style="width: 100%; display: block"
+                    alt="L&amp;C Magazine Home Page"
+                   
                   />
                 </div>
                 <p class="image-caption">
@@ -373,11 +379,11 @@
                 </p>
               </div>
               <div>
-                <div style="overflow: hidden">
+                <div class="media-frame">
                   <img
                     src="../../images/L%26C/Article%20Page.svg"
-                    alt="L&C Magazine Article Page"
-                    style="width: 100%; display: block"
+                    alt="L&amp;C Magazine Article Page"
+                   
                   />
                 </div>
                 <p class="image-caption">
@@ -387,11 +393,11 @@
                 </p>
               </div>
               <div>
-                <div style="overflow: hidden">
+                <div class="media-frame">
                   <img
                     src="../../images/L%26C/Jobs%20Page.svg"
-                    alt="L&C Magazine Jobs Page"
-                    style="width: 100%; display: block"
+                    alt="L&amp;C Magazine Jobs Page"
+                   
                   />
                 </div>
                 <p class="image-caption">
@@ -401,11 +407,11 @@
                 </p>
               </div>
               <div>
-                <div style="overflow: hidden">
+                <div class="media-frame">
                   <img
                     src="../../images/L%26C/Home%20Page%20AD.png"
-                    alt="L&C Magazine Home Page with Ad Placements"
-                    style="width: 100%; display: block"
+                    alt="L&amp;C Magazine Home Page with Ad Placements"
+                   
                   />
                 </div>
                 <p class="image-caption">

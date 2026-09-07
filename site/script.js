@@ -51,20 +51,25 @@ const obs = new IntersectionObserver(
 document.querySelectorAll(".reveal").forEach((el) => obs.observe(el));
 
 /* 4. Active nav link via section IntersectionObserver */
-const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
-const sections = [...navLinks]
+const desktopNavLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+const mobileNavLinks = document.querySelectorAll('.mobile-nav a[href^="#"]');
+const allNavLinks = [...desktopNavLinks, ...mobileNavLinks];
+const sections = [...desktopNavLinks]
   .map((link) => document.querySelector(link.getAttribute("href")))
   .filter(Boolean);
+
+function setActiveNav(id) {
+  allNavLinks.forEach((link) => {
+    link.classList.toggle("active", link.getAttribute("href") === id);
+  });
+}
 
 if (sections.length) {
   const sectionObs = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
-        const id = `#${entry.target.id}`;
-        navLinks.forEach((link) => {
-          link.classList.toggle("active", link.getAttribute("href") === id);
-        });
+        setActiveNav(`#${entry.target.id}`);
       });
     },
     { rootMargin: "-40% 0px -50% 0px", threshold: 0 },

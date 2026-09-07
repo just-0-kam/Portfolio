@@ -44,6 +44,7 @@
 
   /* Layout */
   --page-pad: 4rem;
+  --col-gap: 24px;
 
   /* Motion */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -266,7 +267,8 @@ nav.scrolled {
   padding: var(--spacing-4) 0;
   transition: color 0.2s;
 }
-.mobile-nav a:hover {
+.mobile-nav a:hover,
+.mobile-nav a.active {
   color: var(--on-surface);
 }
 
@@ -910,7 +912,46 @@ footer {
     animation: none;
     transition: none;
   }
-  .scroll-line {
+  .scroll-line::after {
     animation: none;
   }
+  .work-card-banner img,
+  .experience-item,
+  .contact-link-item {
+    transition: none;
+  }
+  .work-card:hover .work-card-banner img {
+    transform: none;
+  }
+  .experience-item:hover,
+  .contact-link-item:hover {
+    padding-left: 0;
+  }
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--page-pad);
+  z-index: 200;
+  padding: var(--spacing-3) var(--spacing-4);
+  background: var(--primary);
+  color: var(--on-primary);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.skip-link:focus {
+  top: var(--spacing-4);
+}
+
+.about-cta {
+  margin-top: var(--spacing-4);
+}
+
+main {
+  display: block;
 }

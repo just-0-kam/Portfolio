@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Monocoque Magazine | Kamesh Raj Shanmugam</title>
+    <meta name="description" content="Case study: end-to-end art direction for Monocoque, an independent Formula 1 print magazine." />
+    <meta property="og:title" content="Monocoque Magazine | Kamesh Raj Shanmugam" />
+    <meta property="og:description" content="Case study: end-to-end art direction for Monocoque, an independent Formula 1 print magazine." />
+    <meta property="og:type" content="article" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
@@ -11,10 +17,11 @@
     <link rel="stylesheet" href="../project-styles.css" />
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <!-- ================================================================
        NAV
     ================================================================ -->
-    <nav class="proj-nav" id="projNav">
+    <nav class="proj-nav" id="projNav" aria-label="Primary">
       <a href="../../index.html" class="nav-logo">KRS / Portfolio</a>
       <ul class="nav-links">
         <li><a href="../../index.html#work">Work</a></li>
@@ -45,7 +52,7 @@
     <!-- ================================================================
        PAGE
     ================================================================ -->
-    <main class="project-page">
+    <main id="main" class="project-page">
       <!-- Hero -->
       <header class="project-hero">
         <div class="project-hero-left">
@@ -93,7 +100,7 @@
         <img
           src="../../images/Monocoque%20Magazine/MM%20Project%20Cover.png"
           alt="Monocoque Magazine"
-          style="width: 100%; height: 100%; object-fit: cover; display: block"
+          class="wide-image-media"
         />
       </div>
 
@@ -264,19 +271,19 @@
             </p>
             <div class="palette-grid reveal-stagger">
               <div class="swatch">
-                <div class="swatch-block" style="background: #191818"></div>
+                <div class="swatch-block swatch-mm-black"></div>
                 <span class="swatch-label">#191818</span>
               </div>
               <div class="swatch">
-                <div class="swatch-block" style="background: #ffffff"></div>
+                <div class="swatch-block swatch-mm-white"></div>
                 <span class="swatch-label">#FFFFFF</span>
               </div>
               <div class="swatch">
-                <div class="swatch-block" style="background: #ffcb05"></div>
+                <div class="swatch-block swatch-mm-yellow"></div>
                 <span class="swatch-label">#FFCB05</span>
               </div>
               <div class="swatch">
-                <div class="swatch-block" style="background: #e31b4d"></div>
+                <div class="swatch-block swatch-mm-red"></div>
                 <span class="swatch-label">#E31B4D</span>
               </div>
             </div>

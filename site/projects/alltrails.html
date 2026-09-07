@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AllTrails Group Hike Feature | Kamesh Raj Shanmugam</title>
+    <meta name="description" content="Case study: peer-to-peer Group Hike feature design for AllTrails — research, flows, and hi-fi mobile screens." />
+    <meta property="og:title" content="AllTrails Group Hike Feature | Kamesh Raj Shanmugam" />
+    <meta property="og:description" content="Case study: peer-to-peer Group Hike feature design for AllTrails — research, flows, and hi-fi mobile screens." />
+    <meta property="og:type" content="article" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
@@ -11,10 +17,11 @@
     <link rel="stylesheet" href="../project-styles.css" />
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <!-- ================================================================
        NAV
     ================================================================ -->
-    <nav class="proj-nav" id="projNav">
+    <nav class="proj-nav" id="projNav" aria-label="Primary">
       <a href="../../index.html" class="nav-logo">KRS / Portfolio</a>
       <ul class="nav-links">
         <li><a href="../../index.html#work">Work</a></li>
@@ -45,7 +52,7 @@
     <!-- ================================================================
        PAGE
     ================================================================ -->
-    <main class="project-page">
+    <main id="main" class="project-page">
       <!-- Hero -->
       <header class="project-hero">
         <div class="project-hero-left">
@@ -93,13 +100,7 @@
         <img
           src="../../images/Alltrails/Cover.png"
           alt="AllTrails Group Hike Feature"
-          style="
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            display: block;
-          "
+          class="wide-image-media"
         />
       </div>
 
