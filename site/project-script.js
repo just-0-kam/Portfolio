@@ -2,7 +2,7 @@
    PROJECT-SCRIPT.JS
    Shared JavaScript for all project case study pages.
    - Nav scroll state
-   - Mobile menu toggle
+   - Mobile menu toggle (a11y)
    - Scroll reveal via IntersectionObserver
 ================================================================ */
 
@@ -21,16 +21,31 @@ document.addEventListener("DOMContentLoaded", () => {
   const mobileNav = document.getElementById("mobileNav");
 
   if (menuToggle && mobileNav) {
+    function setMenuOpen(open) {
+      menuToggle.classList.toggle("open", open);
+      mobileNav.classList.toggle("open", open);
+      menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      document.body.style.overflow = open ? "hidden" : "";
+      if (open) {
+        const first = mobileNav.querySelector("a");
+        if (first) first.focus();
+      } else {
+        menuToggle.focus();
+      }
+    }
+
     menuToggle.addEventListener("click", () => {
-      menuToggle.classList.toggle("open");
-      mobileNav.classList.toggle("open");
+      setMenuOpen(!mobileNav.classList.contains("open"));
     });
 
     document.querySelectorAll(".mobile-nav a").forEach((link) => {
-      link.addEventListener("click", () => {
-        menuToggle.classList.remove("open");
-        mobileNav.classList.remove("open");
-      });
+      link.addEventListener("click", () => setMenuOpen(false));
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && mobileNav.classList.contains("open")) {
+        setMenuOpen(false);
+      }
     });
   }
 

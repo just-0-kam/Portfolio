@@ -42,9 +42,7 @@
   --spacing-20: 6rem; /* 96px */
   --spacing-24: 8.5rem; /* 136px — "embrace the void" */
 
-  /* Grid */
-  --grid-max: 1440px;
-  --col-gap: 24px;
+  /* Layout */
   --page-pad: 4rem;
 
   /* Motion */
@@ -146,7 +144,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(249, 249, 249, 0.8);
+  background: color-mix(in srgb, var(--surface) 80%, transparent);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   transition: box-shadow 0.4s var(--ease-out);
@@ -190,8 +188,22 @@ nav.scrolled {
 .nav-links a:hover {
   color: var(--on-surface);
 }
-.nav-links a:hover::after {
+.nav-links a:hover::after,
+.nav-links a.active::after {
   width: 100%;
+}
+.nav-links a.active {
+  color: var(--on-surface);
+}
+.nav-links a:focus-visible,
+.menu-toggle:focus-visible,
+.btn-primary:focus-visible,
+.btn-tertiary:focus-visible,
+.btn-signal:focus-visible,
+.contact-link-item:focus-visible,
+.work-card:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
 }
 
 /* Mobile hamburger */
@@ -233,7 +245,7 @@ nav.scrolled {
   left: 0;
   right: 0;
   z-index: 99;
-  background: rgba(249, 249, 249, 0.97);
+  background: color-mix(in srgb, var(--surface) 97%, transparent);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   padding: 80px var(--page-pad) var(--spacing-8);
@@ -339,7 +351,7 @@ nav.scrolled {
 }
 .hero-content {
   display: grid;
-  grid-template-columns: 7fr 5fr;
+  grid-template-columns: minmax(0, 42rem);
   align-items: end;
   padding: var(--spacing-24) var(--page-pad) var(--spacing-16);
   gap: var(--spacing-16);
@@ -364,38 +376,18 @@ nav.scrolled {
   max-width: 420px;
   line-height: 1.6;
 }
+.hero-locale {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--on-surface-tertiary);
+}
 .hero-cta {
   display: flex;
   align-items: center;
   gap: var(--spacing-8);
   margin-top: var(--spacing-4);
-}
-
-.hero-right {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-
-.hero-meta-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0;
-}
-.hero-meta-item {
-  background: var(--surface-container-lowest);
-  padding: var(--spacing-6);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-2);
-}
-.hero-meta-item:nth-child(odd) {
-  background: var(--surface-container-low);
-}
-.meta-value {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--on-surface);
 }
 
 .hero-scroll-hint {
@@ -452,55 +444,6 @@ nav.scrolled {
 }
 
 /* ============================================================
-   WORK — Grid Index (Signature Component)
-============================================================ */
-#work {
-  padding: var(--spacing-24) 0;
-}
-
-.grid-index {
-  padding: 0 var(--page-pad);
-}
-
-.grid-index-row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  padding: var(--spacing-6) 0;
-  text-decoration: none;
-  color: var(--on-surface);
-  transition: padding-left 0.3s var(--ease-out);
-  cursor: pointer;
-  position: relative;
-}
-.grid-index-row + .grid-index-row {
-  box-shadow: inset 0 1px 0 var(--outline-variant);
-}
-.grid-index-row:hover {
-  padding-left: var(--spacing-4);
-}
-.grid-index-row:hover .grid-index-title {
-  color: var(--signal);
-}
-.grid-index-left {
-  display: flex;
-  align-items: baseline;
-  gap: var(--spacing-8);
-}
-.grid-index-title {
-  font-size: clamp(1.5rem, 3vw, 2.5rem);
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-  transition: color 0.2s;
-}
-.grid-index-meta {
-  display: flex;
-  align-items: baseline;
-  gap: var(--spacing-8);
-}
-
-/* ============================================================
    WORK — Card List
 ============================================================ */
 .work-list {
@@ -519,7 +462,6 @@ nav.scrolled {
 .work-card-banner {
   width: 100%;
   aspect-ratio: 16 / 7;
-  border-radius: 28px;
   overflow: hidden;
   background: var(--surface-container-low);
 }
@@ -863,11 +805,7 @@ footer {
     --page-pad: 2.5rem;
   }
   .hero-content {
-    grid-template-columns: 1fr;
     padding: var(--spacing-20) var(--page-pad) var(--spacing-12);
-  }
-  .hero-right {
-    display: none;
   }
   .about-grid {
     grid-template-columns: 1fr 2fr;
@@ -888,9 +826,6 @@ footer {
     grid-template-columns: 1fr;
     gap: var(--spacing-12);
   }
-  .grid-index-meta {
-    gap: var(--spacing-4);
-  }
   .work-card-meta {
     flex-direction: row;
     align-items: baseline;
@@ -907,17 +842,6 @@ footer {
   }
   .menu-toggle {
     display: flex;
-  }
-  .grid-index-row {
-    flex-direction: column;
-    gap: var(--spacing-3);
-  }
-  .grid-index-meta {
-    flex-wrap: wrap;
-    gap: var(--spacing-3);
-  }
-  .grid-index-preview {
-    display: none;
   }
   .work-card-info {
     flex-direction: column;
@@ -971,5 +895,22 @@ footer {
   }
   .contact-headline {
     font-size: 2rem;
+  }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal,
+  .hero-animate {
+    opacity: 1;
+    transform: none;
+    animation: none;
+    transition: none;
+  }
+  .scroll-line {
+    animation: none;
   }
 }

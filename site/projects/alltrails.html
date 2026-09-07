@@ -26,19 +26,21 @@
         class="menu-toggle"
         id="menuToggle"
         aria-label="Toggle navigation"
+        aria-expanded="false"
+        aria-controls="mobileNav"
       >
         <span></span><span></span><span></span>
       </button>
     </nav>
 
     <!-- Mobile nav -->
-    <div class="mobile-nav" id="mobileNav">
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
       <a href="../../index.html#work">Work</a>
       <a href="../../index.html#about">About</a>
       <a href="../../index.html#experience">Experience</a>
       <a href="../../index.html#contact">Contact</a>
       <a href="../../index.html">Back to Portfolio</a>
-    </div>
+    </nav>
 
     <!-- ================================================================
        PAGE
@@ -607,8 +609,8 @@
               one job completely rather than several jobs partially.
             </p>
             <p>
-              The heuristic evaluation that followed confirmed that the
-              core flows are structurally sound and identified the clearest
+              A structured design review after the hi-fi pass confirmed that
+              the core flows are structurally sound and surfaced the clearest
               next priority: error-state coverage. The current design
               handles the happy path, but it does not yet account for a
               full event, a cancelled event, an expired join code, or a

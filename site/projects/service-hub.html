@@ -26,19 +26,21 @@
         class="menu-toggle"
         id="menuToggle"
         aria-label="Toggle navigation"
+        aria-expanded="false"
+        aria-controls="mobileNav"
       >
         <span></span><span></span><span></span>
       </button>
     </nav>
 
     <!-- Mobile nav -->
-    <div class="mobile-nav" id="mobileNav">
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
       <a href="../../index.html#work">Work</a>
       <a href="../../index.html#about">About</a>
       <a href="../../index.html#experience">Experience</a>
       <a href="../../index.html#contact">Contact</a>
       <a href="../../index.html">Back to Portfolio</a>
-    </div>
+    </nav>
 
     <!-- ================================================================
        PAGE
@@ -125,24 +127,9 @@
               against one question. Does this make a senior feel safer
               letting a stranger into their home?
             </p>
-            <div
-              class="callout"
-              style="
-                margin-top: 1.5rem;
-                padding: 1.25rem 1.5rem;
-                background: var(--surface-container-low);
-              "
-            >
-              <p
-                style="
-                  font-size: 0.875rem;
-                  line-height: 1.7;
-                  color: var(--on-surface-secondary);
-                "
-              >
-                <strong style="color: var(--on-surface)"
-                  >Design principle:</strong
-                >
+            <div class="callout">
+              <p>
+                <strong>Design principle:</strong>
                 A senior should feel as confident letting a Service Hub pro into
                 their home as they would with a neighbor's recommendation.
               </p>
@@ -645,19 +632,19 @@
             <div class="screens-grid">
               <img
                 src="../../images/Service%20Hub/Visual%20Design/Group%20120.png"
-                alt="Visual Design, Group 120"
+                alt="Primary colour swatch #702B00"
               />
               <img
                 src="../../images/Service%20Hub/Visual%20Design/Group%20121.png"
-                alt="Visual Design, Group 121"
+                alt="Secondary colour swatch #ECE7E3"
               />
               <img
                 src="../../images/Service%20Hub/Visual%20Design/Group%20122.png"
-                alt="Visual Design, Group 122"
+                alt="Tertiary colour swatch #CFE2F9"
               />
               <img
                 src="../../images/Service%20Hub/Visual%20Design/Group%20123.png"
-                alt="Visual Design, Group 123"
+                alt="Neutral colour swatch #FFFFFF"
               />
             </div>
           </section>

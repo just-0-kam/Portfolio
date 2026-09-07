@@ -27,19 +27,21 @@
         class="menu-toggle"
         id="menuToggle"
         aria-label="Toggle navigation"
+        aria-expanded="false"
+        aria-controls="mobileNav"
       >
         <span></span><span></span><span></span>
       </button>
     </nav>
 
     <!-- Mobile nav -->
-    <div class="mobile-nav" id="mobileNav">
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
       <a href="#work">Work</a>
       <a href="#about">About</a>
       <a href="#experience">Experience</a>
       <a href="#education">Education</a>
       <a href="#contact">Contact</a>
-    </div>
+    </nav>
 
     <!-- ================================================================
        HERO
@@ -54,30 +56,12 @@
             with creative strategy to design products, brands, and interfaces
             that connect meaningfully with the people who use them.
           </p>
+          <p class="hero-locale hero-animate">
+            Chennai, IN · Open to new opportunities
+          </p>
           <div class="hero-cta hero-animate">
             <a href="#work" class="btn-primary">View Work</a>
             <a href="#contact" class="btn-tertiary">Get in Touch</a>
-          </div>
-        </div>
-
-        <div class="hero-right hero-animate">
-          <div class="hero-meta-grid">
-            <div class="hero-meta-item">
-              <span class="label-md">Based in</span>
-              <span class="meta-value">Chennai, IN</span>
-            </div>
-            <div class="hero-meta-item">
-              <span class="label-md">Available</span>
-              <span class="meta-value">Open to new opportunities</span>
-            </div>
-            <div class="hero-meta-item">
-              <span class="label-md">Experience</span>
-              <span class="meta-value">Junior</span>
-            </div>
-            <div class="hero-meta-item">
-              <span class="label-md">Focus</span>
-              <span class="meta-value">Product Design &amp; Branding</span>
-            </div>
           </div>
         </div>
       </div>
@@ -117,6 +101,7 @@
             <div class="work-card-meta">
               <span class="label-md">Mobile App</span>
               <span class="label-md">Feature Design</span>
+              <span class="label-md">UX Research</span>
               <span class="label-md">2023</span>
             </div>
           </div>
@@ -166,6 +151,7 @@
             <div class="work-card-meta">
               <span class="label-md">Art Direction</span>
               <span class="label-md">Editorial Design</span>
+              <span class="label-md">Brand Identity</span>
               <span class="label-md">2022</span>
             </div>
           </div>
@@ -189,6 +175,7 @@
             </div>
             <div class="work-card-meta">
               <span class="label-md">Magazine Design</span>
+              <span class="label-md">Art Direction</span>
               <span class="label-md">Branding</span>
               <span class="label-md">2022</span>
             </div>
